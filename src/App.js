@@ -1,9 +1,11 @@
-import './App.css';
-import MainPage from './components/main'
+import React from 'react';
+import Routers from 'components/Route/Routers';
 
 function App() {
   return (
-      <MainPage></MainPage>
+    <React.StrictMode>
+        <Routers/>
+    </React.StrictMode>
   );
 }
 
