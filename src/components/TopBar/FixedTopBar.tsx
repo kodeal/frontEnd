@@ -1,15 +1,16 @@
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import styled, {StyledComponent} from "styled-components";
+import { Link, LinkProps } from 'react-router-dom';
 
-const TopBar = styled.div`
+const TopBar : StyledComponent<"div", any, {}, never> = styled.div`
     width: 100%;
     height: 5vh;
     background-color: red;
     display: flex;
     justify-content: space-between;
+    text-align: center;
 `;
 
-const TopBarTitle = styled(Link)`
+const TopBarTitle : StyledComponent<React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLAnchorElement>>, any, {}, never> = styled(Link)`
     width: 10%;
     color: white;
     font-size: 2rem;
@@ -19,7 +20,7 @@ const TopBarTitle = styled(Link)`
     text-decoration: none;
 `;
 
-const LoginButton = styled(Link)`
+const LoginButton :  StyledComponent<React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLAnchorElement>>, any, {}, never> = styled(Link)`
     width: 150px;
     background-color: slateblue;
     border-radius: 20px;
@@ -29,7 +30,7 @@ const LoginButton = styled(Link)`
     text-decoration: none;
 `;
 
-export default function FixedTopBar(){
+export default function FixedTopBar() : JSX.Element {
     return(
         <TopBar>
             <TopBarTitle to="/">Kodeal</TopBarTitle>

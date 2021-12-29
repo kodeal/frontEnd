@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled, {StyledComponent} from 'styled-components';
 import { Link } from 'react-router-dom';
-import { GlobalFontStyle } from 'font/Font';
 import FixedTopBar from 'components/TopBar/FixedTopBar';
 
-const Main = styled.div`
+const Main : StyledComponent<"div", any, {}, never> = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: black;
     font-size: 50px;
     opacity: 0.8;
@@ -18,12 +17,11 @@ const Main = styled.div`
 
 const Title = styled.h1`
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     text-align: center;
     color: white;
     transform: translate(-50%, -50%);
-    font-family: 'Spoqa Han Sans Bold';
 `;
 
 const StartButton = styled(Link)`
@@ -46,7 +44,6 @@ export default function MainPage() : JSX.Element {
 
     return(
         <Main>
-            <GlobalFontStyle/>
             <FixedTopBar/>
             <Title>Kodeal</Title>
             <StartButton to="/QnA">START</StartButton>

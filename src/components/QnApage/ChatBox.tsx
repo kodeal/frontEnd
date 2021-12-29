@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import styled, { StyledComponent } from "styled-components";
 
-const Box = styled.div`
-    width : 95%;
-    height: 70vh;
-    background-color: gray;
+const Box : StyledComponent<"div", any, {}, never> = styled.div`
+    width : 100%;
+    background-color: rgb(220, 200, 220);
     border: 1px solid;
-    border-radius: 10px;
-    margin: 0 auto;
+    border-radius: 8px;
+    margin: 0.6rem;
 `;
 
 export default function ChatBox() : JSX.Element{

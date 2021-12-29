@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, {StyledComponent} from "styled-components";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 
-const Main = styled.div`
+const Main : StyledComponent<"div", any, {}, never> = styled.div`
     width: 100%;
     height: 100vh;
     background-color: beige;
