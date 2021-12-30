@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
 import { updateQuestion, updateCode, sendChatting } from "states/Chatting";
-import { RootState } from "states/RootReducer";
+import { useState } from "react";
 
 const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
     border: solid 1px;
@@ -36,7 +35,7 @@ const TextDiv : StyledComponent<"div", any, {}, never> = styled.div`
 
 const InputCode : StyledComponent<"textarea", any, {}, never> = styled.textarea`
     width: 100vh;
-    height: 25rem;
+    height: 20rem;
     line-height: 1.6rem;
     font-size: 15px;
     background-color: white;
@@ -47,43 +46,43 @@ const InputCode : StyledComponent<"textarea", any, {}, never> = styled.textarea`
 `;
 
 const SendButton = styled.button`
-    width: 3rem;
+    width: 6rem;
     height: 2rem;
     border-radius: 8px;
-    background-color: skyblue;
+    background-color: blue;
     margin-right: 0.6rem;
     margin-top: 0.2rem;
+    font-weight: bold;
+    color: white;
 `;
 
-type ChattingProps = {
-    addQuestion(): void,
-    deleteQuestion(): void,
-    addCode(): void,
-    deleteCode(): void,
-    sendChatting(): void,
-}
+// type ChattingProps = {
+//     addQuestion(): void,
+//     deleteQuestion(): void,
+//     addCode(): void,
+//     deleteCode(): void,
+//     sendChatting(): void,
+// }
 
 export default function ChatInputWindow() :JSX.Element {
-    //const [question, setQuestion] = useState("");
-    //const [code, setCode] = useState("");
-    //const [isSend, setIsSend] = useState(false);
-
-    const {question, code, isSend} = useSelector((state : RootState) => state.chatting);
+    const [question, setQuestion] = useState("");
+    const [code, setCode] = useState("");
     const dispatch = useDispatch();
 
     const handleQuestion = (e : any) : void => {
-        dispatch(updateQuestion(e.target.value));
-        console.log(question);
+        setQuestion(e.target.value);
     };
 
     const handleCode = (e : any) : void => {
-        dispatch(updateCode(e.target.value));
-        console.log(code);
+        setCode(e.target.value);
     };
 
     const handleSubmit = (e : any) : void => {
         e.preventDefault();
-        console.log(`question : ${question}`);
+        dispatch(updateQuestion(question));
+        dispatch(updateCode(code));
+        dispatch(sendChatting(true));
+        e.target.reset();
     }
 
     return(
