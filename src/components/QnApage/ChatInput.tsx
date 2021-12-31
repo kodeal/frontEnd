@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
-import { updateQuestion, updateCode, sendChatting } from "states/Chatting";
-import { useState } from "react";
+import { updateQuestion } from "states/Chatting";
+import { useCallback, useState } from "react";
 
 const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
     border: solid 1px;
@@ -45,7 +45,7 @@ const InputCode : StyledComponent<"textarea", any, {}, never> = styled.textarea`
     resize: none;
 `;
 
-const SendButton = styled.button`
+const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
     width: 6rem;
     height: 2rem;
     border-radius: 8px;
@@ -54,6 +54,11 @@ const SendButton = styled.button`
     margin-top: 0.2rem;
     font-weight: bold;
     color: white;
+
+    &:disabled{
+        background-color: gray;
+        cursor: not-allowed;
+    }
 `;
 
 // type ChattingProps = {
@@ -67,11 +72,12 @@ const SendButton = styled.button`
 export default function ChatInputWindow() :JSX.Element {
     const [question, setQuestion] = useState("");
     const [code, setCode] = useState("");
+    const [key, setKey] = useState(0);
     const dispatch = useDispatch();
 
-    const handleQuestion = (e : any) : void => {
+    const handleQuestion = useCallback((e : any) : void => {
         setQuestion(e.target.value);
-    };
+    }, []);
 
     const handleCode = (e : any) : void => {
         setCode(e.target.value);
@@ -79,9 +85,10 @@ export default function ChatInputWindow() :JSX.Element {
 
     const handleSubmit = (e : any) : void => {
         e.preventDefault();
-        dispatch(updateQuestion(question));
-        dispatch(updateCode(code));
-        dispatch(sendChatting(true));
+        setKey(key + 1);
+        dispatch(updateQuestion(key, question, code, "user"));
+        setQuestion("");
+        setCode("");
         e.target.reset();
     }
 
@@ -89,11 +96,13 @@ export default function ChatInputWindow() :JSX.Element {
         <ChatWindow>
             <form onSubmit={handleSubmit}>
                 <TextDiv>Question
-                    <SendButton>전송</SendButton>
+                    <SendButton disabled={!question}>전송</SendButton>
                 </TextDiv>
                 <InputText placeholder="질문해 주세요!" onChange={handleQuestion}></InputText>
                 <TextDiv>Code</TextDiv>
-                <InputCode placeholder="코드를 입력해 주세요!" onChange={handleCode}></InputCode>
+                <pre>
+                    <InputCode placeholder="코드를 입력해 주세요!" onChange={handleCode}></InputCode>
+                </pre>
             </form>
         </ChatWindow>
 
