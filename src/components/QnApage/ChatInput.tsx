@@ -49,7 +49,7 @@ const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
     width: 6rem;
     height: 2rem;
     border-radius: 8px;
-    background-color: blue;
+    background-color: #7E5FFA;
     margin-right: 0.6rem;
     margin-top: 0.2rem;
     font-weight: bold;
@@ -58,6 +58,10 @@ const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
     &:disabled{
         background-color: gray;
         cursor: not-allowed;
+    }
+
+    &:hover {
+        background-color: #644cc8;
     }
 `;
 
