@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
 import { updateQuestion } from "states/Chatting";
 import { useCallback, useState } from "react";
+import { sendQuestion } from "apis/api";
 
 const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
     border: solid 1px;
@@ -9,6 +10,7 @@ const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
     display: flex;
     margin: 0.6rem;
     border-radius: 8px;
+    margin-top: 4rem;
 `;
 
 const InputText : StyledComponent<"textarea", any, {}, never> = styled.textarea`
@@ -35,7 +37,7 @@ const TextDiv : StyledComponent<"div", any, {}, never> = styled.div`
 
 const InputCode : StyledComponent<"textarea", any, {}, never> = styled.textarea`
     width: 100vh;
-    height: 20rem;
+    height: 25.2rem;
     line-height: 1.6rem;
     font-size: 15px;
     background-color: white;
@@ -87,9 +89,10 @@ export default function ChatInputWindow() :JSX.Element {
         setCode(e.target.value);
     };
 
-    const handleSubmit = (e : any) : void => {
+    const handleSubmit = async (e : any) => {
         e.preventDefault();
         setKey(key + 1);
+        const result = await sendQuestion(question, code);
         dispatch(updateQuestion(key, question, code, "user"));
         setQuestion("");
         setCode("");

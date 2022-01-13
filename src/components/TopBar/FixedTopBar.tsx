@@ -8,6 +8,9 @@ const TopBar : StyledComponent<"div", any, {}, never> = styled.div`
     display: flex;
     justify-content: space-between;
     text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
 `;
 
 const TopBarTitle : StyledComponent<React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLAnchorElement>>, any, {}, never> = styled(Link)`
