@@ -92,7 +92,7 @@ export default function ChatInputWindow() :JSX.Element {
     const handleSubmit = async (e : any) => {
         e.preventDefault();
         setKey(key + 1);
-        const result = await sendQuestion(question, code);
+        //const result = await sendQuestion(question, code);
         dispatch(updateQuestion(key, question, code, "user"));
         setQuestion("");
         setCode("");

@@ -9,6 +9,9 @@ const Box : StyledComponent<"div", any, {}, never> = styled.div`
     margin: 0.6rem;
     overflow-y: scroll;
     margin-top: 4rem;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
 `;
 
 export default function ChatBox() : JSX.Element{

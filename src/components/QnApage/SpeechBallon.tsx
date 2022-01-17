@@ -1,23 +1,6 @@
 import styled, {StyledComponent} from "styled-components";
 import ReactMarkdown from "react-markdown";
 
-const Ballon :StyledComponent<"div", any, {}, never> = styled.div`
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid;
-    color: black;
-    font-size: 17px;
-    font-weight: 550;
-    height: auto;
-    letter-spacing: -0.25px;
-    margin-top: 6.8px;
-    padding: 5px 11px;
-    width: fit-content;
-    z-index: 100;
-    margin: 10px 0px 0px 5px;
-
-`;
-
 const QuestionBallon = styled.div`
     background-color: white;
     border-radius: 10px;
@@ -30,7 +13,6 @@ const QuestionBallon = styled.div`
     margin-top: 6.8px;
     padding: 5px 11px;
     width: fit-content;
-    z-index: 100;
     margin: 10px 0px 0px 5px;
 `;
 
@@ -46,7 +28,6 @@ const CodeBallon = styled.div`
     margin-top: 6.8px;
     padding: 5px 11px;
     width: fit-content;
-    z-index: 100;
     margin: 10px 0px 0px 5px;
 `;
 
@@ -68,7 +49,7 @@ export default function SpeechBallon (props : chattingType) :JSX.Element {
     `;
 
     return(
-        <Ballon>
+        <div>
             <QuestionBallon>
                 <pre>{props.question}</pre>
             </QuestionBallon>
@@ -76,6 +57,6 @@ export default function SpeechBallon (props : chattingType) :JSX.Element {
             <CodeBallon>
                     <ReactMarkdown children={markDownCode}></ReactMarkdown>
             </CodeBallon> : null}
-        </Ballon>
+        </div>
     );
 }
