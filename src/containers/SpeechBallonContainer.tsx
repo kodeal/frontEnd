@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {RootState} from "../states/RootReducer";
+import {RootState} from "../reducer/RootReducer";
 import SpeechBallon from "components/QnApage/SpeechBallon";
 
 type QuestionState = {
@@ -9,7 +9,7 @@ type QuestionState = {
     who: string
 };
 
-export default function SpeechBallonContainer(){
+const SpeechBallonContainer = (props: any) => {
     const chatArr : QuestionState[] = useSelector((state : RootState) => state.chatting);
     const chatArrLength : number = chatArr.length;
     const speechBallonArr :JSX.Element[] = chatArr.map(chat => 
@@ -23,3 +23,5 @@ export default function SpeechBallonContainer(){
     
     return(chatArrLength > 0 ? speechBallonArr : null);
 }
+
+export default SpeechBallonContainer

@@ -3,10 +3,6 @@ import produce from "immer";
 // as const 를 붙여줌으로써 나중에 액션 객체 추론을 위해 action.type의 값을 추론하는 과정에서
 // action.type이 string 으로 추론되지 않고 'chatting/ADD_CHATTING' 처럼 실제 문자열 값으로 추론 되도록 함
 const UPDATE_QUESTION : string = "chatting/UPDATE_QUESTION" as const;
-//const DELETE_QUESTION : string = "chatting/DELETE_CHATTING" as const;
-//const UPDATE_CODE : string = "chatting/UPDATE_CODE" as const;
-//const DELETE_CODE : string = "chatting/DELETE_CHATTING" as const;
-//const SEND_CHATTING : string = "chatting/SEND_CHATTING" as const;
 
 // 액션 생성 함수 설정
 export const updateQuestion = (key : number, question : string, code : string, who : string) => ({
@@ -18,18 +14,6 @@ export const updateQuestion = (key : number, question : string, code : string, w
         who: who
     }
 });
-// export const updateCode = (code : string) => ({
-//     type: UPDATE_CODE,
-//     data: {
-//         value: code
-//     }
-// });
-// export const sendChatting = (who : string) => ({
-//     type: SEND_CHATTING,
-//     data: {
-//         who : who
-//     }
-// });
 
 // 액션 객체에 대한 타입 준비
 type ChattingAction = ReturnType<typeof updateQuestion>

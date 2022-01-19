@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
-import { updateQuestion } from "states/Chatting";
+import { updateQuestion } from "reducer/Chatting";
 import { useCallback, useState } from "react";
 import { sendQuestion } from "apis/api";
 
