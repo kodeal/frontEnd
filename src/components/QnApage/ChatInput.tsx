@@ -3,6 +3,7 @@ import styled, { StyledComponent } from "styled-components";
 import { updateQuestion } from "reducer/Chatting";
 import { useCallback, useState } from "react";
 import { sendQuestion } from "apis/api";
+import { getTime } from "./QnA";
 
 const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
     border: solid 1px;
@@ -75,7 +76,8 @@ const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
 //     sendChatting(): void,
 // }
 
-export default function ChatInputWindow() :JSX.Element {
+
+export default function ChatInputWindow(props: any) :JSX.Element {
     const [question, setQuestion] = useState("");
     const [code, setCode] = useState("");
     const [key, setKey] = useState(0);
@@ -85,15 +87,18 @@ export default function ChatInputWindow() :JSX.Element {
         setQuestion(e.target.value);
     }, []);
 
-    const handleCode = (e : any) : void => {
+    const handleCode = useCallback((e : any) : void => {
         setCode(e.target.value);
-    };
+    }, []);
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
+
         setKey(key + 1);
-        //const result = await sendQuestion(question, code);
-        dispatch(updateQuestion(key, question, code, "user"));
+        const result = await sendQuestion(question, code);
+        const time = getTime();
+        dispatch(updateQuestion(time, question, code, "user"));
+        props.setIsSending(true);
         setQuestion("");
         setCode("");
         e.target.reset();
