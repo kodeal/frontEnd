@@ -2,6 +2,7 @@
   "name": "kodeal",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://52.231.75.227:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

@@ -33,13 +33,13 @@ const CodeBallon = styled.div`
 
 
 type chattingType = {
-    key: number,
+    time: string,
     question: string,
     code: string,
     who: string
 };
 
-export default function SpeechBallon (props : chattingType) :JSX.Element {
+export default function SpeechBallon (props : any) :JSX.Element {
     const markDownCode = `
     # 헤딩
     **굵게**

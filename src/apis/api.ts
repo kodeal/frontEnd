@@ -14,11 +14,13 @@ export type loginType = {
     isLogin : boolean
 }
 
+const baseUrl = "http://52.231.75.227:8000"
 
 const urls = {
-    sendQuestion : "",
+    sendQuestion : `${baseUrl}/common/login`,
     receiveAnswer : "",
-    login : ""
+    login: "",
+    signup: `${baseUrl}/common/signup2`
 }
 
 export const sendQuestion = async (question : string, code : string) : Promise<AxiosResponse<sendQuestionType>> => {
@@ -28,14 +30,20 @@ export const sendQuestion = async (question : string, code : string) : Promise<A
             code : code
         }
     );
+
+    console.log(result);
     
-    return result.data;
+    
+    return result;
 }
 
 export const receiveAnswer = async () : Promise<AxiosResponse<receiveAnswerType>> => {
     const result = await axios.get(urls.receiveAnswer);
 
-    return result.data;
+        console.log(result);
+    
+
+    return result;
 }
 
 export const login = async (id: string, pwd: string) : Promise<AxiosResponse<loginType>> => {
@@ -46,5 +54,22 @@ export const login = async (id: string, pwd: string) : Promise<AxiosResponse<log
         }
     );
 
-    return result.data;
+        console.log(result);
+    
+    return result;
+}
+
+export const signup = async (name: string, id: string, password: string, email: string) => {
+    const result = await axios.post(urls.signup,
+        {
+            name: name,
+            id: id,
+            password: password,
+            email: email
+        }
+    );
+
+        console.log(result);
+    
+    return result
 }

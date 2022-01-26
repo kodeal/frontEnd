@@ -1,9 +1,10 @@
 import {useSelector} from "react-redux";
 import {RootState} from "../reducer/RootReducer";
 import SpeechBallon from "components/QnApage/SpeechBallon";
+import {getTime} from "components/QnApage/QnA";
 
 type QuestionState = {
-    key : number,
+    time : string,
     question: string,
     code: string,
     who: string
@@ -11,10 +12,10 @@ type QuestionState = {
 
 const SpeechBallonContainer = (props: any) => {
     const chatArr : QuestionState[] = useSelector((state : RootState) => state.chatting);
-    const chatArrLength : number = chatArr.length;
+    const chatArrLength: number = chatArr.length;
     const speechBallonArr :JSX.Element[] = chatArr.map(chat => 
         <SpeechBallon
-        key={chat.key}
+        time={chat.time}
         question={chat.question}
         code={chat.code}
         who={chat.who}

@@ -1,4 +1,7 @@
 import styled, {StyledComponent} from "styled-components"
+import { AxiosResponse } from "axios";
+import * as api from "apis/api";
+
 
 const SignupMain = styled.div`
     width: 100%;
@@ -55,19 +58,31 @@ const SignupButton = styled.button`
 
 `
 
-const Signup = () : JSX.Element=> {
+const Signup = (): JSX.Element => {
+
+    const onSignup = async (e: any) => {
+        
+        e.preventDefault()
+        console.log(e.target)
+        const result = await api.signup(e.target.name.vaule, e.target.id.value, e.target.password.value, e.target.email.value)
+        console.log(result);
+        
+        
+    }
+    
+
     return (
         <SignupMain>
             <SignupFrame>
                 <Title>회원가입</Title>
-                <form>
-                    <SignupInput placeholder="아이디" type="text"></SignupInput>
-                    <SignupInput placeholder="이름" type="text"></SignupInput>
-                    <SignupInput placeholder="비밀번호" type="password"></SignupInput>
+                <form onSubmit={onSignup}>
+                    <SignupInput placeholder="아이디" type="text" name="id"></SignupInput>
+                    <SignupInput placeholder="이름" type="text" name="name"></SignupInput>
+                    <SignupInput placeholder="비밀번호" type="password" name="password"></SignupInput>
                     <SignupInput placeholder="비밀번호 확인" type="password"></SignupInput>
-                    <SignupInput placeholder="이메일" type="email"></SignupInput>
+                    <SignupInput placeholder="이메일" type="email" name="email"></SignupInput>
                     <SignupInput placeholder="인증번호" type="text"></SignupInput>
-                    <SignupButton>회원가입</SignupButton>
+                    <SignupButton type="submit">회원가입</SignupButton>
                 </form>
             </SignupFrame>
         </SignupMain>

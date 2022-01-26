@@ -1,9 +1,6 @@
 import SpeechBallonContainer from "containers/SpeechBallonContainer";
 import styled, { StyledComponent } from "styled-components";
-import {useEffect, useState} from 'react'
-import { receiveAnswer } from "apis/api";
-import { useDispatch } from "react-redux";
-import { updateQuestion } from "reducer/Chatting";
+
 
 const Box : StyledComponent<"div", any, {}, never> = styled.div`
     width : 100%;
@@ -19,29 +16,10 @@ const Box : StyledComponent<"div", any, {}, never> = styled.div`
 `;
 
 export default function ChatBox() : JSX.Element{
-    
-    const [isSending, setIsSending] = useState(false)
-    const dispatch = useDispatch()
-
-    useEffect( () => {
-        (async () => {
-            await getAnswer()
-        })();
-    }, [isSending])
-
-
-    const checkSending = () => {
-
-    }
-
-    const getAnswer = async () => {
-        const result = await receiveAnswer()
-        //dispatch(updateQuestion(key, result.data.answer, result.data.code, "kodeal"));
-    }
 
     return(
         <Box>
-            {SpeechBallonContainer(checkSending)}
+            {SpeechBallonContainer}
         </Box>
     );
 }

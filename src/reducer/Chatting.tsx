@@ -5,10 +5,10 @@ import produce from "immer";
 const UPDATE_QUESTION : string = "chatting/UPDATE_QUESTION" as const;
 
 // 액션 생성 함수 설정
-export const updateQuestion = (key : number, question : string, code : string, who : string) => ({
+export const updateQuestion = (time : string, question : string, code : string, who : string) => ({
     type: UPDATE_QUESTION,
     data: {
-        key: key,
+        time: time,
         question: question,
         code: code,
         who: who
@@ -21,7 +21,7 @@ type ChattingAction = ReturnType<typeof updateQuestion>
 
 // 이 리덕스 모듈에서 관리 할 상태의 타입 선언
 type QuestionState = {
-    key : number,
+    time : string,
     question: string,
     code: string,
     who: string

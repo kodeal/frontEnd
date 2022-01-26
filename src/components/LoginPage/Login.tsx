@@ -106,7 +106,7 @@ export default function Login(props: any) : JSX.Element{
                     <LoginInput type="text" placeholder="ID" onChange={handleId}></LoginInput>
                     <LoginInput type="password" placeholder="Password" onChange={handlePwd}></LoginInput>
                     <div>
-                                            <SigninButton onClick={login}>Login</SigninButton>
+                    <SigninButton onClick={login}>Login</SigninButton>
                     <SignupButton to="/signup">회원가입</SignupButton>
                     </div>
                 </form>
