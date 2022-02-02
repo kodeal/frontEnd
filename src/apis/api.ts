@@ -14,13 +14,13 @@ export type loginType = {
     isLogin : boolean
 }
 
-const baseUrl = "http://52.231.75.227:8000"
+// const baseUrl = "http://52.231.75.227:8000"
 
 const urls = {
-    sendQuestion : `${baseUrl}/common/login`,
-    receiveAnswer : "",
-    login: "",
-    signup: `${baseUrl}/common/signup2`
+    sendQuestion : ``,
+    receiveAnswer : ``,
+    login: `/common/login`,
+    signup: `/common/signup`
 }
 
 export const sendQuestion = async (question : string, code : string) : Promise<AxiosResponse<sendQuestionType>> => {
@@ -54,7 +54,7 @@ export const login = async (id: string, pwd: string) : Promise<AxiosResponse<log
         }
     );
 
-        console.log(result);
+    console.log(result);
     
     return result;
 }

@@ -1,6 +1,8 @@
 import styled, {StyledComponent} from "styled-components"
 import { AxiosResponse } from "axios";
 import * as api from "apis/api";
+import FixedTopBar from "components/TopBar/FixedTopBar";
+import { useState } from "react";
 
 
 const SignupMain = styled.div`
@@ -40,7 +42,6 @@ const SignupInput = styled.input`
     }
     
 `
-
 const SignupButton = styled.button`
     display: block;
     font-size: 25px;
@@ -58,7 +59,27 @@ const SignupButton = styled.button`
 
 `
 
+const AuthButton = styled.button`
+    border-radius: 20px;
+
+    color: red;
+    padding: 10px;
+    margin: 2rem 0rem 0rem 0rem;
+`
+
+const Auth = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const Signup = (): JSX.Element => {
+
+    const [email, setEmail] = useState("")
+
+    const onEmail = (e : any) =>{
+        setEmail(e.target.value)
+        
+    }
 
     const onSignup = async (e: any) => {
         
@@ -66,22 +87,32 @@ const Signup = (): JSX.Element => {
         console.log(e.target)
         const result = await api.signup(e.target.name.vaule, e.target.id.value, e.target.password.value, e.target.email.value)
         console.log(result);
-        
-        
+    }
+
+    const authEmail = async (e : any) => {
+        // const result = await api.authEmail(email)
+        // console.log(result)
     }
     
 
     return (
         <SignupMain>
             <SignupFrame>
+                <FixedTopBar/>
                 <Title>회원가입</Title>
                 <form onSubmit={onSignup}>
                     <SignupInput placeholder="아이디" type="text" name="id"></SignupInput>
                     <SignupInput placeholder="이름" type="text" name="name"></SignupInput>
                     <SignupInput placeholder="비밀번호" type="password" name="password"></SignupInput>
                     <SignupInput placeholder="비밀번호 확인" type="password"></SignupInput>
-                    <SignupInput placeholder="이메일" type="email" name="email"></SignupInput>
-                    <SignupInput placeholder="인증번호" type="text"></SignupInput>
+                    <Auth>
+                        <SignupInput placeholder="이메일" type="email" name="email" style={{width: "70%"}} onChange={onEmail}></SignupInput>
+                        <AuthButton onClick={authEmail}>전송</AuthButton>
+                    </Auth>
+                    <Auth>
+                        <SignupInput placeholder="인증번호" type="text" style={{width: "70%"}}></SignupInput>
+                        <AuthButton>확인</AuthButton>
+                    </Auth>
                     <SignupButton type="submit">회원가입</SignupButton>
                 </form>
             </SignupFrame>
