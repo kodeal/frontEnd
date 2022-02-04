@@ -20,7 +20,8 @@ const urls = {
     sendQuestion : ``,
     receiveAnswer : ``,
     login: `/common/login`,
-    signup: `/common/signup`
+    signup: `/common/signup`,
+    authEmail: ``
 }
 
 export const sendQuestion = async (question : string, code : string) : Promise<AxiosResponse<sendQuestionType>> => {
@@ -69,7 +70,20 @@ export const signup = async (name: string, id: string, password: string, email: 
         }
     );
 
-        console.log(result);
+    console.log(result)
     
     return result
+}
+
+export const authEmail = async (email: string) => {
+    const result = await axios.post(urls.authEmail,
+        {
+            email: email
+        }
+    )
+
+    console.log(result)
+
+    return result
+    
 }
