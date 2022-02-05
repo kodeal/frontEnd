@@ -1,89 +1,91 @@
 import axios, { AxiosResponse } from "axios";
 
 export type receiveAnswerType = {
-    answer : string,
-    code : string
-}
+  answer: string;
+  code: string;
+};
 
 export type sendQuestionType = {
-    question : string,
-    code : string
-}
+  question: string;
+  code: string;
+};
 
 export type loginType = {
-    isLogin : boolean
-}
+  isLogin: boolean;
+};
 
-// const baseUrl = "http://52.231.75.227:8000"
+const baseUrl = "http://52.231.75.227:8000";
 
 const urls = {
-    sendQuestion : ``,
-    receiveAnswer : ``,
-    login: `/common/login`,
-    signup: `/common/signup`,
-    authEmail: ``
-}
+  sendQuestion: ``,
+  receiveAnswer: ``,
+  login: `/common/login`,
+  signup: `/common/signup`,
+  authEmail: ``,
+};
 
-export const sendQuestion = async (question : string, code : string) : Promise<AxiosResponse<sendQuestionType>> => {
-    const result = await axios.post(urls.sendQuestion,
-        {   
-            question : question,
-            code : code
-        }
-    );
+export const sendQuestion = async (
+  question: string,
+  code: string
+): Promise<AxiosResponse<sendQuestionType>> => {
+  const result = await axios.post(urls.sendQuestion, {
+    question: question,
+    code: code,
+  });
 
-    console.log(result);
-    
-    
-    return result;
-}
+  console.log(result);
 
-export const receiveAnswer = async () : Promise<AxiosResponse<receiveAnswerType>> => {
-    const result = await axios.get(urls.receiveAnswer);
+  return result;
+};
 
-        console.log(result);
-    
+export const receiveAnswer = async (): Promise<
+  AxiosResponse<receiveAnswerType>
+> => {
+  const result = await axios.get(urls.receiveAnswer);
 
-    return result;
-}
+  console.log(result);
 
-export const login = async (id: string, pwd: string) : Promise<AxiosResponse<loginType>> => {
-    const result = await axios.post(urls.login,
-        {
-            id: id,
-            password: pwd
-        }
-    );
+  return result;
+};
 
-    console.log(result);
-    
-    return result;
-}
+export const login = async (
+  id: string,
+  pwd: string
+): Promise<AxiosResponse<loginType>> => {
+  const result = await axios.post(urls.login, {
+    id: id,
+    password: pwd,
+  });
 
-export const signup = async (name: string, id: string, password: string, email: string) => {
-    const result = await axios.post(urls.signup,
-        {
-            name: name,
-            id: id,
-            password: password,
-            email: email
-        }
-    );
+  console.log(result);
 
-    console.log(result)
-    
-    return result
-}
+  return result;
+};
+
+export const signup = async (
+  name: string,
+  id: string,
+  password: string,
+  email: string
+) => {
+  const result = await axios.post(urls.signup, {
+    name: name,
+    id: id,
+    password: password,
+    email: email,
+  });
+
+  console.log(result);
+
+  return result;
+};
 
 export const authEmail = async (email: string) => {
-    const result = await axios.post(urls.authEmail,
-        {
-            email: email
-        }
-    )
+  const result = await axios.post(urls.authEmail, {
+    email: email,
+  });
 
-    console.log(result)
+  console.log(result);
 
-    return result
-    
-}
+  return result;
+};

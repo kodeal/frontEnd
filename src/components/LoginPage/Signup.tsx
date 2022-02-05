@@ -80,15 +80,14 @@ const Signup = (): JSX.Element => {
   const onSignup = async (e: any) => {
     e.preventDefault();
     console.log(e.target);
-    if (auth) {
-      const result = await api.signup(
-        e.target.name.vaule,
-        e.target.id.value,
-        e.target.password.value,
-        e.target.email.value
-      );
-      console.log(result);
-    }
+
+    const result = await api.signup(
+      e.target.name.vaule,
+      e.target.id.value,
+      e.target.password.value,
+      e.target.email.value
+    );
+    console.log(result);
   };
 
   const authEmail = async (e: any) => {
