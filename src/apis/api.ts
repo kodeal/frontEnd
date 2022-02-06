@@ -19,9 +19,10 @@ const baseUrl = "http://52.231.75.227:8000";
 const urls = {
   sendQuestion: ``,
   receiveAnswer: ``,
-  login: `/common/login`,
-  signup: `/common/signup`,
-  authEmail: ``,
+  login: `${baseUrl}/common/login/`,
+  signup: `${baseUrl}/common/signup/`,
+  authEmail: `${baseUrl}/common/signup/auth/email/`,
+  authEmailNum: `${baseUrl}/common/signup/auth/email/comp/`,
 };
 
 export const sendQuestion = async (
@@ -48,18 +49,21 @@ export const receiveAnswer = async (): Promise<
   return result;
 };
 
-export const login = async (
-  id: string,
-  pwd: string
-): Promise<AxiosResponse<loginType>> => {
-  const result = await axios.post(urls.login, {
-    id: id,
-    password: pwd,
-  });
+export const login = async (id: string, pwd: string) => {
+  try {
+    const result = await axios.post(urls.login, {
+      userid: id,
+      password: pwd,
+    });
+    console.log(result);
 
-  console.log(result);
+    return result;
+  } catch (e: any) {
+    console.log(e.request);
+    console.log(e.response);
+  }
 
-  return result;
+  return false;
 };
 
 export const signup = async (
@@ -70,7 +74,7 @@ export const signup = async (
 ) => {
   const result = await axios.post(urls.signup, {
     name: name,
-    id: id,
+    userid: id,
     password: password,
     email: email,
   });
@@ -83,6 +87,17 @@ export const signup = async (
 export const authEmail = async (email: string) => {
   const result = await axios.post(urls.authEmail, {
     email: email,
+  });
+
+  console.log(result);
+
+  return result;
+};
+
+export const authEmailNum = async (email: string, authNum: string) => {
+  const result = await axios.post(urls.authEmailNum, {
+    email: email,
+    auth_num: authNum,
   });
 
   console.log(result);
