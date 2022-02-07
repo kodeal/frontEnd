@@ -5,67 +5,65 @@ import { useCallback, useState } from "react";
 import { sendQuestion } from "apis/api";
 import { getTime } from "./QnA";
 
-const ChatWindow : StyledComponent<"div", any, {}, never> = styled.div`
-    border: solid 1px;
-    background-color: white;
-    display: flex;
-    margin: 0.6rem;
-    border-radius: 8px;
-    margin-top: 4rem;
+const ChatWindow: StyledComponent<"div", any, {}, never> = styled.div`
+  border: solid 1px;
+  background-color: white;
+  display: flex;
+  margin: 0.6rem;
+  border-radius: 8px;
+  margin-top: 4rem;
 `;
 
-const InputText : StyledComponent<"textarea", any, {}, never> = styled.textarea`
-    width: 100vh;
-    height: 20rem;
-    line-height: 1.6rem;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 5px;
-    flex-grow: 1;
-    margin: 0.6rem;
-    resize: none;
-
+const InputText: StyledComponent<"textarea", any, {}, never> = styled.textarea`
+  width: 100vh;
+  height: 20rem;
+  line-height: 1.6rem;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 0.6rem;
+  resize: none;
 `;
 
-const TextDiv : StyledComponent<"div", any, {}, never> = styled.div`
-    margin-left: 0.6rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-
+const TextDiv: StyledComponent<"div", any, {}, never> = styled.div`
+  margin-left: 0.6rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 `;
 
-const InputCode : StyledComponent<"textarea", any, {}, never> = styled.textarea`
-    width: 100vh;
-    height: 25.2rem;
-    line-height: 1.6rem;
-    font-size: 15px;
-    background-color: white;
-    border-radius: 5px;
-    flex-grow: 1;
-    margin: 0.6rem;
-    resize: none;
+const InputCode: StyledComponent<"textarea", any, {}, never> = styled.textarea`
+  width: 100vh;
+  height: 25.2rem;
+  line-height: 1.6rem;
+  font-size: 15px;
+  background-color: white;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 0.6rem;
+  resize: none;
 `;
 
-const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
-    width: 6rem;
-    height: 2rem;
-    border-radius: 8px;
-    background-color: #7E5FFA;
-    margin-right: 0.6rem;
-    margin-top: 0.2rem;
-    font-weight: bold;
-    color: white;
+const SendButton: StyledComponent<"button", any, {}, never> = styled.button`
+  width: 6rem;
+  height: 2rem;
+  border-radius: 8px;
+  background-color: #7e5ffa;
+  margin-right: 0.6rem;
+  margin-top: 0.2rem;
+  font-weight: bold;
+  color: white;
 
-    &:disabled{
-        background-color: gray;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
 
-    &:hover {
-        background-color: #644cc8;
-    }
+  &:hover {
+    background-color: #644cc8;
+  }
 `;
 
 // type ChattingProps = {
@@ -76,47 +74,54 @@ const SendButton : StyledComponent<"button", any, {}, never> = styled.button`
 //     sendChatting(): void,
 // }
 
+export default function ChatInputWindow(props: any): JSX.Element {
+  const [question, setQuestion] = useState("");
+  const [code, setCode] = useState("");
+  const [key, setKey] = useState(0);
+  const dispatch = useDispatch();
 
-export default function ChatInputWindow(props: any) :JSX.Element {
-    const [question, setQuestion] = useState("");
-    const [code, setCode] = useState("");
-    const [key, setKey] = useState(0);
-    const dispatch = useDispatch();
+  const handleQuestion = useCallback((e: any): void => {
+    setQuestion(e.target.value);
+  }, []);
 
-    const handleQuestion = useCallback((e : any) : void => {
-        setQuestion(e.target.value);
-    }, []);
+  const handleCode = useCallback((e: any): void => {
+    setCode(e.target.value);
+  }, []);
 
-    const handleCode = useCallback((e : any) : void => {
-        setCode(e.target.value);
-    }, []);
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
 
-    const handleSubmit = async (e : any) => {
-        e.preventDefault();
-
-        setKey(key + 1);
-        const result = await sendQuestion(question, code);
-        const time = getTime();
-        dispatch(updateQuestion(time, question, code, "user"));
-        props.setIsSending(true);
-        setQuestion("");
-        setCode("");
-        e.target.reset();
+    setKey(key + 1);
+    const result = await sendQuestion(question, code);
+    if (result.status === 200) {
+      const time = getTime();
+      dispatch(updateQuestion(time, question, code, "user"));
+      props.setIsSending(true);
+      setQuestion("");
+      setCode("");
+      e.target.reset();
     }
+  };
 
-    return(
-        <ChatWindow>
-            <form onSubmit={handleSubmit}>
-                <TextDiv>Question
-                    <SendButton disabled={!question}>전송</SendButton>
-                </TextDiv>
-                <InputText placeholder="질문해 주세요!" onChange={handleQuestion}></InputText>
-                <TextDiv>Code</TextDiv>
-                <pre>
-                    <InputCode placeholder="코드를 입력해 주세요!" onChange={handleCode}></InputCode>
-                </pre>
-            </form>
-        </ChatWindow>
-
-    );
+  return (
+    <ChatWindow>
+      <form onSubmit={handleSubmit}>
+        <TextDiv>
+          Question
+          <SendButton disabled={!question}>전송</SendButton>
+        </TextDiv>
+        <InputText
+          placeholder="질문해 주세요!"
+          onChange={handleQuestion}
+        ></InputText>
+        <TextDiv>Code</TextDiv>
+        <pre>
+          <InputCode
+            placeholder="코드를 입력해 주세요!"
+            onChange={handleCode}
+          ></InputCode>
+        </pre>
+      </form>
+    </ChatWindow>
+  );
 }
