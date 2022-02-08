@@ -36,7 +36,7 @@ const TextDiv: StyledComponent<"div", any, {}, never> = styled.div`
 
 const InputCode: StyledComponent<"textarea", any, {}, never> = styled.textarea`
   width: 100vh;
-  height: 25.2rem;
+  height: 22.5rem;
   line-height: 1.6rem;
   font-size: 15px;
   background-color: white;

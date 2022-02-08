@@ -1,7 +1,6 @@
 import styled, { StyledComponent } from "styled-components";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 import { useCallback, useState } from "react";
-import { AxiosResponse } from "axios";
 import * as api from "apis/api";
 import { Link, LinkProps } from "react-router-dom";
 
@@ -14,6 +13,7 @@ const LoginMain: StyledComponent<"div", any, {}, never> = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
 const LoginFrame = styled.div`
