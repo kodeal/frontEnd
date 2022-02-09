@@ -1,5 +1,7 @@
 import styled, { StyledComponent } from "styled-components";
 import { Link, LinkProps } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "reducer/RootReducer";
 
 const TopBar: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
@@ -30,17 +32,10 @@ const TopBarTitle: StyledComponent<
   text-decoration: none;
 `;
 
-const LoginButton: StyledComponent<
-  React.ForwardRefExoticComponent<
-    LinkProps & React.RefAttributes<HTMLAnchorElement>
-  >,
-  any,
-  {},
-  never
-> = styled(Link)`
+const LoginButton = styled(Link)`
   width: 150px;
   background-color: #ff5e5c;
-  border-radius: 20px;
+  border-radius: 12px;
   font-size: 1.55rem;
   color: white;
   margin: 5px 30px 5px 5px;
@@ -51,11 +46,29 @@ const LoginButton: StyledComponent<
   }
 `;
 
+const UserName = styled.div`
+  color: white;
+  width: 200px;
+  font-size: 16px;
+`;
+
+type userState = {
+  id: string;
+  password: string;
+  name: string;
+  email: string;
+};
 export default function FixedTopBar(): JSX.Element {
+  const userInfo: userState = useSelector((state: RootState) => state.User);
+
   return (
     <TopBar>
       <TopBarTitle to="/">Kodeal</TopBarTitle>
-      <LoginButton to="/login">Sign in</LoginButton>
+      {userInfo.name.length > 0 ? (
+        <UserName>{userInfo.name}</UserName>
+      ) : (
+        <LoginButton to="/login">Sign in</LoginButton>
+      )}
     </TopBar>
   );
 }

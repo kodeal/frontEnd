@@ -17,7 +17,7 @@ export type loginType = {
 const baseUrl = "http://52.231.75.227:8000";
 
 const urls = {
-  sendQuestion: ``,
+  sendQuestion: `${baseUrl}/api/users/`,
   receiveAnswer: ``,
   login: `${baseUrl}/common/login/`,
   signup: `${baseUrl}/common/signup/`,
@@ -27,11 +27,13 @@ const urls = {
 
 export const sendQuestion = async (
   question: string,
-  code: string
+  code: string,
+  time: string
 ): Promise<AxiosResponse<sendQuestionType>> => {
   const result = await axios.post(urls.sendQuestion, {
     question: question,
     code: code,
+    time: time,
   });
 
   console.log(result);

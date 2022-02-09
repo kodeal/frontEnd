@@ -15,6 +15,7 @@ const SignupMain = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
 const SignupFrame = styled.div`
@@ -56,6 +57,7 @@ const SignupButton = styled.button`
   border: 1px solid black;
   color: black;
   margin-top: 25px;
+  cursor: pointer;
 `;
 
 const AuthButton = styled.button`
@@ -96,7 +98,7 @@ const Signup = (): JSX.Element => {
 
       if (result.status === 200) {
         alert("회원가입 성공");
-        dispatch(updateUserInfo(id, password, email));
+        dispatch(updateUserInfo(id, password, name, email));
       } else {
         alert("회원가입 실패");
       }

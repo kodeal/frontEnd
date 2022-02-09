@@ -29,6 +29,10 @@ const StartButton = styled(Link)`
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  &:hover {
+    background-color: #887db1;
+    color: #fafafa;
+  }
 `;
 
 const MainBox = styled.div`

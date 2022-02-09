@@ -8,12 +8,14 @@ const UPDATE_USERINFO: string = "user/UPDATE_USERINFO" as const;
 export const updateUserInfo = (
   id: string,
   password: string,
+  name: string,
   email: string
 ) => ({
   type: UPDATE_USERINFO,
   data: {
     id: id,
     password: password,
+    name: name,
     email: email,
   },
 });
@@ -25,6 +27,7 @@ type UserInfoAction = ReturnType<typeof updateUserInfo>;
 type userState = {
   id: string;
   password: string;
+  name: string;
   email: string;
 };
 
@@ -32,6 +35,7 @@ type userState = {
 const initState: userState = {
   id: "",
   password: "",
+  name: "",
   email: "",
 };
 

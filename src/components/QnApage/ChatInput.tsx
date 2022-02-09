@@ -6,7 +6,7 @@ import { sendQuestion } from "apis/api";
 import { getTime } from "./QnA";
 
 const ChatWindow: StyledComponent<"div", any, {}, never> = styled.div`
-  border: solid 1px;
+  border: 3px solid #333;
   background-color: white;
   display: flex;
   margin: 0.6rem;
@@ -92,9 +92,9 @@ export default function ChatInputWindow(props: any): JSX.Element {
     e.preventDefault();
 
     setKey(key + 1);
-    const result = await sendQuestion(question, code);
+    const time: string = getTime();
+    const result = await sendQuestion(question, code, time);
     if (result.status === 200) {
-      const time = getTime();
       dispatch(updateQuestion(time, question, code, "user"));
       props.setIsSending(true);
       setQuestion("");

@@ -21,7 +21,7 @@ const LoginFrame = styled.div`
   height: 700px;
   background-color: #fafafa;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 3px solid #333;
   margin-top: 1rem;
 `;
 
@@ -51,15 +51,9 @@ const SigninButton = styled.button`
   margin-top: 50px;
   background-color: #f7f7f7;
   border: 1px solid black;
+  cursor: pointer;
 `;
-const SignupButton: StyledComponent<
-  React.ForwardRefExoticComponent<
-    LinkProps & React.RefAttributes<HTMLAnchorElement>
-  >,
-  any,
-  {},
-  never
-> = styled(Link)`
+const SignupButton = styled(Link)`
   display: block;
   font-size: 25px;
   width: 278px;
@@ -79,19 +73,13 @@ export default function Login(props: any): JSX.Element {
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
 
-  const handleId = useCallback(
-    (e: any) => {
-      setId(e.target.value);
-    },
-    [id]
-  );
+  const handleId = useCallback((e: any) => {
+    setId(e.target.value);
+  }, []);
 
-  const handlePwd = useCallback(
-    (e: any) => {
-      setPwd(e.target.value);
-    },
-    [pwd]
-  );
+  const handlePwd = useCallback((e: any) => {
+    setPwd(e.target.value);
+  }, []);
 
   const login = async (e: any) => {
     e.preventDefault();

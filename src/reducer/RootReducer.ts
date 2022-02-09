@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import chatting from "./Chatting";
+import User from "./User";
 
 const rootReducer = combineReducers({
-    chatting
+  chatting,
+  User,
 });
 
 export default rootReducer;
