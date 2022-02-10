@@ -60,6 +60,7 @@ type userState = {
 };
 export default function FixedTopBar(): JSX.Element {
   const userInfo: userState = useSelector((state: RootState) => state.User);
+  console.log(userInfo);
 
   return (
     <TopBar>

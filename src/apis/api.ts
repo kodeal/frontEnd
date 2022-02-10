@@ -17,8 +17,9 @@ export type loginType = {
 const baseUrl = "http://52.231.75.227:8000";
 
 const urls = {
-  sendQuestion: `${baseUrl}/api/users/`,
-  receiveAnswer: ``,
+  sendQuestion: `${baseUrl}/blog/`,
+  receiveAnswer: `${baseUrl}/blog/`,
+  chattingLog: `${baseUrl}/blog/`,
   login: `${baseUrl}/common/login/`,
   signup: `${baseUrl}/common/signup/`,
   authEmail: `${baseUrl}/common/signup/auth/email/`,
@@ -48,6 +49,13 @@ export const receiveAnswer = async (): Promise<
 
   console.log(result);
 
+  return result;
+};
+
+export const chattingLog = async () => {
+  const result = await axios.get(urls.chattingLog);
+
+  console.log(result);
   return result;
 };
 

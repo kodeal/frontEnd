@@ -2,7 +2,9 @@ import styled, { StyledComponent } from "styled-components";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 import { useCallback, useState } from "react";
 import * as api from "apis/api";
-import { Link, LinkProps } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateUserInfo } from "reducer/User";
 
 const LoginMain: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
@@ -70,8 +72,10 @@ const SignupButton = styled(Link)`
 `;
 
 export default function Login(props: any): JSX.Element {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
+  const dispatch = useDispatch();
 
   const handleId = useCallback((e: any) => {
     setId(e.target.value);
@@ -87,7 +91,16 @@ export default function Login(props: any): JSX.Element {
     console.log(result);
 
     if (result) {
+      dispatch(
+        updateUserInfo(
+          result.data.userid,
+          "",
+          result.data.username,
+          result.data.email
+        )
+      );
       alert("로그인 성공");
+      navigate("/");
     } else {
       alert("로그인 실패");
     }

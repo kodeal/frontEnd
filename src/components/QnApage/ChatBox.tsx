@@ -14,6 +14,10 @@ const Box: StyledComponent<"div", any, {}, never> = styled.div`
   align-items: flex-start;
 `;
 
-export default function ChatBox(): JSX.Element {
-  return <Box>{SpeechBallonContainer}</Box>;
+export default function ChatBox() {
+  return (
+    <Box>
+      <SpeechBallonContainer />
+    </Box>
+  );
 }
