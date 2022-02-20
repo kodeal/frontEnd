@@ -1,9 +1,9 @@
-import styled, { StyledComponent } from "styled-components";
-import { Link, LinkProps } from "react-router-dom";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "reducer/RootReducer";
 
-const TopBar: StyledComponent<"div", any, {}, never> = styled.div`
+const TopBar = styled.div`
   width: 100%;
   height: 5vh;
   background-color: #333;
@@ -15,14 +15,7 @@ const TopBar: StyledComponent<"div", any, {}, never> = styled.div`
   right: 0;
 `;
 
-const TopBarTitle: StyledComponent<
-  React.ForwardRefExoticComponent<
-    LinkProps & React.RefAttributes<HTMLAnchorElement>
-  >,
-  any,
-  {},
-  never
-> = styled(Link)`
+const TopBarTitle = styled(Link)`
   width: 10%;
   color: white;
   font-size: 2rem;
@@ -30,6 +23,7 @@ const TopBarTitle: StyledComponent<
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  line-height: 4.7vh;
 `;
 
 const LoginButton = styled(Link)`
@@ -40,6 +34,7 @@ const LoginButton = styled(Link)`
   color: white;
   margin: 5px 30px 5px 5px;
   text-decoration: none;
+  line-height: 3.8vh;
 
   &:hover {
     background-color: #cc4b49;
@@ -47,9 +42,15 @@ const LoginButton = styled(Link)`
 `;
 
 const UserName = styled.div`
-  color: white;
+  color: black;
+  font-weight: 600;
   width: 200px;
   font-size: 16px;
+  line-height: 30px;
+  background-color: #dfdfdf;
+  text-align: center;
+  border-radius: 8px;
+  margin: 8px;
 `;
 
 type userState = {
@@ -58,15 +59,15 @@ type userState = {
   name: string;
   email: string;
 };
+
 export default function FixedTopBar(): JSX.Element {
   const userInfo: userState = useSelector((state: RootState) => state.User);
-  console.log(userInfo);
 
   return (
     <TopBar>
       <TopBarTitle to="/">Kodeal</TopBarTitle>
-      {userInfo.name.length > 0 ? (
-        <UserName>{userInfo.name}</UserName>
+      {userInfo.name ? (
+        <UserName>{userInfo.name} 님</UserName>
       ) : (
         <LoginButton to="/login">Sign in</LoginButton>
       )}

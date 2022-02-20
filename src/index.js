@@ -1,12 +1,13 @@
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { createStore} from 'redux';
-import {Provider} from "react-redux";
-import rootReducer from 'reducer/RootReducer';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { applyMiddleware, createStore } from "redux";
+import { Provider } from "react-redux";
+import rootReducer from "reducer/RootReducer";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import logger from "redux-logger";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,7 +15,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

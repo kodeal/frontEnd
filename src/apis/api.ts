@@ -18,8 +18,7 @@ const baseUrl = "http://52.231.75.227:8000";
 
 const urls = {
   sendQuestion: `${baseUrl}/blog/`,
-  receiveAnswer: `${baseUrl}/blog/`,
-  chattingLog: `${baseUrl}/blog/`,
+  chattingLog: `${baseUrl}/blog/?userid=`,
   login: `${baseUrl}/common/login/`,
   signup: `${baseUrl}/common/signup/`,
   authEmail: `${baseUrl}/common/signup/auth/email/`,
@@ -27,11 +26,13 @@ const urls = {
 };
 
 export const sendQuestion = async (
+  userid: string,
   question: string,
   code: string,
   time: string
-): Promise<AxiosResponse<sendQuestionType>> => {
+) => {
   const result = await axios.post(urls.sendQuestion, {
+    userid: userid,
     question: question,
     code: code,
     time: time,
@@ -42,18 +43,8 @@ export const sendQuestion = async (
   return result;
 };
 
-export const receiveAnswer = async (): Promise<
-  AxiosResponse<receiveAnswerType>
-> => {
-  const result = await axios.get(urls.receiveAnswer);
-
-  console.log(result);
-
-  return result;
-};
-
-export const chattingLog = async () => {
-  const result = await axios.get(urls.chattingLog);
+export const chattingLog = async (userid: string) => {
+  const result = await axios.get(`${urls.chattingLog}${userid}`);
 
   console.log(result);
   return result;
@@ -64,6 +55,7 @@ export const login = async (id: string, pwd: string) => {
     const result = await axios.post(urls.login, {
       userid: id,
       password: pwd,
+      // keep_login: "True",
     });
     console.log(result);
 

@@ -3,7 +3,6 @@ import FixedTopBar from "components/TopBar/FixedTopBar";
 import ChatBox from "./ChatBox";
 import ChatInputWindow from "./ChatInput";
 import { useEffect, useState } from "react";
-import { receiveAnswer } from "apis/api";
 import { useDispatch } from "react-redux";
 import { updateQuestion } from "reducer/Chatting";
 import { AxiosResponse } from "axios";
@@ -40,23 +39,6 @@ export const getTime = (): string => {
 export default function QnA(): JSX.Element {
   const [isSending, setIsSending] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      if (isSending) {
-        await getAnswer();
-      }
-    })();
-  }, [isSending]);
-
-  const getAnswer = async () => {
-    const result: AxiosResponse<any> = await receiveAnswer();
-    const time = getTime();
-    dispatch(
-      updateQuestion(time, result.data.answer, result.data.code, "kodeal")
-    );
-    setIsSending(false);
-  };
 
   return (
     <Main>

@@ -1,10 +1,11 @@
-import styled, { StyledComponent } from "styled-components";
+import styled, { keyframes, StyledComponent } from "styled-components";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 import { useCallback, useState } from "react";
 import * as api from "apis/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "reducer/User";
+import { inputFade } from "animations/animation";
 
 const LoginMain: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
@@ -23,7 +24,6 @@ const LoginFrame = styled.div`
   height: 700px;
   background-color: #fafafa;
   border-radius: 10px;
-  border: 3px solid #333;
   margin-top: 1rem;
 `;
 
@@ -34,13 +34,17 @@ const LoginTitle = styled.div`
 `;
 
 const LoginInput = styled.input`
-  border-radius: 30px;
+  margin: 40px 0px 5px 0px;
+  border-radius: 8px;
+  background-color: #c0c0c0;
   width: 80%;
   padding: 10px;
-  margin: 3rem 0rem 0rem 0rem;
+  height: 35px;
+  border: none;
+  animation: ${inputFade} linear 0.5s;
 
   &:focus {
-    border: 1px solid blue;
+    background-color: white;
   }
 `;
 
@@ -77,17 +81,25 @@ export default function Login(props: any): JSX.Element {
   const [pwd, setPwd] = useState("");
   const dispatch = useDispatch();
 
-  const handleId = useCallback((e: any) => {
-    setId(e.target.value);
-  }, []);
+  const handleId = useCallback(
+    (e: any) => {
+      setId(e.target.value);
+    },
+    [id]
+  );
 
-  const handlePwd = useCallback((e: any) => {
-    setPwd(e.target.value);
-  }, []);
+  const handlePwd = useCallback(
+    (e: any) => {
+      console.log(pwd);
+
+      setPwd(e.target.value);
+    },
+    [pwd]
+  );
 
   const login = async (e: any) => {
     e.preventDefault();
-    const result = await api.login(id, pwd);
+    const result: any = await api.login(id, pwd);
     console.log(result);
 
     if (result) {

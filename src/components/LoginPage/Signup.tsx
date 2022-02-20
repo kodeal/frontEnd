@@ -5,6 +5,7 @@ import FixedTopBar from "components/TopBar/FixedTopBar";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "reducer/User";
+import { inputFade } from "animations/animation";
 
 const SignupMain = styled.div`
   width: 100%;
@@ -34,13 +35,15 @@ const Title = styled.div`
 `;
 
 const SignupInput = styled.input`
-  border-radius: 30px;
+  border-radius: 8px;
   width: 80%;
   padding: 10px;
   margin: 2rem 0rem 0rem 0rem;
+  animation: ${inputFade} linear 0.5s;
+  background-color: #c0c0c0;
 
   &:focus {
-    border: 1px solid blue;
+    background-color: white;
   }
 `;
 const SignupButton = styled.button`
@@ -48,23 +51,25 @@ const SignupButton = styled.button`
   font-size: 25px;
   width: 278px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 8px;
   padding: 10px;
   margin-top: 50px;
   background-color: #f7f7f7;
   text-decoration: none;
   margin: auto;
   border: 1px solid black;
-  color: black;
+  color: white;
   margin-top: 25px;
   cursor: pointer;
+  background-color: #ff5e5c;
 `;
 
 const AuthButton = styled.button`
-  border-radius: 20px;
-  color: red;
+  border-radius: 8px;
+  font-weight: bold;
   padding: 10px;
   margin: 2rem 0rem 0rem 0rem;
+  animation: ${inputFade} linear 0.5s;
 `;
 
 const Auth = styled.div`
@@ -73,11 +78,24 @@ const Auth = styled.div`
 `;
 
 const Signup = (): JSX.Element => {
+  const [userid, setUserid] = useState("");
   const [email, setEmail] = useState("");
   const [auth, setAuth] = useState(false);
   const [userAuthNum, setUserAuthNum] = useState("");
   const dispatch = useDispatch();
 
+  const checkKor = (str: string) => {
+    const korRegExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
+    return korRegExp.test(str) ? true : false;
+  };
+
+  const onId = (e: any) => {
+    if (userid.length < 6 && checkKor(e.target.value)) {
+      console.log(userid);
+
+      setUserid(e.target.value);
+    }
+  };
   const onEmail = (e: any) => {
     setEmail(e.target.value);
   };
@@ -126,7 +144,12 @@ const Signup = (): JSX.Element => {
         <FixedTopBar />
         <Title>회원가입</Title>
         <form onSubmit={onSignup}>
-          <SignupInput placeholder="아이디" type="text" name="id"></SignupInput>
+          <SignupInput
+            onChange={onId}
+            placeholder="아이디"
+            type="text"
+            name="id"
+          ></SignupInput>
           <SignupInput placeholder="이름" type="text" name="name"></SignupInput>
           <SignupInput
             placeholder="비밀번호"

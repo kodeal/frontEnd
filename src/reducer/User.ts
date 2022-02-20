@@ -46,10 +46,10 @@ export default function Chatting(
 ) {
   switch (action.type) {
     case UPDATE_USERINFO:
-      return produce(state, (draft) => {
-        draft = action.data;
-      });
+      return produce(state, (draft) => (draft = action.data));
     default:
+      console.log("Default");
+
       return state;
   }
 }

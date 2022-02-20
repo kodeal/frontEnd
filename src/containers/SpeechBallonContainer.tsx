@@ -14,16 +14,25 @@ type QuestionState = {
   who: string;
 };
 
+type userState = {
+  id: string;
+  password: string;
+  name: string;
+  email: string;
+};
+
 const SpeechBallonContainer = () => {
   const chatArr: QuestionState[] = useSelector(
     (state: RootState) => state.chatting
   );
+  const user: userState = useSelector((state: RootState) => state.User);
+
   console.log(chatArr);
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      const result = await apis.chattingLog();
+      const result = await apis.chattingLog(user.id);
       if (result.status === 200) {
         result.data.items.forEach((value: any) => {
           const time: string = value.fields.time;

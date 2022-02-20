@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
 import { updateQuestion } from "reducer/Chatting";
 import { useCallback, useState } from "react";
 import { sendQuestion } from "apis/api";
 import { getTime } from "./QnA";
+import { RootState } from "reducer/RootReducer";
 
 const ChatWindow: StyledComponent<"div", any, {}, never> = styled.div`
   border: 3px solid #333;
@@ -74,11 +75,19 @@ const SendButton: StyledComponent<"button", any, {}, never> = styled.button`
 //     sendChatting(): void,
 // }
 
+type userState = {
+  id: string;
+  password: string;
+  name: string;
+  email: string;
+};
+
 export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState("");
   const [code, setCode] = useState("");
   const [key, setKey] = useState(0);
   const dispatch = useDispatch();
+  const user: userState = useSelector((state: RootState) => state.User);
 
   const handleQuestion = useCallback((e: any): void => {
     setQuestion(e.target.value);
@@ -93,9 +102,12 @@ export default function ChatInputWindow(props: any): JSX.Element {
 
     setKey(key + 1);
     const time: string = getTime();
-    const result = await sendQuestion(question, code, time);
+    const result = await sendQuestion(user.id, question, code, time);
     if (result.status === 200) {
       dispatch(updateQuestion(time, question, code, "user"));
+      dispatch(
+        updateQuestion(time, result.data.answer, result.data.code, "kodeal")
+      );
       props.setIsSending(true);
       setQuestion("");
       setCode("");

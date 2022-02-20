@@ -1,7 +1,10 @@
 import styled, { StyledComponent } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 import { mainLogo } from "images/index";
+import { useSelector } from "react-redux";
+import { RootState } from "reducer/RootReducer";
+import { useEffect, useState } from "react";
 const Main: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
   height: 100%;
@@ -19,7 +22,7 @@ const Title = styled.h1`
   color: white;
 `;
 
-const StartButton = styled(Link)`
+const StartButton = styled.div`
   background-color: slateblue;
   width: 200px;
   height: 50px;
@@ -29,6 +32,7 @@ const StartButton = styled(Link)`
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     background-color: #887db1;
     color: #fafafa;
@@ -57,7 +61,28 @@ const CodingLogo = styled.img`
   margin-left: 300px;
 `;
 
+type userState = {
+  id: string;
+  password: string;
+  name: string;
+  email: string;
+};
+
 export default function MainPage(): JSX.Element {
+  const [userName, setUserName] = useState("");
+
+  const user: userState = useSelector((state: RootState) => state.User);
+
+  const navigate = useNavigate();
+
+  const onStart = () => {
+    if (!user.id) {
+      alert("로그인 후 이용해주세요.");
+    } else {
+      navigate("/QnA");
+    }
+  };
+
   return (
     <Main>
       <FixedTopBar />
@@ -70,7 +95,7 @@ export default function MainPage(): JSX.Element {
           <span style={{ fontSize: "25px" }}>성장</span>을 느껴보세요.
         </IntroText>
         <hr style={{ width: "400px" }} />
-        <StartButton to="/QnA">START</StartButton>
+        <StartButton onClick={onStart}>START</StartButton>
       </MainBox>
       <CodingLogo src={mainLogo} />
     </Main>
