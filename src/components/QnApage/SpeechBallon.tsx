@@ -1,16 +1,39 @@
 import styled, { StyledComponent } from "styled-components";
-import ReactMarkdown from "react-markdown";
+import { mainLogo } from "images/index";
+import { fadeIn } from "animations/animation";
 
 const UserBallon = styled.div`
   display: flex;
   flex-direction: column;
   text-align: right;
+  word-break: break-all;
+  align-items: flex-end;
+  margin-right: 5px;
+  margin-top: 5px;
+  animation: ${fadeIn} linear 0.2s;
 `;
 
 const KodealBallon = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  word-break: break-all;
+  align-items: flex-start;
+  margin-left: 5px;
+  margin-top: 5px;
+  animation: ${fadeIn} linear 0.2s;
+`;
+
+const KodealProfile = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+`;
+
+const KodealProfileImage = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 `;
 
 const QuestionBallon = styled.div`
@@ -23,7 +46,8 @@ const QuestionBallon = styled.div`
   letter-spacing: -0.25px;
   margin-top: 6.8px;
   padding: 5px 11px;
-  margin: 10px 0px 0px 5px;
+  margin-top: 5px;
+  max-width: 500px;
 `;
 
 const CodeBallon = styled.div`
@@ -37,6 +61,7 @@ const CodeBallon = styled.div`
   margin-top: 6.8px;
   padding: 5px 11px;
   margin: 10px 0px 0px 5px;
+  max-width: 500px;
 `;
 
 type chattingType = {
@@ -56,6 +81,14 @@ export default function SpeechBallon(props: chattingType): any {
     </UserBallon>
   ) : (
     <KodealBallon>
+      <KodealProfile>
+        <KodealProfileImage src={mainLogo} />
+        <div
+          style={{ lineHeight: "1.9", textAlign: "center", fontWeight: "600" }}
+        >
+          Kodeal
+        </div>
+      </KodealProfile>
       <QuestionBallon>
         <pre>{props.question}</pre>
       </QuestionBallon>

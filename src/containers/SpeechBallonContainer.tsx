@@ -60,6 +60,19 @@ const SpeechBallonContainer = () => {
     />
   ));
 
+  if (speechBallonArr.length === 0) {
+    speechBallonArr.push(
+      <SpeechBallon
+        time={""}
+        question={
+          "안녕하세요. 저는 인공지능 코딩 도우미 코딜이에요.\r\n궁금한게 있으시면 무엇이든 물어보세요."
+        }
+        code={""}
+        who={"kodeal"}
+      />
+    );
+  }
+
   return <div>{speechBallonArr}</div>;
 };
 

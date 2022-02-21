@@ -5,7 +5,7 @@ import * as api from "apis/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "reducer/User";
-import { inputFade } from "animations/animation";
+import { fadeIn, inputFocus } from "animations/animation";
 
 const LoginMain: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
@@ -36,15 +36,18 @@ const LoginTitle = styled.div`
 const LoginInput = styled.input`
   margin: 40px 0px 5px 0px;
   border-radius: 8px;
-  background-color: #c0c0c0;
+  background-color: #ededed;
   width: 80%;
   padding: 10px;
   height: 35px;
   border: none;
-  animation: ${inputFade} linear 0.5s;
+  animation: ${fadeIn} linear 0.5s;
+  font-size: 20px;
 
   &:focus {
     background-color: white;
+    height: 45px;
+    animation: ${inputFocus} linear 0.1s;
   }
 `;
 
@@ -52,25 +55,29 @@ const SigninButton = styled.button`
   font-size: 25px;
   width: 300px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 10px;
   margin-top: 50px;
-  background-color: #f7f7f7;
-  border: 1px solid black;
+  border: 1px solid #ff5e5c;
   cursor: pointer;
+  background-color: #ff5e5c;
+  color: white;
+  &:hover {
+    background-color: #cc4b49;
+  }
 `;
 const SignupButton = styled(Link)`
   display: block;
   font-size: 25px;
   width: 278px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 10px;
   margin-top: 50px;
   background-color: #f7f7f7;
   text-decoration: none;
   margin: auto;
-  border: 1px solid black;
+  border: 2px solid #ff5e5c;
   color: black;
   margin-top: 25px;
 `;
@@ -135,7 +142,7 @@ export default function Login(props: any): JSX.Element {
             onChange={handlePwd}
           ></LoginInput>
           <div>
-            <SigninButton onClick={login}>Login</SigninButton>
+            <SigninButton onClick={login}>로그인</SigninButton>
             <SignupButton to="/signup">회원가입</SignupButton>
           </div>
         </form>

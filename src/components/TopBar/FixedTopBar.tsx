@@ -24,6 +24,7 @@ const TopBarTitle = styled(Link)`
   text-align: center;
   text-decoration: none;
   line-height: 4.7vh;
+  cursor: pointer;
 `;
 
 const LoginButton = styled(Link)`
@@ -35,6 +36,7 @@ const LoginButton = styled(Link)`
   margin: 5px 30px 5px 5px;
   text-decoration: none;
   line-height: 3.8vh;
+  cursor: pointer;
 
   &:hover {
     background-color: #cc4b49;

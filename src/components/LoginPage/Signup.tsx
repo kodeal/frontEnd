@@ -5,7 +5,7 @@ import FixedTopBar from "components/TopBar/FixedTopBar";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "reducer/User";
-import { inputFade } from "animations/animation";
+import { fadeIn } from "animations/animation";
 
 const SignupMain = styled.div`
   width: 100%;
@@ -39,11 +39,13 @@ const SignupInput = styled.input`
   width: 80%;
   padding: 10px;
   margin: 2rem 0rem 0rem 0rem;
-  animation: ${inputFade} linear 0.5s;
-  background-color: #c0c0c0;
+  animation: ${fadeIn} linear 0.5s;
+  background-color: #ededed;
+  border: none;
 
   &:focus {
     background-color: white;
+    height: 30px;
   }
 `;
 const SignupButton = styled.button`
@@ -57,11 +59,15 @@ const SignupButton = styled.button`
   background-color: #f7f7f7;
   text-decoration: none;
   margin: auto;
-  border: 1px solid black;
+  border: 1px solid #ff5e5c;
   color: white;
   margin-top: 25px;
   cursor: pointer;
   background-color: #ff5e5c;
+
+  &:hover {
+    background-color: #cc4b49;
+  }
 `;
 
 const AuthButton = styled.button`
@@ -69,7 +75,8 @@ const AuthButton = styled.button`
   font-weight: bold;
   padding: 10px;
   margin: 2rem 0rem 0rem 0rem;
-  animation: ${inputFade} linear 0.5s;
+  animation: ${fadeIn} linear 0.5s;
+  border: 1px solid black;
 `;
 
 const Auth = styled.div`

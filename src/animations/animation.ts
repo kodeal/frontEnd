@@ -1,6 +1,6 @@
 import styled, { keyframes, StyledComponent } from "styled-components";
 
-export const inputFade = keyframes`
+export const fadeIn = keyframes`
   0% {
     opacity: 0;
   }
@@ -9,5 +9,14 @@ export const inputFade = keyframes`
   }
   100% {
     opacity: 1;
+  }
+`;
+
+export const inputFocus = keyframes`
+  from {
+      height: 35px;
+  }
+  to {
+      height: 45px;
   }
 `;
