@@ -55,13 +55,11 @@ const SignupButton = styled.button`
   font-weight: bold;
   border-radius: 8px;
   padding: 10px;
-  margin-top: 50px;
   background-color: #f7f7f7;
   text-decoration: none;
-  margin: auto;
+  margin: 80px auto auto auto;
   border: 1px solid #ff5e5c;
   color: white;
-  margin-top: 25px;
   cursor: pointer;
   background-color: #ff5e5c;
 
@@ -84,10 +82,19 @@ const Auth = styled.div`
   justify-content: center;
 `;
 
+const Message = styled.div`
+  width: 83%;
+  margin: 5px auto auto auto;
+  text-align: left;
+  font-size: 13px;
+  color: red;
+`;
+
 const Signup = (): JSX.Element => {
   const [userid, setUserid] = useState("");
   const [email, setEmail] = useState("");
   const [auth, setAuth] = useState(false);
+  const [emailAuth, setEmailAuth] = useState(false);
   const [userAuthNum, setUserAuthNum] = useState("");
   const dispatch = useDispatch();
 
@@ -132,6 +139,9 @@ const Signup = (): JSX.Element => {
 
   const authEmail = async (e: any) => {
     const result: AxiosResponse = await api.authEmail(email);
+    if (result) {
+      setEmailAuth(true);
+    }
     console.log(result);
   };
 
@@ -163,10 +173,6 @@ const Signup = (): JSX.Element => {
             type="password"
             name="password"
           ></SignupInput>
-          <SignupInput
-            placeholder="비밀번호 확인"
-            type="password"
-          ></SignupInput>
           <Auth>
             <SignupInput
               placeholder="이메일"
@@ -177,6 +183,7 @@ const Signup = (): JSX.Element => {
             ></SignupInput>
             <AuthButton onClick={authEmail}>전송</AuthButton>
           </Auth>
+          {emailAuth ? <Message>이메일이 전송되었습니다.</Message> : null}
           <Auth>
             <SignupInput
               placeholder="인증번호"

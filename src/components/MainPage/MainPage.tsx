@@ -1,20 +1,26 @@
 import styled, { StyledComponent } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FixedTopBar from "components/TopBar/FixedTopBar";
-import { mainLogo } from "images/index";
+import { explain1, codex, mainLogo } from "images/index";
 import { useSelector } from "react-redux";
 import { RootState } from "reducer/RootReducer";
-import { useEffect, useState } from "react";
-const Main: StyledComponent<"div", any, {}, never> = styled.div`
+import { fadeIn } from "animations/animation";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const Layout = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: black;
+  background-color: #333;
+`;
+const Main = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: #333;
   font-size: 50px;
-  opacity: 0.8;
   display: flex;
   justify-content: center;
   text-align: center;
-  position: absolute;
 `;
 
 const Title = styled.h1`
@@ -45,6 +51,7 @@ const MainBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  animation: ${fadeIn} linear 1s;
 `;
 const IntroText = styled.div`
   color: white;
@@ -59,6 +66,62 @@ const CodingLogo = styled.img`
   align-self: center;
   justify-content: center;
   margin-left: 300px;
+  animation: ${fadeIn} linear 1s;
+`;
+
+const ExplainLayout = styled.div`
+  width: 100%;
+  height: 900px;
+  margin: auto;
+  padding: 50px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  position: relative;
+`;
+
+const ExplainFlexBox = styled.div`
+  width: 90%;
+  height: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+`;
+
+const ExplainTitle = styled.p`
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  z-index: 1;
+`;
+
+const ExplainText = styled.p`
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  z-index: 1;
+`;
+
+const MainImage = styled.img`
+  width: 90%;
+  height: 800px;
+  margin: auto;
+  border-radius: 10px;
+  filter: brightness(50%);
+`;
+
+const CodexImage = styled.img`
+  width: 800px;
+  height: 400px;
+  border-radius: 10px;
 `;
 
 type userState = {
@@ -69,11 +132,13 @@ type userState = {
 };
 
 export default function MainPage(): JSX.Element {
-  const [userName, setUserName] = useState("");
-
   const user: userState = useSelector((state: RootState) => state.User);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const onStart = () => {
     if (!user.id) {
@@ -84,20 +149,75 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
-    <Main>
-      <FixedTopBar />
-      <MainBox>
-        <Title>Kodeal</Title>
-        <IntroText>
-          코딩 입문자를 위한 코딩 QnA 서비스
+    <div>
+      <Main>
+        <FixedTopBar />
+        <MainBox data-aos="fade-up">
+          <Title>Kodeal</Title>
+          <IntroText>
+            코딩 입문자를 위한 코딩 QnA 서비스
+            <br />
+            다양한 질문과 답변을 통해{" "}
+            <span style={{ fontSize: "25px" }}>성장</span>을 느껴보세요.
+          </IntroText>
+          <hr style={{ width: "400px" }} />
+          <StartButton onClick={onStart}>START</StartButton>
+        </MainBox>
+        <CodingLogo src={mainLogo} />
+      </Main>
+      <ExplainLayout>
+        <ExplainTitle data-aos="fade-up" data-aos-delay="300">
+          코딩에 입문하시나요?{" "}
+          <hr style={{ width: "400px", marginTop: "20px" }} />
+        </ExplainTitle>
+        <ExplainText data-aos="fade-up" data-aos-delay="500">
+          Kodeal은 당신의 코딩 실력 향상을 도와줄 인공지능 QnA 서비스에요.
           <br />
-          다양한 질문과 답변을 통해{" "}
-          <span style={{ fontSize: "25px" }}>성장</span>을 느껴보세요.
-        </IntroText>
-        <hr style={{ width: "400px" }} />
-        <StartButton onClick={onStart}>START</StartButton>
-      </MainBox>
-      <CodingLogo src={mainLogo} />
-    </Main>
+          <br />
+          Kodeal에게 질문하고 답변을 바로 받아보세요.
+        </ExplainText>
+        <MainImage src={explain1} data-aos="fade-up" />
+      </ExplainLayout>
+      <ExplainLayout>
+        <ExplainFlexBox>
+          <div data-aos="fade-up" data-aos-delay="300">
+            <CodexImage src={codex} />
+            <p
+              style={{
+                fontSize: "120px",
+                textAlign: "center",
+                color: "#66f6f6",
+              }}
+            >
+              &
+            </p>
+            <div
+              style={{
+                fontSize: "160px",
+                color: "white",
+                textAlign: "center",
+                backgroundColor: "#222",
+                borderRadius: "10px",
+              }}
+            >
+              Kodeal
+            </div>
+          </div>
+          <IntroText
+            style={{
+              fontSize: "40px",
+              fontWeight: "bold",
+              backgroundColor: "#666",
+              borderRadius: "10px",
+              padding: "10px",
+            }}
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            Kodeal은 Codex api를 활용하여 만들어졌어요.
+          </IntroText>
+        </ExplainFlexBox>
+      </ExplainLayout>
+    </div>
   );
 }

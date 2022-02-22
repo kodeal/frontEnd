@@ -6,13 +6,14 @@ import { RootState } from "reducer/RootReducer";
 const TopBar = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: #333;
+  background-color: #222;
   display: flex;
   justify-content: space-between;
   text-align: center;
   position: fixed;
   top: 0;
   right: 0;
+  border-radius: 5px;
 `;
 
 const TopBarTitle = styled(Link)`

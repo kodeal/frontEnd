@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 export type receiveAnswerType = {
   answer: string;
@@ -55,7 +55,7 @@ export const login = async (id: string, pwd: string) => {
     const result = await axios.post(urls.login, {
       userid: id,
       password: pwd,
-      // keep_login: "True",
+      keep_login: "True",
     });
     console.log(result);
 
@@ -69,13 +69,13 @@ export const login = async (id: string, pwd: string) => {
 };
 
 export const signup = async (
-  name: string,
+  username: string,
   id: string,
   password: string,
   email: string
 ) => {
   const result = await axios.post(urls.signup, {
-    name: name,
+    username: username,
     userid: id,
     password: password,
     email: email,
