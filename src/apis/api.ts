@@ -14,7 +14,7 @@ export type loginType = {
   isLogin: boolean;
 };
 
-const baseUrl = "http://52.231.75.227:8000";
+const baseUrl = "https://52.231.75.227:8001";
 
 const urls = {
   sendQuestion: `${baseUrl}/blog/`,
@@ -62,7 +62,6 @@ export const login = async (id: string, pwd: string) => {
     return result;
   } catch (e: any) {
     console.log(e.request);
-    console.log(e.response);
   }
 
   return false;

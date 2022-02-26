@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "reducer/RootReducer";
+import { useCookies } from "react-cookie";
 
 const TopBar = styled.div`
   width: 100%;
@@ -56,21 +55,14 @@ const UserName = styled.div`
   margin: 8px;
 `;
 
-type userState = {
-  id: string;
-  password: string;
-  name: string;
-  email: string;
-};
-
 export default function FixedTopBar(): JSX.Element {
-  const userInfo: userState = useSelector((state: RootState) => state.User);
+  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   return (
     <TopBar>
       <TopBarTitle to="/">Kodeal</TopBarTitle>
-      {userInfo.name ? (
-        <UserName>{userInfo.name} 님</UserName>
+      {cookies.userInfo ? (
+        <UserName>{cookies.userInfo.username} 님</UserName>
       ) : (
         <LoginButton to="/login">Sign in</LoginButton>
       )}

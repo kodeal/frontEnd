@@ -6,8 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "reducer/User";
 import { fadeIn, inputFocus } from "animations/animation";
+import { useCookies } from "react-cookie";
 
-const LoginMain: StyledComponent<"div", any, {}, never> = styled.div`
+const LoginMain = styled.div`
   width: 100%;
   height: 100vh;
   opacity: 0.8;
@@ -87,6 +88,7 @@ export default function Login(props: any): JSX.Element {
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const dispatch = useDispatch();
+  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   const handleId = useCallback(
     (e: any) => {
@@ -97,8 +99,6 @@ export default function Login(props: any): JSX.Element {
 
   const handlePwd = useCallback(
     (e: any) => {
-      console.log(pwd);
-
       setPwd(e.target.value);
     },
     [pwd]
@@ -107,8 +107,6 @@ export default function Login(props: any): JSX.Element {
   const login = async (e: any) => {
     e.preventDefault();
     const result: any = await api.login(id, pwd);
-    console.log(result);
-
     if (result) {
       dispatch(
         updateUserInfo(
@@ -118,11 +116,29 @@ export default function Login(props: any): JSX.Element {
           result.data.email
         )
       );
+      handleCookie(result.data.userid, result.data.username, result.data.email);
       alert("로그인 성공");
       navigate("/");
     } else {
       alert("로그인 실패");
     }
+  };
+
+  const handleCookie = (userid: string, username: string, email: string) => {
+    const expireDate = new Date();
+    expireDate.setMinutes(expireDate.getMinutes() + 1);
+    setCookie(
+      "userInfo",
+      {
+        userid: userid,
+        username: username,
+        email: email,
+      },
+      {
+        path: "/",
+        expires: expireDate,
+      }
+    );
   };
 
   return (

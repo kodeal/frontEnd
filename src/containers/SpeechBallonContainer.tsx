@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducer/RootReducer";
 import SpeechBallon from "components/QnApage/SpeechBallon";
-import { getTime } from "components/QnApage/QnA";
 import { useCallback, useEffect } from "react";
-import { appendFileSync } from "fs";
 import * as apis from "apis/api";
 import { updateQuestion } from "reducer/Chatting";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router";
 
 type QuestionState = {
   time: string;
@@ -26,41 +26,55 @@ const SpeechBallonContainer = () => {
     (state: RootState) => state.chatting
   );
   const user: userState = useSelector((state: RootState) => state.User);
+  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   console.log(chatArr);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      const result = await apis.chattingLog(user.id);
-      if (result.status === 200) {
-        result.data.items.forEach((value: any) => {
-          const time: string = value.fields.time;
-          const question: string = value.fields.question;
-          const code: string = value.fields.code;
-          setChattingLog(time, question, code);
-        });
-      }
-    })();
+    if (cookies.userInfo) {
+      (async () => {
+        const result = await apis.chattingLog(cookies.userInfo.userid); // 사용자의 채팅 내역 불러오기
+        if (result.status === 200) {
+          result.data.items.forEach((value: any) => {
+            const time: string = value.fields.time;
+            const question: string = value.fields.question;
+            const code: string = value.fields.code;
+            setChattingLog(time, question, code);
+          });
+        }
+      })();
+    } else {
+      alert("로그인 후 이용해주세요.");
+      navigate("/");
+    }
   }, []);
 
   const setChattingLog = useCallback(
+    // 사용자의 채팅 내역 로컬에 저장
     (time: string, question: string, code: string) => {
-      dispatch(updateQuestion(time, question, code, "user"));
+      dispatch(updateQuestion(time, question, "", "user"));
+      dispatch(updateQuestion(time, "", code, "kodeal"));
     },
     [dispatch]
   );
 
-  const speechBallonArr = chatArr.map((chat) => (
-    <SpeechBallon
-      time={chat.time}
-      question={chat.question}
-      code={chat.code}
-      who={chat.who}
-    />
-  ));
+  const speechBallonArr = chatArr.map(
+    (
+      chat // 채팅창 말풍선 배열
+    ) => (
+      <SpeechBallon
+        time={chat.time}
+        question={chat.question}
+        code={chat.code}
+        who={chat.who}
+      />
+    )
+  );
 
   if (speechBallonArr.length === 0) {
+    // 처음 사용하는 사용자에게 안내 문구 출력
     speechBallonArr.push(
       <SpeechBallon
         time={""}

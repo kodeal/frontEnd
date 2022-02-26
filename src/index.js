@@ -6,14 +6,17 @@ import rootReducer from "reducer/RootReducer";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import logger from "redux-logger";
+import { CookiesProvider } from "react-cookie";
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

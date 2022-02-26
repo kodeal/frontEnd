@@ -8,6 +8,7 @@ import { fadeIn } from "animations/animation";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useCookies } from "react-cookie";
 
 const Layout = styled.div`
   width: 100%;
@@ -133,6 +134,7 @@ type userState = {
 
 export default function MainPage(): JSX.Element {
   const user: userState = useSelector((state: RootState) => state.User);
+  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   const navigate = useNavigate();
 
@@ -141,7 +143,7 @@ export default function MainPage(): JSX.Element {
   }, []);
 
   const onStart = () => {
-    if (!user.id) {
+    if (!cookies.userInfo) {
       alert("로그인 후 이용해주세요.");
     } else {
       navigate("/QnA");

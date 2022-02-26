@@ -72,6 +72,8 @@ type chattingType = {
 };
 
 export default function SpeechBallon(props: chattingType): any {
+  console.log(props.who);
+
   return props.who === "user" ? (
     <UserBallon>
       <QuestionBallon>
@@ -89,10 +91,11 @@ export default function SpeechBallon(props: chattingType): any {
           Kodeal
         </div>
       </KodealProfile>
-      <QuestionBallon>
-        <pre>{props.question}</pre>
-      </QuestionBallon>
-      {props?.code?.length > 0 ? <CodeBallon>{props.code}</CodeBallon> : null}
+      {props?.code?.length > 0 ? (
+        <CodeBallon>
+          <pre>{props.code}</pre>
+        </CodeBallon>
+      ) : null}
     </KodealBallon>
   );
 }
