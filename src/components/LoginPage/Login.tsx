@@ -11,13 +11,12 @@ import { useCookies } from "react-cookie";
 const LoginMain = styled.div`
   width: 100%;
   height: 100vh;
-  opacity: 0.8;
   text-align: center;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: #333;
 `;
 
 const LoginFrame = styled.div`
@@ -126,7 +125,7 @@ export default function Login(props: any): JSX.Element {
 
   const handleCookie = (userid: string, username: string, email: string) => {
     const expireDate = new Date();
-    expireDate.setMinutes(expireDate.getMinutes() + 1);
+    expireDate.setMinutes(expireDate.getMinutes() + 5);
     setCookie(
       "userInfo",
       {

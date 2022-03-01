@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from "styled-components";
-import { mainLogo } from "images/index";
+import { kodealIcon } from "images/index";
 import { fadeIn } from "animations/animation";
 
 const UserBallon = styled.div`
@@ -8,7 +8,7 @@ const UserBallon = styled.div`
   text-align: right;
   word-break: break-all;
   align-items: flex-end;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-top: 5px;
   animation: ${fadeIn} linear 0.2s;
 `;
@@ -19,7 +19,7 @@ const KodealBallon = styled.div`
   text-align: left;
   word-break: break-all;
   align-items: flex-start;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 5px;
   animation: ${fadeIn} linear 0.2s;
 `;
@@ -34,6 +34,7 @@ const KodealProfileImage = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: 1px solid #aaa;
 `;
 
 const QuestionBallon = styled.div`
@@ -60,7 +61,7 @@ const CodeBallon = styled.div`
   letter-spacing: -0.25px;
   margin-top: 6.8px;
   padding: 5px 11px;
-  margin: 10px 0px 0px 5px;
+  margin: 10px 0px 0px 0px;
   max-width: 500px;
 `;
 
@@ -84,7 +85,7 @@ export default function SpeechBallon(props: chattingType): any {
   ) : (
     <KodealBallon>
       <KodealProfile>
-        <KodealProfileImage src={mainLogo} />
+        <KodealProfileImage src={kodealIcon} />
         <div
           style={{ lineHeight: "1.9", textAlign: "center", fontWeight: "600" }}
         >

@@ -1,7 +1,7 @@
 import styled, { StyledComponent } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FixedTopBar from "components/TopBar/FixedTopBar";
-import { explain1, codex, mainLogo } from "images/index";
+import { explain1, codex, logo } from "images/index";
 import { useSelector } from "react-redux";
 import { RootState } from "reducer/RootReducer";
 import { fadeIn } from "animations/animation";
@@ -61,8 +61,8 @@ const IntroText = styled.div`
 `;
 
 const CodingLogo = styled.img`
-  width: 640px;
-  height: 480px;
+  width: 840px;
+  height: 600px;
   display: flex;
   align-self: center;
   justify-content: center;
@@ -165,7 +165,7 @@ export default function MainPage(): JSX.Element {
           <hr style={{ width: "400px" }} />
           <StartButton onClick={onStart}>START</StartButton>
         </MainBox>
-        <CodingLogo src={mainLogo} />
+        <CodingLogo src={logo} />
       </Main>
       <ExplainLayout>
         <ExplainTitle data-aos="fade-up" data-aos-delay="300">

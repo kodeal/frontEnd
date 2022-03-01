@@ -33,9 +33,9 @@ const LoginButton = styled(Link)`
   border-radius: 12px;
   font-size: 1.55rem;
   color: white;
-  margin: 5px 30px 5px 5px;
+  margin: 6px 50px 6px 5px;
   text-decoration: none;
-  line-height: 3.8vh;
+  line-height: 3.7vh;
   cursor: pointer;
 
   &:hover {
@@ -49,10 +49,9 @@ const UserName = styled.div`
   width: 200px;
   font-size: 16px;
   line-height: 30px;
-  background-color: #dfdfdf;
   text-align: center;
-  border-radius: 8px;
   margin: 8px;
+  color: white;
 `;
 
 export default function FixedTopBar(): JSX.Element {
