@@ -10,13 +10,12 @@ import { fadeIn } from "animations/animation";
 const SignupMain = styled.div`
   width: 100%;
   height: 100vh;
-  opacity: 0.8;
   text-align: center;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: #333;
 `;
 
 const SignupFrame = styled.div`
@@ -70,16 +69,20 @@ const SignupButton = styled.button`
 
 const AuthButton = styled.button`
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 10px;
   margin: 2rem 0rem 0rem 0rem;
   animation: ${fadeIn} linear 0.5s;
-  border: 1px solid black;
+  border: none;
+  background-color: #999;
+  color: white;
 `;
 
 const Auth = styled.div`
+  width: 83%; 
   display: flex;
-  justify-content: center;
+  margin: auto;
+  justify-content: space-between;
 `;
 
 const Message = styled.div`
@@ -121,7 +124,7 @@ const Signup = (): JSX.Element => {
   const onSignup = async (e: any) => {
     e.preventDefault();
     console.log(e.target);
-    const name: string = e.target.name.vaule;
+    const name: string = e.tdlarget.name.vaule;
     const id: string = e.target.id.value;
     const password: string = e.target.password.value;
     const email: string = e.target.email.value;
@@ -178,7 +181,7 @@ const Signup = (): JSX.Element => {
               placeholder="이메일"
               type="email"
               name="email"
-              style={{ width: "70%" }}
+              style={{ width: "80%" }}
               onChange={onEmail}
             ></SignupInput>
             <AuthButton onClick={authEmail}>전송</AuthButton>
@@ -188,7 +191,7 @@ const Signup = (): JSX.Element => {
             <SignupInput
               placeholder="인증번호"
               type="text"
-              style={{ width: "70%" }}
+              style={{ width: "80%" }}
               onChange={onEmailAuthNum}
             ></SignupInput>
             <AuthButton onClick={authEmailNum}>확인</AuthButton>
