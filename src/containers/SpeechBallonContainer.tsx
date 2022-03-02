@@ -36,6 +36,7 @@ const SpeechBallonContainer = () => {
     if (cookies.userInfo) {
       (async () => {
         const result = await apis.chattingLog(cookies.userInfo.userid); // 사용자의 채팅 내역 불러오기
+        console.log(result.data);
         if (result.status === 200) {
           result.data.items.forEach((value: any) => {
             const time: string = value.fields.time;

@@ -38,29 +38,29 @@ const KodealProfileImage = styled.img`
 `;
 
 const QuestionBallon = styled.div`
-  background-color: white;
+  background-color: #0064ff;
   border-radius: 10px;
-  border: 1px solid;
-  color: black;
+  border: none;
+  color: white;
   font-size: 17px;
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.25px;
   margin-top: 6.8px;
-  padding: 5px 11px;
+  padding: 10px 16px;
   margin-top: 5px;
   max-width: 500px;
 `;
 
 const CodeBallon = styled.div`
-  background-color: white;
+  background-color: #ccc;
   border-radius: 10px;
-  border: 1px solid gray;
+  border: none;
   color: black;
   font-size: 17px;
   font-weight: 550;
   letter-spacing: -0.25px;
   margin-top: 6.8px;
-  padding: 5px 11px;
+  padding: 10px 16px;
   margin: 10px 0px 0px 0px;
   max-width: 500px;
 `;

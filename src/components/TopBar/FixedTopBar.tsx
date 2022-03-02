@@ -47,10 +47,10 @@ const UserName = styled.div`
   color: black;
   font-weight: 600;
   width: 200px;
-  font-size: 16px;
-  line-height: 30px;
+  font-size: 22px;
+  line-height: 3vh;
   text-align: center;
-  margin: 8px;
+  margin: 8px 20px 8px 0px;
   color: white;
 `;
 

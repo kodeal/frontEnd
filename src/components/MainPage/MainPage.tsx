@@ -30,7 +30,7 @@ const Title = styled.h1`
 `;
 
 const StartButton = styled.div`
-  background-color: slateblue;
+  background-color: #0064ff;
   width: 200px;
   height: 50px;
   border-radius: 20px;
@@ -41,7 +41,7 @@ const StartButton = styled.div`
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    background-color: #887db1;
+    background-color: #0052d1;
     color: #fafafa;
   }
 `;
@@ -85,11 +85,12 @@ const ExplainFlexBox = styled.div`
   width: 90%;
   height: 800px;
   display: flex;
-  justify-content: space-between;
   margin: auto;
+  justify-content: space-around;
+  gap: 30px;
 `;
 
-const ExplainTitle = styled.p`
+const Explain1Title = styled.p`
   font-size: 40px;
   color: white;
   font-weight: bold;
@@ -100,7 +101,7 @@ const ExplainTitle = styled.p`
   z-index: 1;
 `;
 
-const ExplainText = styled.p`
+const Explain1Text = styled.p`
   font-size: 25px;
   color: white;
   font-weight: bold;
@@ -119,10 +120,20 @@ const MainImage = styled.img`
   filter: brightness(50%);
 `;
 
-const CodexImage = styled.img`
+const Explain2Image = styled.img`
   width: 800px;
   height: 400px;
   border-radius: 10px;
+`;
+
+const CardBox = styled.div`
+  font-size: 80px;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fff;
+  height: 400px;
+  width: 800px;
 `;
 
 type userState = {
@@ -168,56 +179,30 @@ export default function MainPage(): JSX.Element {
         <CodingLogo src={kodealIcon} />
       </Main>
       <ExplainLayout>
-        <ExplainTitle data-aos="fade-up" data-aos-delay="300">
+        <Explain1Title data-aos="fade-up" data-aos-delay="300">
           코딩에 입문하시나요?{" "}
           <hr style={{ width: "400px", marginTop: "20px" }} />
-        </ExplainTitle>
-        <ExplainText data-aos="fade-up" data-aos-delay="500">
+        </Explain1Title>
+        <Explain1Text data-aos="fade-up" data-aos-delay="500">
           Kodeal은 당신의 코딩 실력 향상을 도와줄 인공지능 QnA 서비스에요.
           <br />
           <br />
           Kodeal에게 질문하고 답변을 바로 받아보세요.
-        </ExplainText>
+        </Explain1Text>
         <MainImage src={explain1} data-aos="fade-up" />
       </ExplainLayout>
       <ExplainLayout>
         <ExplainFlexBox>
-          <div data-aos="fade-up" data-aos-delay="300">
-            <CodexImage src={codex} />
-            <p
+          <Explain2Image src={codex} data-aos="fade-up" data-aos-delay="300" />
+          <CardBox data-aos="fade-up" data-aos-delay="300">
+            <Explain2Image
               style={{
-                fontSize: "120px",
-                textAlign: "center",
-                color: "#66f6f6",
+                width: "400px",
+                height: "400px",
               }}
-            >
-              &
-            </p>
-            <div
-              style={{
-                fontSize: "160px",
-                color: "white",
-                textAlign: "center",
-                backgroundColor: "#222",
-                borderRadius: "10px",
-              }}
-            >
-              Kodeal
-            </div>
-          </div>
-          <IntroText
-            style={{
-              fontSize: "40px",
-              fontWeight: "bold",
-              backgroundColor: "#666",
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
-            Kodeal은 Codex api를 활용하여 만들어졌어요.
-          </IntroText>
+              src={kodealIcon}
+            />
+          </CardBox>
         </ExplainFlexBox>
       </ExplainLayout>
     </div>

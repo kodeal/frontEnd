@@ -10,8 +10,7 @@ import { AxiosResponse } from "axios";
 const Main: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: black;
-  opacity: 0.8;
+  background-color: #333;
   position: absolute;
 `;
 

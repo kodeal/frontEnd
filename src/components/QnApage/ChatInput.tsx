@@ -4,7 +4,7 @@ import { updateQuestion } from "reducer/Chatting";
 import { useCallback, useState } from "react";
 import { sendQuestion } from "apis/api";
 import { getTime } from "./QnA";
-import { RootState } from "reducer/RootReducer";
+import { useCookies } from "react-cookie";
 
 const ChatWindow: StyledComponent<"div", any, {}, never> = styled.div`
   border: 3px solid #333;
@@ -12,12 +12,12 @@ const ChatWindow: StyledComponent<"div", any, {}, never> = styled.div`
   display: flex;
   margin: 0.6rem;
   border-radius: 8px;
-  margin-top: 4rem;
+  margin-top: 6vh;
 `;
 
 const InputText: StyledComponent<"textarea", any, {}, never> = styled.textarea`
   width: 100vh;
-  height: 20rem;
+  height: 92%;
   line-height: 1.6rem;
   font-size: 20px;
   background-color: white;
@@ -25,6 +25,8 @@ const InputText: StyledComponent<"textarea", any, {}, never> = styled.textarea`
   flex-grow: 1;
   margin: 0.6rem;
   resize: none;
+  padding-top: 8px;
+  padding-left: 8px;
 `;
 
 const TextDiv: StyledComponent<"div", any, {}, never> = styled.div`
@@ -35,17 +37,17 @@ const TextDiv: StyledComponent<"div", any, {}, never> = styled.div`
   text-align: center;
 `;
 
-const InputCode: StyledComponent<"textarea", any, {}, never> = styled.textarea`
-  width: 100vh;
-  height: 22.5rem;
-  line-height: 1.6rem;
-  font-size: 15px;
-  background-color: white;
-  border-radius: 5px;
-  flex-grow: 1;
-  margin: 0.6rem;
-  resize: none;
-`;
+// const InputCode: StyledComponent<"textarea", any, {}, never> = styled.textarea`
+//   width: 100vh;
+//   height: 45vh;
+//   line-height: 1.6rem;
+//   font-size: 15px;
+//   background-color: white;
+//   border-radius: 5px;
+//   flex-grow: 1;
+//   margin: 0.6rem;
+//   resize: none;
+// `;
 
 const SendButton: StyledComponent<"button", any, {}, never> = styled.button`
   width: 6rem;
@@ -87,7 +89,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
   const [code, setCode] = useState("");
   const [key, setKey] = useState(0);
   const dispatch = useDispatch();
-  const user: userState = useSelector((state: RootState) => state.User);
+  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   const handleQuestion = useCallback((e: any): void => {
     setQuestion(e.target.value);
@@ -102,12 +104,15 @@ export default function ChatInputWindow(props: any): JSX.Element {
 
     setKey(key + 1);
     const time: string = getTime();
-    const result = await sendQuestion(user.id, question, code, time);
+    const result = await sendQuestion(
+      cookies.userInfo.userid,
+      question,
+      code,
+      time
+    );
     if (result.status === 200) {
       dispatch(updateQuestion(time, question, code, "user"));
-      dispatch(
-        updateQuestion(time, result.data.answer, result.data.code, "kodeal")
-      );
+      dispatch(updateQuestion(time, result.data.answer, code, "kodeal"));
       props.setIsSending(true);
       setQuestion("");
       setCode("");
@@ -119,20 +124,13 @@ export default function ChatInputWindow(props: any): JSX.Element {
     <ChatWindow>
       <form onSubmit={handleSubmit}>
         <TextDiv>
-          Question
+          <div style={{ lineHeight: "3.5vh" }}>Question</div>
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
         <InputText
           placeholder="질문해 주세요!"
           onChange={handleQuestion}
         ></InputText>
-        <TextDiv>Code</TextDiv>
-        <pre>
-          <InputCode
-            placeholder="코드를 입력해 주세요!"
-            onChange={handleCode}
-          ></InputCode>
-        </pre>
       </form>
     </ChatWindow>
   );

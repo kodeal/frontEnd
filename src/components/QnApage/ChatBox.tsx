@@ -8,7 +8,7 @@ const Box: StyledComponent<"div", any, {}, never> = styled.div`
   border-radius: 8px;
   margin: 0.6rem;
   overflow-y: scroll;
-  margin-top: 4rem;
+  margin-top: 6vh;
 `;
 
 export default function ChatBox() {
