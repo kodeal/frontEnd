@@ -14,7 +14,7 @@ const LoginMain = styled.div`
   text-align: center;
   position: absolute;
   display: flex;
-  align-items: center;
+  align-items: center;z
   justify-content: center;
   background-color: #333;
 `;
