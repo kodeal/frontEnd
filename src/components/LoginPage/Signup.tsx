@@ -57,13 +57,13 @@ const SignupButton = styled.button`
   background-color: #f7f7f7;
   text-decoration: none;
   margin: 80px auto auto auto;
-  border: 1px solid #ff5e5c;
+  border: 1px solid #0064ff;
   color: white;
   cursor: pointer;
-  background-color: #ff5e5c;
+  background-color: #0064ff;
 
   &:hover {
-    background-color: #cc4b49;
+    background-color: #0052d1;
   }
 `;
 

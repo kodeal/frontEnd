@@ -1,14 +1,15 @@
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FixedTopBar from "components/TopBar/FixedTopBar";
 import { explain1, codex, logo, kodealIcon } from "images/index";
 import { useSelector } from "react-redux";
 import { RootState } from "reducer/RootReducer";
 import { fadeIn } from "animations/animation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
+import Card from "./Card";
 
 const Layout = styled.div`
   width: 100%;
@@ -33,7 +34,7 @@ const StartButton = styled.div`
   background-color: #0064ff;
   width: 200px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 2.2rem;
   color: white;
   font-weight: bold;
@@ -131,7 +132,7 @@ const CardBox = styled.div`
   color: white;
   border-radius: 10px;
   text-align: center;
-  background-color: #fff;
+  background-color: #222;
   height: 400px;
   width: 800px;
 `;
@@ -146,8 +147,10 @@ type userState = {
 export default function MainPage(): JSX.Element {
   const user: userState = useSelector((state: RootState) => state.User);
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+  const [cardHover, setCardHover] = useState(0);
 
   const navigate = useNavigate();
+
 
   useEffect(() => {
     AOS.init();
@@ -160,6 +163,10 @@ export default function MainPage(): JSX.Element {
       navigate("/QnA");
     }
   };
+
+  const handleCardHover = (card: number) : void => {
+    setCardHover(card);
+  }
 
   return (
     <div>
@@ -183,7 +190,7 @@ export default function MainPage(): JSX.Element {
           코딩에 입문하시나요?{" "}
           <hr style={{ width: "400px", marginTop: "20px" }} />
         </Explain1Title>
-        <Explain1Text data-aos="fade-up" data-aos-delay="500">
+        <Explain1Text data-aos="fade-up" data-aos-delay="600">
           Kodeal은 당신의 코딩 실력 향상을 도와줄 인공지능 QnA 서비스에요.
           <br />
           <br />
@@ -192,9 +199,26 @@ export default function MainPage(): JSX.Element {
         <MainImage src={explain1} data-aos="fade-up" />
       </ExplainLayout>
       <ExplainLayout>
+        <IntroText style={{width: "90%", margin: "0px auto 20px auto", fontSize: "40px", fontWeight: "600"}} data-aos="fade-up" data-aos-delay="300">Kodeal은 Codex API를 활용해 만들어졌어요.</IntroText>
+        <IntroText style={{width: "90%", margin: "0px auto 50px auto", fontWeight: "500"}} data-aos="fade-up" data-aos-delay="300">Kodeal을 좀 더 알고 싶다면 아래 카드를 확인해보세요.</IntroText>
         <ExplainFlexBox>
-          <Explain2Image src={codex} data-aos="fade-up" data-aos-delay="300" />
-          <CardBox data-aos="fade-up" data-aos-delay="300">
+          {cardHover === 1 ? (
+            <CardBox onClick={() => {
+              handleCardHover(0);
+            }} data-aos="fade-up" data-aos-delay="600">
+              <Card card={1}></Card>
+            </CardBox>
+          ) : (
+            <CardBox onClick={() => {
+              handleCardHover(1)
+            }} data-aos="fade-up" data-aos-delay="600">
+            <Explain2Image src={codex}/>
+            </CardBox>
+          )}
+        
+          <CardBox onMouseOver={() => {
+            handleCardHover(2)
+          }} data-aos="fade-up" data-aos-delay="600">
             <Explain2Image
               style={{
                 width: "400px",

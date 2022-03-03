@@ -29,8 +29,8 @@ const TopBarTitle = styled(Link)`
 
 const LoginButton = styled(Link)`
   width: 150px;
-  background-color: #ff5e5c;
-  border-radius: 12px;
+  background-color: #0064ff;
+  border-radius: 10px;
   font-size: 1.55rem;
   color: white;
   margin: 6px 50px 6px 5px;
@@ -39,7 +39,7 @@ const LoginButton = styled(Link)`
   cursor: pointer;
 
   &:hover {
-    background-color: #cc4b49;
+    background-color: #0052d1;
   }
 `;
 

@@ -58,12 +58,12 @@ const SigninButton = styled.button`
   border-radius: 10px;
   padding: 10px;
   margin-top: 50px;
-  border: 1px solid #ff5e5c;
+  border: 1px solid #0064ff;
   cursor: pointer;
-  background-color: #ff5e5c;
+  background-color: #0064ff;
   color: white;
   &:hover {
-    background-color: #cc4b49;
+    background-color: #0052d1;
   }
 `;
 const SignupButton = styled(Link)`
@@ -77,9 +77,13 @@ const SignupButton = styled(Link)`
   background-color: #f7f7f7;
   text-decoration: none;
   margin: auto;
-  border: 2px solid #ff5e5c;
+  border: 2px solid #0064ff;
   color: black;
   margin-top: 25px;
+
+  &:hover {
+    background-color: #eee;
+  }
 `;
 
 export default function Login(props: any): JSX.Element {
