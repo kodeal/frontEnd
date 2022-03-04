@@ -11,7 +11,6 @@ import Card from "./Card";
 import { coding } from "videos/index";
 
 const Main = styled.div`
-  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #333;
@@ -177,7 +176,7 @@ export default function MainPage(): JSX.Element {
     <div>
       <Main>
         <FixedTopBar />
-        <Video loop autoPlay muted>
+        <Video autoPlay muted loop>
           <source src={coding} type="video/mp4" />
         </Video>
         <MainBox data-aos="fade-up">
