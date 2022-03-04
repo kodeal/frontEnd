@@ -11,13 +11,13 @@ import Card from "./Card";
 import { coding } from "videos/index";
 
 const Main = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #333;
   font-size: 50px;
   display: flex;
   justify-content: flex-end;
-  z-index: -1;
 `;
 
 const Title = styled.h1`
@@ -52,7 +52,9 @@ const MainBox = styled.div`
   gap: 30px;
   animation: ${fadeIn} linear 1s;
   text-align: center;
-  margin-right: 8vw;
+  margin-right: 12vw;
+  z-index: 1;
+  position: relative;
 `;
 const IntroText = styled.div`
   color: white;
