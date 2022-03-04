@@ -112,7 +112,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
     );
     if (result.status === 200) {
       dispatch(updateQuestion(time, question, code, "user"));
-      dispatch(updateQuestion(time, result.data.answer, code, "kodeal"));
+      dispatch(updateQuestion(time, "", result.data.answer, "kodeal"));
       props.setIsSending(true);
       setQuestion("");
       setCode("");

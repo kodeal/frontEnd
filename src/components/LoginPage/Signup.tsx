@@ -76,10 +76,11 @@ const AuthButton = styled.button`
   border: none;
   background-color: #999;
   color: white;
+  cursor: pointer;
 `;
 
 const Auth = styled.div`
-  width: 83%; 
+  width: 83%;
   display: flex;
   margin: auto;
   justify-content: space-between;

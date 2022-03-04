@@ -49,9 +49,10 @@ const QuestionBallon = styled.div`
   padding: 10px 16px;
   margin-top: 5px;
   max-width: 500px;
+  word-break: break-all;
 `;
 
-const CodeBallon = styled.div`
+const AnswerBallon = styled.div`
   background-color: #ccc;
   border-radius: 10px;
   border: none;
@@ -63,6 +64,7 @@ const CodeBallon = styled.div`
   padding: 10px 16px;
   margin: 10px 0px 0px 0px;
   max-width: 500px;
+  word-break: break-all;
 `;
 
 type chattingType = {
@@ -78,9 +80,8 @@ export default function SpeechBallon(props: chattingType): any {
   return props.who === "user" ? (
     <UserBallon>
       <QuestionBallon>
-        <pre>{props.question}</pre>
+        <pre style={{ whiteSpace: "pre-wrap" }}>{props.question}</pre>
       </QuestionBallon>
-      {props?.code?.length > 0 ? <CodeBallon>{props.code}</CodeBallon> : null}
     </UserBallon>
   ) : (
     <KodealBallon>
@@ -93,9 +94,9 @@ export default function SpeechBallon(props: chattingType): any {
         </div>
       </KodealProfile>
       {props?.code?.length > 0 ? (
-        <CodeBallon>
-          <pre>{props.code}</pre>
-        </CodeBallon>
+        <AnswerBallon>
+          <pre style={{ whiteSpace: "pre-wrap" }}>{props.code}</pre>
+        </AnswerBallon>
       ) : null}
     </KodealBallon>
   );
