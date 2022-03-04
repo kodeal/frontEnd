@@ -8,7 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
 import Card from "./Card";
-import { coding } from "videos";
+import { coding } from "videos/index";
 
 const Main = styled.div`
   position: relative;
