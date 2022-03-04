@@ -113,12 +113,12 @@ const Explain1Text = styled.p`
   z-index: 1;
 `;
 
-const MainImage = styled.img`
+const Explain1Image = styled.img`
   width: 90%;
   height: 800px;
   margin: auto;
   border-radius: 10px;
-  filter: brightness(50%);
+  filter: brightness(40%);
 `;
 
 const Explain2Image = styled.img`
@@ -128,6 +128,7 @@ const Explain2Image = styled.img`
 `;
 
 const CardBox = styled.div`
+  position: relative;
   font-size: 80px;
   color: white;
   border-radius: 10px;
@@ -145,12 +146,10 @@ type userState = {
 };
 
 export default function MainPage(): JSX.Element {
-  const user: userState = useSelector((state: RootState) => state.User);
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
   const [cardHover, setCardHover] = useState(0);
 
   const navigate = useNavigate();
-
 
   useEffect(() => {
     AOS.init();
@@ -164,9 +163,9 @@ export default function MainPage(): JSX.Element {
     }
   };
 
-  const handleCardHover = (card: number) : void => {
+  const handleCardHover = (e: any, card: number): void => {
     setCardHover(card);
-  }
+  };
 
   return (
     <div>
@@ -196,37 +195,88 @@ export default function MainPage(): JSX.Element {
           <br />
           Kodeal에게 질문하고 답변을 바로 받아보세요.
         </Explain1Text>
-        <MainImage src={explain1} data-aos="fade-up" />
+        <Explain1Image src={explain1} data-aos="fade-up" />
       </ExplainLayout>
       <ExplainLayout>
-        <IntroText style={{width: "90%", margin: "0px auto 20px auto", fontSize: "40px", fontWeight: "600"}} data-aos="fade-up" data-aos-delay="300">Kodeal은 Codex API를 활용해 만들어졌어요.</IntroText>
-        <IntroText style={{width: "90%", margin: "0px auto 50px auto", fontWeight: "500"}} data-aos="fade-up" data-aos-delay="300">Kodeal을 좀 더 알고 싶다면 아래 카드를 확인해보세요.</IntroText>
+        <IntroText
+          style={{
+            width: "90%",
+            margin: "0px auto 20px auto",
+            fontSize: "40px",
+            fontWeight: "600",
+          }}
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          Kodeal은 Codex API를 활용해 만들어졌어요.
+        </IntroText>
+        <IntroText
+          style={{
+            width: "90%",
+            margin: "0px auto 50px auto",
+            fontWeight: "500",
+          }}
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          서비스에 대해 좀 더 알고 싶다면 아래 카드를 확인해보세요.
+        </IntroText>
         <ExplainFlexBox>
           {cardHover === 1 ? (
-            <CardBox onClick={() => {
-              handleCardHover(0);
-            }} data-aos="fade-up" data-aos-delay="600">
+            <CardBox
+              style={{ filter: "brightness(40%)" }}
+              onMouseLeave={(e) => {
+                handleCardHover(e, 0);
+              }}
+            >
+              <Explain2Image src={codex} />
               <Card card={1}></Card>
             </CardBox>
           ) : (
-            <CardBox onClick={() => {
-              handleCardHover(1)
-            }} data-aos="fade-up" data-aos-delay="600">
-            <Explain2Image src={codex}/>
+            <CardBox
+              onMouseEnter={(e) => {
+                handleCardHover(e, 1);
+              }}
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <Explain2Image src={codex} />
             </CardBox>
           )}
-        
-          <CardBox onMouseOver={() => {
-            handleCardHover(2)
-          }} data-aos="fade-up" data-aos-delay="600">
-            <Explain2Image
-              style={{
-                width: "400px",
-                height: "400px",
+
+          {cardHover === 2 ? (
+            <CardBox
+              style={{ filter: "brightness(40%)" }}
+              onMouseLeave={(e) => {
+                handleCardHover(e, 0);
               }}
-              src={kodealIcon}
-            />
-          </CardBox>
+            >
+              <Explain2Image
+                style={{
+                  width: "400px",
+                  height: "400px",
+                }}
+                src={kodealIcon}
+              />
+              <Card card={2}></Card>
+            </CardBox>
+          ) : (
+            <CardBox
+              onMouseEnter={(e) => {
+                handleCardHover(e, 2);
+              }}
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <Explain2Image
+                style={{
+                  width: "400px",
+                  height: "400px",
+                }}
+                src={kodealIcon}
+              />
+            </CardBox>
+          )}
         </ExplainFlexBox>
       </ExplainLayout>
     </div>
