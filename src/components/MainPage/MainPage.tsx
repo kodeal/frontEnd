@@ -1,33 +1,31 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FixedTopBar from "components/TopBar/FixedTopBar";
-import { explain1, codex, logo, kodealIcon } from "images/index";
-import { useSelector } from "react-redux";
-import { RootState } from "reducer/RootReducer";
+import { explain1, codex, kodealIcon } from "images/index";
 import { fadeIn } from "animations/animation";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
 import Card from "./Card";
+import { coding } from "videos";
 
-const Layout = styled.div`
-  width: 100%;
-  background-color: #333;
-`;
 const Main = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #333;
   font-size: 50px;
   display: flex;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-end;
+  z-index: -1;
 `;
 
 const Title = styled.h1`
   text-align: center;
   color: white;
+  font-size: 160px;
+  margin-bottom: 2vw;
 `;
 
 const StartButton = styled.div`
@@ -54,6 +52,8 @@ const MainBox = styled.div`
   align-items: center;
   gap: 30px;
   animation: ${fadeIn} linear 1s;
+  text-align: center;
+  margin-right: 8vw;
 `;
 const IntroText = styled.div`
   color: white;
@@ -138,6 +138,12 @@ const CardBox = styled.div`
   width: 800px;
 `;
 
+const Video = styled.video`
+  position: absolute;
+  width: 100vw;
+  top: 5%;
+`;
+
 type userState = {
   id: string;
   password: string;
@@ -171,18 +177,20 @@ export default function MainPage(): JSX.Element {
     <div>
       <Main>
         <FixedTopBar />
+        <Video loop autoPlay muted>
+          <source src={coding} type="video/mp4" />
+        </Video>
         <MainBox data-aos="fade-up">
           <Title>Kodeal</Title>
-          <IntroText>
+          <IntroText style={{ fontSize: "26px" }}>
             코딩 입문자를 위한 코딩 QnA 서비스
             <br />
             다양한 질문과 답변을 통해{" "}
             <span style={{ fontSize: "25px" }}>성장</span>을 느껴보세요.
           </IntroText>
-          <hr style={{ width: "400px" }} />
+          <hr style={{ width: "550px" }} />
           <StartButton onClick={onStart}>START</StartButton>
         </MainBox>
-        <CodingLogo src={kodealIcon} />
       </Main>
       <ExplainLayout>
         <Explain1Title data-aos="fade-up" data-aos-delay="300">
