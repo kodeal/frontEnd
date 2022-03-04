@@ -9,7 +9,7 @@ const CardBox = styled.div`
   z-index: 1;
 `;
 
-const CardTitle = styled.p`
+const CardTitle = styled.div`
   font-size: 28px;
   font-weight: 600;
   color: white;
@@ -19,7 +19,7 @@ const CardTitle = styled.p`
   z-index: 1;
 `;
 
-const CardText = styled.p`
+const CardText = styled.div`
   font-size: 20px;
   font-weight: 500;
   color: white;

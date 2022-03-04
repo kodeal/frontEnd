@@ -90,7 +90,7 @@ const ExplainFlexBox = styled.div`
   gap: 30px;
 `;
 
-const Explain1Title = styled.p`
+const Explain1Title = styled.div`
   font-size: 40px;
   color: white;
   font-weight: bold;
@@ -101,7 +101,7 @@ const Explain1Title = styled.p`
   z-index: 1;
 `;
 
-const Explain1Text = styled.p`
+const Explain1Text = styled.div`
   font-size: 25px;
   color: white;
   font-weight: bold;
@@ -143,13 +143,6 @@ const Video = styled.video`
   top: 5%;
 `;
 
-type userState = {
-  id: string;
-  password: string;
-  name: string;
-  email: string;
-};
-
 export default function MainPage(): JSX.Element {
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
   const [cardHover, setCardHover] = useState(0);
@@ -178,6 +171,7 @@ export default function MainPage(): JSX.Element {
         <FixedTopBar />
         <Video autoPlay muted loop>
           <source src={coding} type="video/mp4" />
+          해당 브라우저에서는 동영상을 지원하지 않습니다.
         </Video>
         <MainBox data-aos="fade-up">
           <Title>Kodeal</Title>
