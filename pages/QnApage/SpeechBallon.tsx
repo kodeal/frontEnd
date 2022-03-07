@@ -1,6 +1,6 @@
 import styled, { StyledComponent } from "styled-components";
-import { kodealIcon } from "images/index";
-import { fadeIn } from "animations/animation";
+import { kodealIcon } from "/frontEnd/public/images/index";
+import { fadeIn } from "/frontEnd/src/animations/animation";
 
 const UserBallon = styled.div`
   display: flex;

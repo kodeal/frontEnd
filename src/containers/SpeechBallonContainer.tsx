@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducer/RootReducer";
-import SpeechBallon from "components/QnApage/SpeechBallon";
+import SpeechBallon from "/frontEnd/pages/QnApage/SpeechBallon";
 import { useCallback, useEffect } from "react";
-import * as apis from "apis/api";
-import { updateQuestion } from "reducer/Chatting";
+import * as apis from "../apis/api";
+import { updateQuestion } from "../reducer/Chatting";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 
@@ -61,18 +61,15 @@ const SpeechBallonContainer = () => {
     [dispatch]
   );
 
-  const speechBallonArr = chatArr.map(
-    (
-      chat // 채팅창 말풍선 배열
-    ) => (
-      <SpeechBallon
-        time={chat.time}
-        question={chat.question}
-        code={chat.code}
-        who={chat.who}
-      />
-    )
-  );
+  const speechBallonArr = chatArr.map((chat, index) => (
+    <SpeechBallon
+      key={index}
+      time={chat.time}
+      question={chat.question}
+      code={chat.code}
+      who={chat.who}
+    />
+  ));
 
   if (speechBallonArr.length === 0) {
     // 처음 사용하는 사용자에게 안내 문구 출력

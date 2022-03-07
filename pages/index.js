@@ -3,8 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "reducer/RootReducer";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import App from "../src/App";
+import reportWebVitals from "../src/reportWebVitals";
 import logger from "redux-logger";
 import { CookiesProvider } from "react-cookie";
 

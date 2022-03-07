@@ -1,11 +1,9 @@
 import styled, { StyledComponent } from "styled-components";
-import FixedTopBar from "components/TopBar/FixedTopBar";
+import FixedTopBar from "/frontEnd/pages/TopBar/FixedTopBar";
 import ChatBox from "./ChatBox";
 import ChatInputWindow from "./ChatInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateQuestion } from "reducer/Chatting";
-import { AxiosResponse } from "axios";
 
 const Main: StyledComponent<"div", any, {}, never> = styled.div`
   width: 100%;
@@ -36,14 +34,14 @@ export const getTime = (): string => {
 };
 
 export default function QnA(): JSX.Element {
-  const [isSending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   return (
     <Main>
       <FixedTopBar />
       <DivBox>
-        <ChatBox />
+        <ChatBox isSending={isSending} />
         <ChatInputWindow setIsSending={setIsSending} />
       </DivBox>
     </Main>

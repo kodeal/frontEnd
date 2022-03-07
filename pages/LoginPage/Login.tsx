@@ -1,11 +1,11 @@
 import styled, { keyframes, StyledComponent } from "styled-components";
-import FixedTopBar from "components/TopBar/FixedTopBar";
+import FixedTopBar from "/frontEnd/pages/TopBar/FixedTopBar";
 import { useCallback, useState } from "react";
-import * as api from "apis/api";
+import * as api from "/frontEnd/src/apis/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUserInfo } from "reducer/User";
-import { fadeIn, inputFocus } from "animations/animation";
+import { updateUserInfo } from "/frontEnd/src/reducer/User";
+import { fadeIn, inputFocus } from "/frontEnd/src/animations/animation";
 import { useCookies } from "react-cookie";
 
 const LoginMain = styled.div`

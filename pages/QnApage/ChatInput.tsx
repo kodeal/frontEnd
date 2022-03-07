@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled, { StyledComponent } from "styled-components";
-import { updateQuestion } from "reducer/Chatting";
+import { updateQuestion } from "/frontEnd/src/reducer/Chatting";
 import { useCallback, useState } from "react";
-import { sendQuestion } from "apis/api";
+import { sendQuestion } from "/frontEnd/src/apis/api";
 import { getTime } from "./QnA";
 import { useCookies } from "react-cookie";
 

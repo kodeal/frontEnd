@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import FixedTopBar from "components/TopBar/FixedTopBar";
-import { explain1, codex, kodealIcon } from "images/index";
-import { fadeIn } from "animations/animation";
+import FixedTopBar from "../TopBar/FixedTopBar";
+import { explain1, codex, kodealIcon } from "/frontEnd/public/images/index";
+import { fadeIn } from "/frontEnd/src/animations/animation";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
 import Card from "./Card";
-import { coding } from "videos/index";
+import { coding } from "/frontEnd/public/videos/index";
 
 const Main = styled.div`
   position: relative;
