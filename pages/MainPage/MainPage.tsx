@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import FixedTopBar from "../TopBar/FixedTopBar";
 import { explain1, codex, kodealIcon } from "/frontEnd/public/images/index";
 import { fadeIn } from "/frontEnd/src/animations/animation";
@@ -150,8 +149,6 @@ export default function MainPage(): JSX.Element {
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
   const [cardHover, setCardHover] = useState(0);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     AOS.init();
   }, []);
@@ -160,7 +157,6 @@ export default function MainPage(): JSX.Element {
     if (!cookies.userInfo) {
       alert("로그인 후 이용해주세요.");
     } else {
-      navigate("/QnA");
     }
   };
 
@@ -255,11 +251,7 @@ export default function MainPage(): JSX.Element {
                 handleCardHover(e, 0);
               }}
             >
-              <Explain2Image
-                width={400}
-                height={400}
-                src={kodealIcon}
-              />
+              <Explain2Image width={400} height={400} src={kodealIcon} />
               <Card card={2}></Card>
             </CardBox>
           ) : (
@@ -270,11 +262,7 @@ export default function MainPage(): JSX.Element {
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <Explain2Image
-                width={400}
-                height={400}
-                src={kodealIcon}
-              />
+              <Explain2Image width={400} height={400} src={kodealIcon} />
             </CardBox>
           )}
         </ExplainFlexBox>

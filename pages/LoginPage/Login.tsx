@@ -2,7 +2,6 @@ import styled, { keyframes, StyledComponent } from "styled-components";
 import FixedTopBar from "/frontEnd/pages/TopBar/FixedTopBar";
 import { useCallback, useState } from "react";
 import * as api from "/frontEnd/src/apis/api";
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUserInfo } from "/frontEnd/src/reducer/User";
 import { fadeIn, inputFocus } from "/frontEnd/src/animations/animation";
@@ -66,7 +65,7 @@ const SigninButton = styled.button`
     background-color: #0052d1;
   }
 `;
-const SignupButton = styled(Link)`
+const SignupButton = styled.div`
   display: block;
   font-size: 25px;
   width: 278px;
@@ -87,7 +86,6 @@ const SignupButton = styled(Link)`
 `;
 
 export default function Login(props: any): JSX.Element {
-  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const dispatch = useDispatch();
@@ -121,7 +119,6 @@ export default function Login(props: any): JSX.Element {
       );
       handleCookie(result.data.userid, result.data.username, result.data.email);
       alert("로그인 성공");
-      navigate("/");
     } else {
       alert("로그인 실패");
     }
@@ -162,7 +159,7 @@ export default function Login(props: any): JSX.Element {
           ></LoginInput>
           <div>
             <SigninButton onClick={login}>로그인</SigninButton>
-            <SignupButton to="/signup">회원가입</SignupButton>
+            <SignupButton>회원가입</SignupButton>
           </div>
         </form>
       </LoginFrame>

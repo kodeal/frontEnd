@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled, { StyledComponent } from "styled-components";
 import { kodealIcon } from "/frontEnd/public/images/index";
 import { fadeIn } from "/frontEnd/src/animations/animation";
@@ -30,7 +31,7 @@ const KodealProfile = styled.div`
   gap: 8px;
 `;
 
-const KodealProfileImage = styled.img`
+const KodealProfileImage = styled(Image)`
   width: 30px;
   height: 30px;
   border-radius: 50%;

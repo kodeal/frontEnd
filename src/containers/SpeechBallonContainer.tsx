@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../reducer/RootReducer";
+// import { RootState } from "../reducer/index";
 import SpeechBallon from "/frontEnd/pages/QnApage/SpeechBallon";
 import { useCallback, useEffect } from "react";
 import * as apis from "../apis/api";
 import { updateQuestion } from "../reducer/Chatting";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router";
 
 type QuestionState = {
   time: string;
@@ -22,15 +21,11 @@ type userState = {
 };
 
 const SpeechBallonContainer = () => {
-  const chatArr: QuestionState[] = useSelector(
-    (state: RootState) => state.chatting
-  );
-  const user: userState = useSelector((state: RootState) => state.User);
+  const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   console.log(chatArr);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (cookies.userInfo) {
@@ -48,7 +43,6 @@ const SpeechBallonContainer = () => {
       })();
     } else {
       alert("로그인 후 이용해주세요.");
-      navigate("/");
     }
   }, []);
 
