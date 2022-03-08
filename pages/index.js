@@ -2,26 +2,36 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "reducer/RootReducer";
+import rootReducer from "/frontEnd/src/reducer/RootReducer";
 import App from "../src/App";
 import reportWebVitals from "../src/reportWebVitals";
 import logger from "redux-logger";
 import { CookiesProvider } from "react-cookie";
+import Head from "next/head";
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const Index = () => {
+  return (
+    <>
+    <AppContainer>
+      <Head>
+      <meta charset="utf-8" />
+    <link rel="icon" href="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>Kodeal</title>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+      </Head>
+    </AppContainer>
+    </>
+  )
+}
 
-ReactDOM.render(
-  <BrowserRouter>
-    <CookiesProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </CookiesProvider>
-  </BrowserRouter>,
-  document.getElementById("root")
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const AppContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`

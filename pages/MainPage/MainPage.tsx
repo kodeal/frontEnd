@@ -9,6 +9,7 @@ import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
 import Card from "./Card";
 import { coding } from "/frontEnd/public/videos/index";
+import Image from "next/image";
 
 const Main = styled.div`
   position: relative;
@@ -62,7 +63,7 @@ const IntroText = styled.div`
   font-size: 18px;
 `;
 
-const CodingLogo = styled.img`
+const CodingLogo = styled(Image)`
   width: 480px;
   height: 480px;
   display: flex;
@@ -114,7 +115,7 @@ const Explain1Text = styled.div`
   z-index: 1;
 `;
 
-const Explain1Image = styled.img`
+const Explain1Image = styled(Image)`
   width: 90%;
   height: 800px;
   margin: auto;
@@ -122,7 +123,7 @@ const Explain1Image = styled.img`
   filter: brightness(40%);
 `;
 
-const Explain2Image = styled.img`
+const Explain2Image = styled(Image)`
   width: 800px;
   height: 400px;
   border-radius: 10px;
@@ -255,10 +256,8 @@ export default function MainPage(): JSX.Element {
               }}
             >
               <Explain2Image
-                style={{
-                  width: "400px",
-                  height: "400px",
-                }}
+                width={400}
+                height={400}
                 src={kodealIcon}
               />
               <Card card={2}></Card>
@@ -272,10 +271,8 @@ export default function MainPage(): JSX.Element {
               data-aos-delay="600"
             >
               <Explain2Image
-                style={{
-                  width: "400px",
-                  height: "400px",
-                }}
+                width={400}
+                height={400}
                 src={kodealIcon}
               />
             </CardBox>

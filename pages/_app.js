@@ -1,11 +1,13 @@
-import { GlobalFontStyle } from "font/GlobalStyle";
-
-const MyApp = ({ Component, pageProps }) => {
+import GlobalFontStyle from "/frontEnd/src/font/GlobalStyle";
+import {wrapper} from "/frontEnd/src/reducer/index";
+const App = ({ Component, pageProps }) => {
   return (
-    <Component {...pageProps}>
-      <GlobalFontStyle />
-    </Component>
+    <>
+    <GlobalFontStyle/>
+    <Component {...pageProps}/>
+    </>
   );
 };
 
-export default MyApp;
+
+export default wrapper.withRedux(App);

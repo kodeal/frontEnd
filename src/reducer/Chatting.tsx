@@ -35,7 +35,7 @@ type QuestionState = {
 const initState: QuestionState[] = [];
 
 // 리듀서 함수 설정
-export default function Chatting(
+export default function reducer(
   state: QuestionState[] = initState,
   action: ChattingAction
 ) {
