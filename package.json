@@ -36,8 +36,10 @@
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.3.3",
+    "styled-reset": "^4.3.4",
     "typescript": "^4.5.4",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
     "build": "next build",
@@ -65,8 +67,17 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
-    "eslint-config-react-app": "^7.0.0",
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "^6.2.0",
+    "prettier": "^2.5.1",
     "ts-node": "^10.4.0"
   }
 }

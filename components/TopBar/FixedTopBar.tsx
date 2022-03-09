@@ -54,7 +54,7 @@ const UserName = styled.div`
   color: white;
 `;
 
-export default function FixedTopBar(): JSX.Element {
+const FixedTopBar = (): JSX.Element => {
   const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
 
   return (
@@ -67,4 +67,6 @@ export default function FixedTopBar(): JSX.Element {
       )}
     </TopBar>
   );
-}
+};
+
+export default FixedTopBar;

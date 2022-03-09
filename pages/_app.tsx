@@ -1,5 +1,5 @@
-import GlobalFontStyle from "../public/font/GlobalStyle";
-import { wrapper } from "/frontEnd/src/reducer/store";
+import GlobalFontStyle from "../styles/font/GlobalStyle";
+import { wrapper } from "/frontEnd/reducer/store";
 const App = ({ Component, pageProps }: any) => {
   return (
     <>

@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../reducer/index";
 import SpeechBallon from "/frontEnd/pages/QnApage/SpeechBallon";
 import { useCallback, useEffect } from "react";
-import * as apis from "../apis/api";
+import * as apis from "../utils/apis/api";
 import { updateQuestion } from "../reducer/Chatting";
 import { useCookies } from "react-cookie";
 

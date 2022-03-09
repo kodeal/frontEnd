@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { AxiosResponse } from "axios";
-import * as api from "/frontEnd/src/apis/api";
-import FixedTopBar from "/frontEnd/pages/TopBar/FixedTopBar";
+import * as api from "/frontEnd/utils/apis/api";
+import FixedTopBar from "/frontEnd/components/TopBar/FixedTopBar";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateUserInfo } from "/frontEnd/src/reducer/User";
-import { fadeIn } from "/frontEnd/src/animations/animation";
+import { updateUserInfo } from "/frontEnd/reducer/User";
+import { fadeIn } from "/frontEnd/utils/animations/animation";
 
 const SignupMain = styled.div`
   width: 100%;

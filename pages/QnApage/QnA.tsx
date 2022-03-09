@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from "styled-components";
-import FixedTopBar from "/frontEnd/pages/TopBar/FixedTopBar";
+import FixedTopBar from "/frontEnd/components/TopBar/FixedTopBar";
 import ChatBox from "./ChatBox";
 import ChatInputWindow from "./ChatInput";
 import { useState } from "react";

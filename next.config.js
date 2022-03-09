@@ -1,21 +1,3 @@
-const widthBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-const nextEnv = require("next-env");
-const dotenvLoad = require("dotenv-load");
-const webpack = require("webpack");
-
-dotenvLoad();
-
-const withNextEnv = nextEnv();
-
-module.exports = {
-  webpack(config, { isServer, buildId }) {
-    config.resolve.modules.push(__dirname);
-
-    return config;
-  },
-};
 // const {
 //   PHASE_PRODUCTION_BUILD,
 //   PHASE_DEVELOPMENT_SERVER,
@@ -33,3 +15,31 @@ module.exports = {
 //   }
 //   return withEnv(defaultConfig);
 // };
+
+const nodeExternals = require("webpack-node-externals");
+
+module.exports = {
+  webpackDevMiddleware: (config) => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    };
+    return config;
+  },
+  target: "server",
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
+};

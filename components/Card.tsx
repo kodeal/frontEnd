@@ -55,7 +55,7 @@ interface cardProps {
 
 const Card = (props: cardProps): JSX.Element => {
   const card: number = props.card;
-  return card == 1 ? (
+  return card === 1 ? (
     <CardBox data-aos="fade-out">
       <CardTitle>Codex는 OpenAI에서 만든 인공지능 모델이에요.</CardTitle>
       <CardText>

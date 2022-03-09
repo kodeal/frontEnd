@@ -1,4 +1,4 @@
-import SpeechBallonContainer from "/frontEnd/src/containers/SpeechBallonContainer";
+import SpeechBallonContainer from "/frontEnd/containers/SpeechBallonContainer";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
