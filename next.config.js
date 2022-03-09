@@ -16,7 +16,9 @@
 //   return withEnv(defaultConfig);
 // };
 
-const nodeExternals = require("webpack-node-externals");
+const nodeExternals = require('webpack-node-externals');
+// const withImages = require('next-images');
+// module.exports = withImages();
 
 module.exports = {
   webpackDevMiddleware: (config) => {
@@ -26,17 +28,17 @@ module.exports = {
     };
     return config;
   },
-  target: "server",
+  target: 'server',
   externals: [nodeExternals()],
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.?tsx$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },

@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import FixedTopBar from "/frontEnd/components/TopBar/FixedTopBar";
-import { useCallback, useState } from "react";
-import * as api from "/frontEnd/utils/apis/api";
-import { useDispatch } from "react-redux";
-import { updateUserInfo } from "/frontEnd/reducer/User";
-import { fadeIn, inputFocus } from "/frontEnd/utils/animations/animation";
-import { useCookies } from "react-cookie";
+import styled from 'styled-components';
+import FixedTopBar from '../../components/TopBar/FixedTopBar';
+import { useCallback, useState } from 'react';
+import * as api from '/frontEnd/utils/apis/api';
+import { useDispatch } from 'react-redux';
+import { updateUserInfo } from '/frontEnd/reducer/User';
+import { fadeIn, inputFocus } from '/frontEnd/utils/animations/animation';
+import { useCookies } from 'react-cookie';
 
 const LoginMain = styled.div`
   width: 100%;
@@ -86,23 +86,23 @@ const SignupButton = styled.div`
 `;
 
 export default function Login(props: any): JSX.Element {
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [id, setId] = useState('');
+  const [pwd, setPwd] = useState('');
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   const handleId = useCallback(
     (e: any) => {
       setId(e.target.value);
     },
-    [id]
+    [id],
   );
 
   const handlePwd = useCallback(
     (e: any) => {
       setPwd(e.target.value);
     },
-    [pwd]
+    [pwd],
   );
 
   const login = async (e: any) => {
@@ -112,15 +112,15 @@ export default function Login(props: any): JSX.Element {
       dispatch(
         updateUserInfo(
           result.data.userid,
-          "",
+          '',
           result.data.username,
-          result.data.email
-        )
+          result.data.email,
+        ),
       );
       handleCookie(result.data.userid, result.data.username, result.data.email);
-      alert("로그인 성공");
+      alert('로그인 성공');
     } else {
-      alert("로그인 실패");
+      alert('로그인 실패');
     }
   };
 
@@ -128,16 +128,16 @@ export default function Login(props: any): JSX.Element {
     const expireDate = new Date();
     expireDate.setMinutes(expireDate.getMinutes() + 5);
     setCookie(
-      "userInfo",
+      'userInfo',
       {
         userid: userid,
         username: username,
         email: email,
       },
       {
-        path: "/",
+        path: '/',
         expires: expireDate,
-      }
+      },
     );
   };
 

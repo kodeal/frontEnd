@@ -27,6 +27,7 @@
     "immer": "^9.0.7",
     "next": "latest",
     "next-env": "^1.1.1",
+    "next-images": "^1.8.4",
     "next-redux-wrapper": "^7.0.5",
     "react": "latest",
     "react-cookie": "^4.1.1",
