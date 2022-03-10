@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled, { StyledComponent } from "styled-components";
-import { kodealIcon } from "/frontEnd/public/images/index";
-import { fadeIn } from "/frontEnd/utils/animations/animation";
+import { kodealIcon } from "public/images/index";
+import { fadeIn } from "utils/animations/animation";
 
 const UserBallon = styled.div`
   display: flex;

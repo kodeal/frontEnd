@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useCookies } from "react-cookie";
 
 const TopBar = styled.div`
@@ -59,11 +59,11 @@ const FixedTopBar = (): JSX.Element => {
 
   return (
     <TopBar>
-      <TopBarTitle to="/">Kodeal</TopBarTitle>
+      <TopBarTitle href="/">Kodeal</TopBarTitle>
       {cookies.userInfo ? (
         <UserName>{cookies.userInfo.username} 님</UserName>
       ) : (
-        <LoginButton to="/login">Sign in</LoginButton>
+        <LoginButton href="/login/signin">Sign in</LoginButton>
       )}
     </TopBar>
   );

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import SpeechBallon from "/frontEnd/pages/QnApage/SpeechBallon";
+import SpeechBallon from "pages/QnApage/SpeechBallon";
 import { useCallback, useEffect } from "react";
 import * as apis from "../utils/apis/api";
 import { updateQuestion } from "../reducer/Chatting";

@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import FixedTopBar from "../../components/TopBar/FixedTopBar";
-import { explain1, codex, kodealIcon } from "/frontEnd/public/images/index";
-import { fadeIn } from "/frontEnd/utils/animations/animation";
+import FixedTopBar from "components/TopBar/FixedTopBar";
+import { explain1, codex, kodealIcon } from "public/images/index";
+import { fadeIn } from "utils/animations/animation";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCookies } from "react-cookie";
-import Card from "../../components/Card";
-import { coding } from "/frontEnd/public/videos/index";
+import Card from "components/Card";
 import Image from "next/image";
 
 const Main = styled.div`
@@ -169,7 +168,7 @@ export default function MainPage(): JSX.Element {
       <Main>
         <FixedTopBar />
         <Video autoPlay muted loop>
-          <source src={coding} type="video/mp4" />
+          <source src="/public/videos/coding.mp4" type="video/mp4" />
           해당 브라우저에서는 동영상을 지원하지 않습니다.
         </Video>
         <MainBox data-aos="fade-up">

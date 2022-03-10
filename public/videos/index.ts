@@ -1,1 +1,1 @@
-export { default as coding } from '../videos/coding.mp4';
+export { default as coding } from "public/videos/coding.mp4";
