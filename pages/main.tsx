@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import FixedTopBar from "components/TopBar/FixedTopBar";
-import { explain1, codex, kodealIcon } from "public/images/index";
-import { fadeIn } from "utils/animations/animation";
-import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useCookies } from "react-cookie";
-import Card from "components/Card";
-import Image from "next/image";
+import styled from 'styled-components';
+import FixedTopBar from 'components/TopBar/FixedTopBar';
+import { explain1, codex, kodealIcon } from 'public/images/index';
+import { fadeIn } from 'utils/animations/animation';
+import { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useCookies } from 'react-cookie';
+import Card from 'components/Card';
+import Image from 'next/image';
 
 const Main = styled.div`
   position: relative;
@@ -30,6 +30,7 @@ const StartButton = styled.div`
   background-color: #0064ff;
   width: 200px;
   height: 50px;
+  line-height: 50px;
   border-radius: 10px;
   font-size: 2.2rem;
   color: white;
@@ -59,16 +60,6 @@ const IntroText = styled.div`
   color: white;
   font-weight: 500;
   font-size: 18px;
-`;
-
-const CodingLogo = styled(Image)`
-  width: 480px;
-  height: 480px;
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  margin-left: 300px;
-  animation: ${fadeIn} linear 1s;
 `;
 
 const ExplainLayout = styled.div`
@@ -114,16 +105,16 @@ const Explain1Text = styled.div`
 `;
 
 const Explain1Image = styled(Image)`
-  width: 90%;
-  height: 800px;
+  width: 90% !important;
+  height: 800px !important;
   margin: auto;
   border-radius: 10px;
   filter: brightness(40%);
 `;
 
 const Explain2Image = styled(Image)`
-  width: 800px;
-  height: 400px;
+  width: 800px !important;
+  height: 400px !important;
   border-radius: 10px;
 `;
 
@@ -145,7 +136,7 @@ const Video = styled.video`
 `;
 
 export default function MainPage(): JSX.Element {
-  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const [cardHover, setCardHover] = useState(0);
 
   useEffect(() => {
@@ -154,7 +145,7 @@ export default function MainPage(): JSX.Element {
 
   const onStart = () => {
     if (!cookies.userInfo) {
-      alert("로그인 후 이용해주세요.");
+      alert('로그인 후 이용해주세요.');
     } else {
     }
   };
@@ -173,20 +164,20 @@ export default function MainPage(): JSX.Element {
         </Video>
         <MainBox data-aos="fade-up">
           <Title>Kodeal</Title>
-          <IntroText style={{ fontSize: "26px" }}>
+          <IntroText style={{ fontSize: '26px' }}>
             코딩 입문자를 위한 코딩 QnA 서비스
             <br />
-            다양한 질문과 답변을 통해{" "}
-            <span style={{ fontSize: "25px" }}>성장</span>을 느껴보세요.
+            다양한 질문과 답변을 통해{' '}
+            <span style={{ fontSize: '25px' }}>성장</span>을 느껴보세요.
           </IntroText>
-          <hr style={{ width: "550px" }} />
+          <hr style={{ width: '550px' }} />
           <StartButton onClick={onStart}>START</StartButton>
         </MainBox>
       </Main>
       <ExplainLayout>
         <Explain1Title data-aos="fade-up" data-aos-delay="300">
-          코딩에 입문하시나요?{" "}
-          <hr style={{ width: "400px", marginTop: "20px" }} />
+          코딩에 입문하시나요?{' '}
+          <hr style={{ width: '400px', marginTop: '20px' }} />
         </Explain1Title>
         <Explain1Text data-aos="fade-up" data-aos-delay="600">
           Kodeal은 당신의 코딩 실력 향상을 도와줄 인공지능 QnA 서비스에요.
@@ -199,10 +190,10 @@ export default function MainPage(): JSX.Element {
       <ExplainLayout>
         <IntroText
           style={{
-            width: "90%",
-            margin: "0px auto 20px auto",
-            fontSize: "40px",
-            fontWeight: "600",
+            width: '90%',
+            margin: '0px auto 20px auto',
+            fontSize: '40px',
+            fontWeight: '600',
           }}
           data-aos="fade-up"
           data-aos-delay="300"
@@ -211,9 +202,9 @@ export default function MainPage(): JSX.Element {
         </IntroText>
         <IntroText
           style={{
-            width: "90%",
-            margin: "0px auto 50px auto",
-            fontWeight: "500",
+            width: '90%',
+            margin: '0px auto 50px auto',
+            fontWeight: '500',
           }}
           data-aos="fade-up"
           data-aos-delay="300"
@@ -223,7 +214,7 @@ export default function MainPage(): JSX.Element {
         <ExplainFlexBox>
           {cardHover === 1 ? (
             <CardBox
-              style={{ filter: "brightness(40%)" }}
+              style={{ filter: 'brightness(40%)' }}
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}
@@ -245,7 +236,7 @@ export default function MainPage(): JSX.Element {
 
           {cardHover === 2 ? (
             <CardBox
-              style={{ filter: "brightness(40%)" }}
+              style={{ filter: 'brightness(40%)' }}
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}
