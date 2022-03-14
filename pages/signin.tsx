@@ -65,7 +65,7 @@ const SigninButton = styled.button`
     background-color: #0052d1;
   }
 `;
-const SignupButton = styled.div`
+const SignupButton = styled.a`
   display: block;
   font-size: 25px;
   width: 278px;
@@ -79,9 +79,11 @@ const SignupButton = styled.div`
   border: 2px solid #0064ff;
   color: black;
   margin-top: 25px;
+  cursor: pointer;
 
   &:hover {
     background-color: #eee;
+    border: 2px solid #0052d1;
   }
 `;
 
@@ -159,7 +161,7 @@ export default function Login(props: any): JSX.Element {
           ></LoginInput>
           <div>
             <SigninButton onClick={login}>로그인</SigninButton>
-            <SignupButton>회원가입</SignupButton>
+            <SignupButton href="/signup">회원가입</SignupButton>
           </div>
         </form>
       </LoginFrame>

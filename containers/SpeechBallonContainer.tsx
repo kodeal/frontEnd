@@ -12,6 +12,13 @@ type QuestionState = {
   who: string;
 };
 
+type userState = {
+  id: string;
+  password: string;
+  name: string;
+  email: string;
+};
+
 const SpeechBallonContainer = () => {
   const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);

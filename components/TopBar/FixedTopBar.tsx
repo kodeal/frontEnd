@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Link from "next/link";
-import { useCookies } from "react-cookie";
+import styled from 'styled-components';
+import Link from 'next/link';
+import { useCookies } from 'react-cookie';
 
 const TopBar = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ const TopBar = styled.div`
   border-radius: 5px;
 `;
 
-const TopBarTitle = styled(Link)`
+const TopBarTitle = styled.a`
   width: 10%;
   color: white;
   font-size: 2rem;
@@ -27,7 +27,7 @@ const TopBarTitle = styled(Link)`
   cursor: pointer;
 `;
 
-const LoginButton = styled(Link)`
+const LoginButton = styled.a`
   width: 150px;
   background-color: #0064ff;
   border-radius: 10px;
@@ -55,7 +55,7 @@ const UserName = styled.div`
 `;
 
 const FixedTopBar = (): JSX.Element => {
-  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   return (
     <TopBar>
@@ -63,7 +63,7 @@ const FixedTopBar = (): JSX.Element => {
       {cookies.userInfo ? (
         <UserName>{cookies.userInfo.username} 님</UserName>
       ) : (
-        <LoginButton href="/login/signin">Sign in</LoginButton>
+        <LoginButton href="/signin">Sign in</LoginButton>
       )}
     </TopBar>
   );

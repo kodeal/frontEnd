@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { AxiosResponse } from "axios";
-import * as api from "utils/apis/api";
-import FixedTopBar from "components/TopBar/FixedTopBar";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateUserInfo } from "reducer/User";
-import { fadeIn } from "utils/animations/animation";
+import styled from 'styled-components';
+import { AxiosResponse } from 'axios';
+import * as api from 'utils/apis/api';
+import FixedTopBar from 'components/TopBar/FixedTopBar';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserInfo } from 'reducer/User';
+import { fadeIn } from 'utils/animations/animation';
 
 const SignupMain = styled.div`
   width: 100%;
@@ -95,11 +95,11 @@ const Message = styled.div`
 `;
 
 const Signup = (): JSX.Element => {
-  const [userid, setUserid] = useState("");
-  const [email, setEmail] = useState("");
+  const [userid, setUserid] = useState('');
+  const [email, setEmail] = useState('');
   const [auth, setAuth] = useState(false);
   const [emailAuth, setEmailAuth] = useState(false);
-  const [userAuthNum, setUserAuthNum] = useState("");
+  const [userAuthNum, setUserAuthNum] = useState('');
   const dispatch = useDispatch();
 
   const checkKor = (str: string) => {
@@ -125,7 +125,7 @@ const Signup = (): JSX.Element => {
   const onSignup = async (e: any) => {
     e.preventDefault();
     console.log(e.target);
-    const name: string = e.tdlarget.name.vaule;
+    const name: string = e.target.name.vaule;
     const id: string = e.target.id.value;
     const password: string = e.target.password.value;
     const email: string = e.target.email.value;
@@ -133,11 +133,13 @@ const Signup = (): JSX.Element => {
       const result = await api.signup(name, id, password, email);
 
       if (result.status === 200) {
-        alert("회원가입 성공");
+        alert('회원가입 성공');
         dispatch(updateUserInfo(id, password, name, email));
       } else {
-        alert("회원가입 실패");
+        alert('회원가입 실패');
       }
+    } else {
+      alert('정보를 입력해 주세요.');
     }
   };
 
@@ -152,10 +154,10 @@ const Signup = (): JSX.Element => {
   const authEmailNum = async (e: any) => {
     const result = await api.authEmailNum(email, userAuthNum);
     if (result.status === 200) {
-      alert("메일 인증 성공");
+      alert('메일 인증 성공');
       setAuth(true);
     } else {
-      alert("메일 인증 실패");
+      alert('메일 인증 실패');
     }
   };
 
@@ -182,7 +184,7 @@ const Signup = (): JSX.Element => {
               placeholder="이메일"
               type="email"
               name="email"
-              style={{ width: "80%" }}
+              style={{ width: '80%' }}
               onChange={onEmail}
             ></SignupInput>
             <AuthButton onClick={authEmail}>전송</AuthButton>
@@ -192,7 +194,7 @@ const Signup = (): JSX.Element => {
             <SignupInput
               placeholder="인증번호"
               type="text"
-              style={{ width: "80%" }}
+              style={{ width: '80%' }}
               onChange={onEmailAuthNum}
             ></SignupInput>
             <AuthButton onClick={authEmailNum}>확인</AuthButton>
