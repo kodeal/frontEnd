@@ -1,6 +1,6 @@
-import MainPage from "./MainPage/MainPage";
-import Head from "next/head";
-import styled from "styled-components";
+import MainPage from 'pages/main';
+import Head from 'next/head';
+import styled from 'styled-components';
 
 const Index = () => {
   return (

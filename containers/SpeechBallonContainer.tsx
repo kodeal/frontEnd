@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import SpeechBallon from "pages/QnApage/SpeechBallon";
-import { useCallback, useEffect } from "react";
-import * as apis from "../utils/apis/api";
-import { updateQuestion } from "../reducer/Chatting";
-import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from 'react-redux';
+import SpeechBallon from 'components/QnApage/SpeechBallon';
+import { useCallback, useEffect } from 'react';
+import * as apis from '../utils/apis/api';
+import { updateQuestion } from '../reducer/Chatting';
+import { useCookies } from 'react-cookie';
 
 type QuestionState = {
   time: string;
@@ -12,16 +12,9 @@ type QuestionState = {
   who: string;
 };
 
-type userState = {
-  id: string;
-  password: string;
-  name: string;
-  email: string;
-};
-
 const SpeechBallonContainer = () => {
   const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
-  const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   console.log(chatArr);
   const dispatch = useDispatch();
@@ -41,17 +34,17 @@ const SpeechBallonContainer = () => {
         }
       })();
     } else {
-      alert("로그인 후 이용해주세요.");
+      alert('로그인 후 이용해주세요.');
     }
   }, []);
 
   const setChattingLog = useCallback(
     // 사용자의 채팅 내역 로컬에 저장
     (time: string, question: string, code: string) => {
-      dispatch(updateQuestion(time, question, "", "user"));
-      dispatch(updateQuestion(time, "", code, "kodeal"));
+      dispatch(updateQuestion(time, question, '', 'user'));
+      dispatch(updateQuestion(time, '', code, 'kodeal'));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const speechBallonArr = chatArr.map((chat, index) => (
@@ -68,13 +61,13 @@ const SpeechBallonContainer = () => {
     // 처음 사용하는 사용자에게 안내 문구 출력
     speechBallonArr.push(
       <SpeechBallon
-        time={""}
+        time={''}
         question={
-          "안녕하세요. 저는 인공지능 코딩 도우미 코딜이에요.\r\n궁금한게 있으시면 무엇이든 물어보세요."
+          '안녕하세요. 저는 인공지능 코딩 도우미 코딜이에요.\r\n궁금한게 있으시면 무엇이든 물어보세요.'
         }
-        code={""}
-        who={"kodeal"}
-      />
+        code={''}
+        who={'kodeal'}
+      />,
     );
   }
 
