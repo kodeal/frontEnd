@@ -159,7 +159,7 @@ export default function MainPage(): JSX.Element {
       <Main>
         <FixedTopBar />
         <Video autoPlay muted loop>
-          <source src="/public/videos/coding.mp4" type="video/mp4" />
+          <source src="/videos/coding.mp4" type="video/mp4" />
           해당 브라우저에서는 동영상을 지원하지 않습니다.
         </Video>
         <MainBox data-aos="fade-up">
