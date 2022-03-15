@@ -4,7 +4,7 @@
 
 ### :computer: 2022 한국공학대학교 컴퓨터공학과 졸업작품
 
-#### 배포용 테스트 웹사이트 : <a href="https://main.d1nielb0ge84b3.amplifyapp.com/"><img src="https://img.shields.io/badge/Kodeal-4285F4?style=for-the-badge&logo=Google Chrome&logoColor=white"></a>
+#### 배포용 테스트 웹사이트 : <a href="https://main.d2m6wbpg3nevk2.amplifyapp.com/"><img src="https://img.shields.io/badge/Kodeal-4285F4?style=for-the-badge&logo=Google Chrome&logoColor=white"></a>
 
 ------------
 
