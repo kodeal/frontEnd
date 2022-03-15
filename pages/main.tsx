@@ -127,6 +127,10 @@ const CardBox = styled.div`
   background-color: #222;
   height: 400px;
   width: 800px;
+
+  &:hover {
+    filter: brightness(40%);
+  }
 `;
 
 const Video = styled.video`
@@ -185,7 +189,12 @@ export default function MainPage(): JSX.Element {
           <br />
           Kodeal에게 질문하고 답변을 바로 받아보세요.
         </Explain1Text>
-        <Explain1Image src={explain1} data-aos="fade-up" />
+        <Explain1Image
+          src={explain1}
+          width={1200}
+          height={800}
+          data-aos="fade-up"
+        />
       </ExplainLayout>
       <ExplainLayout>
         <IntroText
@@ -214,12 +223,11 @@ export default function MainPage(): JSX.Element {
         <ExplainFlexBox>
           {cardHover === 1 ? (
             <CardBox
-              style={{ filter: 'brightness(40%)' }}
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}
             >
-              <Explain2Image src={codex} />
+              <Explain2Image width={800} height={400} src={codex} />
               <Card card={1}></Card>
             </CardBox>
           ) : (
@@ -230,13 +238,12 @@ export default function MainPage(): JSX.Element {
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <Explain2Image src={codex} />
+              <Explain2Image width={800} height={400} src={codex} />
             </CardBox>
           )}
 
           {cardHover === 2 ? (
             <CardBox
-              style={{ filter: 'brightness(40%)' }}
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}

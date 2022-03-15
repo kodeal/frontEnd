@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CardBox = styled.div`
   border-radius: 10px;
@@ -6,7 +6,7 @@ const CardBox = styled.div`
   width: 800px;
   position: absolute;
   top: 10%;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const CardTitle = styled.div`
@@ -16,7 +16,7 @@ const CardTitle = styled.div`
   text-align: left;
   width: 90%;
   margin: 5px auto 40px auto;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const CardText = styled.div`
@@ -25,7 +25,7 @@ const CardText = styled.div`
   color: white;
   text-align: left;
   width: 90%;
-  z-index: 1;
+  z-index: 2;
   margin: 5px auto;
 `;
 
@@ -64,7 +64,7 @@ const Card = (props: cardProps): JSX.Element => {
       </CardText>
       <PageButton>
         <PageLink href="https://openai.com/blog/openai-codex/">
-          {" "}
+          {' '}
           공식 사이트로 이동
         </PageLink>
       </PageButton>

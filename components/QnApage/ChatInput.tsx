@@ -37,18 +37,6 @@ const TextDiv: StyledComponent<'div', any, {}, never> = styled.div`
   text-align: center;
 `;
 
-// const InputCode: StyledComponent<"textarea", any, {}, never> = styled.textarea`
-//   width: 100vh;
-//   height: 45vh;
-//   line-height: 1.6rem;
-//   font-size: 15px;
-//   background-color: white;
-//   border-radius: 5px;
-//   flex-grow: 1;
-//   margin: 0.6rem;
-//   resize: none;
-// `;
-
 const SendButton: StyledComponent<'button', any, {}, never> = styled.button`
   width: 6rem;
   height: 2rem;
@@ -68,21 +56,6 @@ const SendButton: StyledComponent<'button', any, {}, never> = styled.button`
     background-color: #644cc8;
   }
 `;
-
-// type ChattingProps = {
-//     addQuestion(): void,
-//     deleteQuestion(): void,
-//     addCode(): void,
-//     deleteCode(): void,
-//     sendChatting(): void,
-// }
-
-type userState = {
-  id: string;
-  password: string;
-  name: string;
-  email: string;
-};
 
 export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState('');
