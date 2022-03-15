@@ -50,7 +50,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  distDir: 'build' // aws amplify 에서 build 폴더를 찾지 못해 설정을 통해 root 밑에 build 파일 생성
 }
 
 module.exports = nextConfig
