@@ -5,8 +5,9 @@ const CardBox = styled.div`
   text-align: center;
   width: 800px;
   position: absolute;
-  top: 10%;
-  z-index: 2;
+  top: 15%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 `;
 
 const CardTitle = styled.div`
@@ -16,7 +17,7 @@ const CardTitle = styled.div`
   text-align: left;
   width: 90%;
   margin: 5px auto 40px auto;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const CardText = styled.div`
@@ -25,7 +26,7 @@ const CardText = styled.div`
   color: white;
   text-align: left;
   width: 90%;
-  z-index: 2;
+  z-index: 1;
   margin: 5px auto;
 `;
 
@@ -56,7 +57,7 @@ interface cardProps {
 const Card = (props: cardProps): JSX.Element => {
   const card: number = props.card;
   return card === 1 ? (
-    <CardBox data-aos="fade-out">
+    <CardBox data-aos="fade-up">
       <CardTitle>Codex는 OpenAI에서 만든 인공지능 모델이에요.</CardTitle>
       <CardText>
         <pre>{`기존에 있던 자연어 처리 모델인 GPT-3에 코드를 학습하여 만든 모델로써\n코드 관련 질문에 특화되어 있어요.`}</pre>
@@ -70,7 +71,7 @@ const Card = (props: cardProps): JSX.Element => {
       </PageButton>
     </CardBox>
   ) : (
-    <CardBox data-aos="fade-out">
+    <CardBox data-aos="fade-up">
       <CardTitle>Kodeal은 Codex API를 사용하기 쉽게 만들어졌어요.</CardTitle>
       <CardText>
         아직 완벽한 친구가 아니라 가끔 다른 답변을 줄 수도 있어요.

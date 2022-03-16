@@ -90,6 +90,7 @@ const Explain1Title = styled.div`
   position: absolute;
   top: 30%;
   left: 40%;
+  transform: translate(-50%, -50%);
   z-index: 1;
 `;
 
@@ -100,7 +101,8 @@ const Explain1Text = styled.div`
   text-align: center;
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 32%;
+  transform: translate(-50%, -50%);
   z-index: 1;
 `;
 
@@ -118,6 +120,11 @@ const Explain2Image = styled(Image)`
   border-radius: 10px;
 `;
 
+const CardBoxLayout = styled.div`
+  position: relative;
+  height: fit-content;
+`;
+
 const CardBox = styled.div`
   position: relative;
   font-size: 80px;
@@ -127,10 +134,6 @@ const CardBox = styled.div`
   background-color: #222;
   height: 400px;
   width: 800px;
-
-  &:hover {
-    filter: brightness(40%);
-  }
 `;
 
 const Video = styled.video`
@@ -222,45 +225,49 @@ export default function MainPage(): JSX.Element {
         </IntroText>
         <ExplainFlexBox>
           {cardHover === 1 ? (
-            <CardBox
+            <CardBoxLayout
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}
             >
-              <Explain2Image width={800} height={400} src={codex} />
+              <CardBox style={{ filter: 'brightness(40%)' }}>
+                <Explain2Image width={800} height={400} src={codex} />
+              </CardBox>
               <Card card={1}></Card>
-            </CardBox>
+            </CardBoxLayout>
           ) : (
-            <CardBox
+            <CardBoxLayout
               onMouseEnter={(e) => {
                 handleCardHover(e, 1);
               }}
-              data-aos="fade-up"
-              data-aos-delay="600"
             >
-              <Explain2Image width={800} height={400} src={codex} />
-            </CardBox>
+              <CardBox data-aos="fade-up" data-aos-delay="600">
+                <Explain2Image width={800} height={400} src={codex} />
+              </CardBox>
+            </CardBoxLayout>
           )}
 
           {cardHover === 2 ? (
-            <CardBox
+            <CardBoxLayout
               onMouseLeave={(e) => {
                 handleCardHover(e, 0);
               }}
             >
-              <Explain2Image width={400} height={400} src={kodealIcon} />
+              <CardBox style={{ filter: 'brightness(40%)' }}>
+                <Explain2Image width={400} height={400} src={kodealIcon} />
+              </CardBox>
               <Card card={2}></Card>
-            </CardBox>
+            </CardBoxLayout>
           ) : (
-            <CardBox
+            <CardBoxLayout
               onMouseEnter={(e) => {
                 handleCardHover(e, 2);
               }}
-              data-aos="fade-up"
-              data-aos-delay="600"
             >
-              <Explain2Image width={400} height={400} src={kodealIcon} />
-            </CardBox>
+              <CardBox data-aos="fade-up" data-aos-delay="600">
+                <Explain2Image width={400} height={400} src={kodealIcon} />
+              </CardBox>
+            </CardBoxLayout>
           )}
         </ExplainFlexBox>
       </ExplainLayout>
