@@ -60,8 +60,12 @@ const Card = (props: cardProps): JSX.Element => {
     <CardBox data-aos="fade-up">
       <CardTitle>Codex는 OpenAI에서 만든 인공지능 모델이에요.</CardTitle>
       <CardText>
-        <pre>{`기존에 있던 자연어 처리 모델인 GPT-3에 코드를 학습하여 만든 모델로써\n코드 관련 질문에 특화되어 있어요.`}</pre>
-        <br />더 많은 내용은 Codex 공식 사이트에서 확인하실 수 있어요.
+        기존에 있던 자연어 처리 모델인 GPT-3에 코드를 학습하여 만든 모델로써
+      </CardText>
+      <CardText>코드 관련 질문에 특화되어 있어요.</CardText>
+      <br />
+      <CardText>
+        더 많은 내용은 Codex 공식 사이트에서 확인하실 수 있어요.
       </CardText>
       <PageButton>
         <PageLink href="https://openai.com/blog/openai-codex/">
