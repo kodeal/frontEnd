@@ -44,5 +44,4 @@ Kodeal은 Codex API 를 활용하여 코딩에 입문하는 사람들이 사용�
 ## ✨ 서비스 화면
 
 + 메인 화면
-
-![kodeal 메인화면](https://user-images.githubusercontent.com/76273383/156574911-b9dc571c-af02-46b9-acbf-5c9a051ec2a1.JPG)
+![kodeal 메인화면](https://user-images.githubusercontent.com/76273383/158766416-907b18ec-1b96-4240-b377-31ee0b13068b.JPG)
