@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'reducer/User';
 import { fadeIn, inputFocus } from 'utils/animations/animation';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const LoginMain = styled.div`
   width: 100%;
@@ -91,6 +92,7 @@ export default function Login(props: any): JSX.Element {
   const [id, setId] = useState('');
   const [pwd, setPwd] = useState('');
   const dispatch = useDispatch();
+  const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   const handleId = useCallback(
@@ -120,7 +122,7 @@ export default function Login(props: any): JSX.Element {
         ),
       );
       handleCookie(result.data.userid, result.data.username, result.data.email);
-      alert('로그인 성공');
+      router.push("/");
     } else {
       alert('로그인 실패');
     }

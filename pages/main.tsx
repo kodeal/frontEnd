@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import { useCookies } from 'react-cookie';
 import Card from 'components/Card';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Main = styled.div`
   position: relative;
@@ -145,6 +146,7 @@ const Video = styled.video`
 export default function MainPage(): JSX.Element {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const [cardHover, setCardHover] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     AOS.init();
@@ -154,6 +156,7 @@ export default function MainPage(): JSX.Element {
     if (!cookies.userInfo) {
       alert('로그인 후 이용해주세요.');
     } else {
+      router.push("/qna");
     }
   };
 
