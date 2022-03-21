@@ -68,29 +68,32 @@ export default function ChatInputWindow(props: any): JSX.Element {
     setQuestion(e.target.value);
   }, []);
 
-  const handleCode = useCallback((e: any): void => {
-    setCode(e.target.value);
-  }, []);
+  // const handleCode = useCallback((e: any): void => {
+  //   setCode(e.target.value);
+  // }, []);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit =  (e: any) => {
     e.preventDefault();
 
     setKey(key + 1);
     const time: string = getTime();
-    const result = await sendQuestion(
+    sendQuestion(
       cookies.userInfo.userid,
       question,
       code,
       time,
-    );
-    if (result.status === 200) {
-      dispatch(updateQuestion(time, question, code, 'user'));
-      dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
-      props.setIsSending(true);
-      setQuestion('');
-      setCode('');
-      e.target.reset();
-    }
+    ).then((result) => {
+      if (result.status === 200) {
+        dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
+        setQuestion('');
+        setCode('');
+        e.target.reset();
+        props.setIsSending(false);
+      }
+    })
+    dispatch(updateQuestion(time, question, code, 'user'));
+    props.setIsSending(true);
+  
   };
 
   return (

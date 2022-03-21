@@ -1,3 +1,4 @@
+import Loading from "components/util/Loading";
 import SpeechBallonContainer from "containers/SpeechBallonContainer";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -35,7 +36,7 @@ export default function ChatBox(props: chatBoxProps) {
 
   return (
     <Box ref={boxRef}>
-      <SpeechBallonContainer />
+      <SpeechBallonContainer isSending={props.isSending}/>
     </Box>
   );
 }

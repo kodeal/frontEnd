@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react';
 import * as apis from '../utils/apis/api';
 import { updateQuestion } from '../reducer/Chatting';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 type QuestionState = {
   time: string;
@@ -19,11 +20,11 @@ type userState = {
   email: string;
 };
 
-const SpeechBallonContainer = () => {
+const SpeechBallonContainer = (props : any) => {
   const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+  const router = useRouter();
 
-  console.log(chatArr);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const SpeechBallonContainer = () => {
       })();
     } else {
       alert('로그인 후 이용해주세요.');
+      router.push("/");
     }
   }, []);
 
