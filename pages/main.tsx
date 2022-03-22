@@ -9,6 +9,7 @@ import { useCookies } from 'react-cookie';
 import Card from 'components/Card';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import LongExplainCard from 'components/main/LongExplainCard';
 
 const Main = styled.div`
   position: relative;
@@ -273,6 +274,8 @@ export default function MainPage(): JSX.Element {
             </CardBoxLayout>
           )}
         </ExplainFlexBox>
+        <LongExplainCard/>
+        
       </ExplainLayout>
     </div>
   );
