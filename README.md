@@ -1,4 +1,4 @@
-<h1 align="center">코딩 입문자를 위한 인공지능 QnA 서비스 Kodeal</h1>
+<h1 align="center">⭐코딩 입문자를 위한 인공지능 QnA 서비스 Kodeal⭐</h1>
 
 <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
 
@@ -9,7 +9,7 @@
 ------------
 
 ## :speaker: 소개
-Kodeal은 Codex API 를 활용하여 코딩에 입문하는 사람들이 사용할 수 있는 즉답형 QnA 서비스 입니다.
+**Kodeal**은 Codex API 를 활용하여 코딩에 입문하는 사람들이 사용할 수 있는 **즉답형 QnA 서비스** 입니다.
 
 사용자로부터 코드에 관한 질문을 입력받으면 Codex API를 활용한 결과값을 사용자에게 답변으로 출력합니다.
 
