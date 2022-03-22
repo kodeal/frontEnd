@@ -4,12 +4,13 @@ import { kodealIcon } from "public/images/index";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect, useState } from "react";
+import Card from "components/Card";
 
 const CardLayout = styled.div`
     width: 88%;
     height: 300px;
     margin: auto;
-    background-color: #000080;
+    background-color: #888;
     border-radius:10px;
 `
 
@@ -109,7 +110,8 @@ const LongExplainCard = () => {
     return(
         <>
         {chatting ? (
-            <CardLayout data-aos="fade-up" data-aos-delay="300" onMouseLeave={setCardState} style={{backgroundColor: "#aaa"}}>
+            <CardBoxLayout>
+                            <CardLayout data-aos="fade-up" data-aos-delay="300" onMouseLeave={setCardState} style={{backgroundColor: "#aaa"}}>
             <UserBallon data-aos="fade-up" data-aos-delay="900">
                 <QuestionBallon>
                     사용자가 파이썬 코드에 관한 궁금한 질문을 작성하면
@@ -138,12 +140,15 @@ const LongExplainCard = () => {
             </UserBallon>
         </CardLayout>
 
+            </CardBoxLayout>
         ) : (
-            <CardLayout style={{filter: "brightness(40%)"}}  onMouseEnter={setCardState}>
-                <ExplainTitle>
+            <CardBoxLayout >
+                <CardLayout onMouseEnter={setCardState} style={{filter: "brightness(40%)"}}>
+            </CardLayout>
+            <ExplainTitle>
                     Kodeal과 어떻게 대화해야 될까요?
                 </ExplainTitle>
-            </CardLayout>
+            </CardBoxLayout>
             
         )}
     
