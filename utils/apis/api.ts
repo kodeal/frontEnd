@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export type receiveAnswerType = {
   answer: string;
@@ -14,7 +14,7 @@ export type loginType = {
   isLogin: boolean;
 };
 
-const baseUrl = "https://52.231.75.227:8001";
+const baseUrl = 'https://kodeal.koreacentral.cloudapp.azure.com:8001';
 
 const urls = {
   sendQuestion: `${baseUrl}/blog/`,
@@ -29,7 +29,7 @@ export const sendQuestion = async (
   userid: string,
   question: string,
   code: string,
-  time: string
+  time: string,
 ) => {
   const result = await axios.post(urls.sendQuestion, {
     userid: userid,
@@ -55,7 +55,7 @@ export const login = async (id: string, pwd: string) => {
     const result = await axios.post(urls.login, {
       userid: id,
       password: pwd,
-      keep_login: "True",
+      keep_login: 'True',
     });
     console.log(result);
 
@@ -71,7 +71,7 @@ export const signup = async (
   username: string,
   id: string,
   password: string,
-  email: string
+  email: string,
 ) => {
   const result = await axios.post(urls.signup, {
     username: username,
