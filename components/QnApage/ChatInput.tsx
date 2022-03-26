@@ -17,7 +17,7 @@ const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
 
 const InputText: StyledComponent<'textarea', any, {}, never> = styled.textarea`
   width: 100vh;
-  height: 92%;
+  height: 60vw;
   line-height: 1.6rem;
   font-size: 20px;
   background-color: white;
@@ -57,10 +57,29 @@ const SendButton: StyledComponent<'button', any, {}, never> = styled.button`
   }
 `;
 
+const TagBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.6rem;
+`;
+
+const Tag = styled.div`
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  margin-right: 10px;
+  background-color: ${(props) => props.color};
+`;
+
+const Question = styled.div`
+  border-radius: 50%;
+`;
+
 export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState('');
   const [code, setCode] = useState('');
   const [key, setKey] = useState(0);
+  const [language, setLanguage] = useState('');
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
@@ -68,32 +87,27 @@ export default function ChatInputWindow(props: any): JSX.Element {
     setQuestion(e.target.value);
   }, []);
 
-  // const handleCode = useCallback((e: any): void => {
-  //   setCode(e.target.value);
-  // }, []);
-
-  const handleSubmit =  (e: any) => {
+  const handleLanguage = (e: any) => {
+    setLanguage(e.target.innerText);
+  };
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     setKey(key + 1);
     const time: string = getTime();
-    sendQuestion(
-      cookies.userInfo.userid,
-      question,
-      code,
-      time,
-    ).then((result) => {
-      if (result.status === 200) {
-        dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
-        setQuestion('');
-        setCode('');
-        e.target.reset();
-        props.setIsSending(false);
-      }
-    })
+    sendQuestion(cookies.userInfo.userid, question, code, time, language).then(
+      (result) => {
+        if (result.status === 200) {
+          dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
+          setQuestion('');
+          setCode('');
+          e.target.reset();
+          props.setIsSending(false);
+        }
+      },
+    );
     dispatch(updateQuestion(time, question, code, 'user'));
     props.setIsSending(true);
-  
   };
 
   return (
@@ -103,6 +117,20 @@ export default function ChatInputWindow(props: any): JSX.Element {
           <div style={{ lineHeight: '3.5vh' }}>Question</div>
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
+        <TagBox>
+          <Tag onClick={handleLanguage} color="#3776AB">
+            Python
+          </Tag>
+          <Tag onClick={handleLanguage} color="#007396">
+            Java
+          </Tag>
+          <Tag
+            onClick={handleLanguage}
+            style={{ backgroundColor: '#F7DF1E', color: 'black' }}
+          >
+            Javascript
+          </Tag>
+        </TagBox>
         <InputText
           placeholder="질문해 주세요!"
           onChange={handleQuestion}

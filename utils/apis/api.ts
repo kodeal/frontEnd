@@ -30,12 +30,14 @@ export const sendQuestion = async (
   question: string,
   code: string,
   time: string,
+  language: string,
 ) => {
   const result = await axios.post(urls.sendQuestion, {
     userid: userid,
     question: question,
     code: code,
     time: time,
+    language: language,
   });
 
   console.log(result);
