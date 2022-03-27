@@ -17,7 +17,7 @@ const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
 
 const InputText: StyledComponent<'textarea', any, {}, never> = styled.textarea`
   width: 100vh;
-  height: 60vw;
+  height: 70vh;
   line-height: 1.6rem;
   font-size: 20px;
   background-color: white;
@@ -69,6 +69,9 @@ const Tag = styled.div`
   color: white;
   margin-right: 10px;
   background-color: ${(props) => props.color};
+  &:active {
+    background-color: 'red';
+  }
 `;
 
 const Question = styled.div`
@@ -124,7 +127,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
 
           <Tag
             onClick={handleLanguage}
-            style={{ backgroundColor: '#F7DF1E', color: 'white' }}
+            style={{ backgroundColor: '#F7DF1E', color: 'black' }}
           >
             Javascript
           </Tag>
