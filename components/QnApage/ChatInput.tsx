@@ -121,9 +121,10 @@ export default function ChatInputWindow(props: any): JSX.Element {
           <Tag onClick={handleLanguage} color="#3776AB">
             Python
           </Tag>
+
           <Tag
             onClick={handleLanguage}
-            style={{ backgroundColor: '#F7DF1E', color: 'black' }}
+            style={{ backgroundColor: '#F7DF1E', color: 'white' }}
           >
             Javascript
           </Tag>
