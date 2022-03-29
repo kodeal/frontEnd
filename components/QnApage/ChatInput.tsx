@@ -68,14 +68,11 @@ const Tag = styled.div`
   padding: 8px;
   color: white;
   margin-right: 10px;
+  cursor: pointer;
   background-color: ${(props) => props.color};
   &:active {
     background-color: 'red';
   }
-`;
-
-const Question = styled.div`
-  border-radius: 50%;
 `;
 
 export default function ChatInputWindow(props: any): JSX.Element {
@@ -93,6 +90,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
   const handleLanguage = (e: any) => {
     setLanguage(e.target.innerText);
   };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -120,18 +118,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
           <div style={{ lineHeight: '3.5vh' }}>Question</div>
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
-        <TagBox>
-          <Tag onClick={handleLanguage} color="#3776AB">
-            Python
-          </Tag>
 
-          <Tag
-            onClick={handleLanguage}
-            style={{ backgroundColor: '#F7DF1E', color: 'black' }}
-          >
-            Javascript
-          </Tag>
-        </TagBox>
         <InputText
           placeholder="질문해 주세요!"
           onChange={handleQuestion}
