@@ -57,6 +57,10 @@ const MainBox = styled.div`
   margin-right: 12vw;
   z-index: 1;
   position: relative;
+
+  @media only screen and (max-width: 1200px){
+    margin: 0 auto;
+  }
 `;
 const IntroText = styled.div`
   color: white;

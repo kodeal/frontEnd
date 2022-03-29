@@ -15,6 +15,10 @@ const Main: StyledComponent<'div', any, {}, never> = styled.div`
 const DivBox: StyledComponent<'div', any, {}, never> = styled.div`
   display: flex;
   height: 90%;
+
+  @media only screen and (max-width: 1200px){
+    display: block;
+  }
 `;
 
 export const getTime = (): string => {

@@ -139,7 +139,7 @@ const LongExplainCard = () => {
                 </QuestionBallon>
             </UserBallon>
         </CardLayout>
-
+;
             </CardBoxLayout>
         ) : (
             <CardBoxLayout >
