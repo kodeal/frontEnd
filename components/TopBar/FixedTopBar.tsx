@@ -45,7 +45,7 @@ const LoginButton = styled.a`
 
 const UserName = styled.div`
   color: black;
-  font-weight: 600;
+  font-weight: 500;
   width: 200px;
   font-size: 22px;
   line-height: 3vh;

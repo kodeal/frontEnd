@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useRef } from 'react';
 
 const TagBox = styled.div`
   display: flex;
@@ -19,15 +20,40 @@ const SubTag = styled.div`
 `;
 
 interface tagProps {
-  handleLanguage: Function;
+  handleLanguage: any;
 }
 
 const Tag = (props: tagProps) => {
+  const tags = useRef<HTMLDivElement[] | null>([]);
+
+  const handleTag = (e: any): void => {
+    tags.current.forEach((tag) => {
+      tag.style.filter =
+        e.target === tag ? 'brightness(70%)' : 'brightness(100%)';
+    });
+  };
+
   return (
     <TagBox>
-      <SubTag color="#3776AB">Python</SubTag>
+      <SubTag
+        ref={(el) => (tags.current[0] = el)}
+        onClick={(e) => {
+          props.handleLanguage(e);
+          handleTag(e);
+        }}
+        color="#3776AB"
+      >
+        Python
+      </SubTag>
 
-      <SubTag style={{ backgroundColor: '#F7DF1E', color: 'black' }}>
+      <SubTag
+        ref={(el) => (tags.current[1] = el)}
+        onClick={(e) => {
+          props.handleLanguage(e);
+          handleTag(e);
+        }}
+        style={{ backgroundColor: '#F7DF1E', color: 'black' }}
+      >
         Javascript
       </SubTag>
     </TagBox>

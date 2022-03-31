@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react';
 import { sendQuestion } from 'utils/apis/api';
 import { getTime } from 'pages/qna';
 import { useCookies } from 'react-cookie';
+import Tag from './Tag';
 
 const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
   border: 3px solid #333;
@@ -63,18 +64,6 @@ const TagBox = styled.div`
   margin: 0.6rem;
 `;
 
-const Tag = styled.div`
-  border-radius: 5px;
-  padding: 8px;
-  color: white;
-  margin-right: 10px;
-  cursor: pointer;
-  background-color: ${(props) => props.color};
-  &:active {
-    background-color: 'red';
-  }
-`;
-
 export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState('');
   const [code, setCode] = useState('');
@@ -118,6 +107,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
           <div style={{ lineHeight: '3.5vh' }}>Question</div>
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
+        <Tag handleLanguage={handleLanguage} />
 
         <InputText
           placeholder="질문해 주세요!"
