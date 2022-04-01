@@ -122,7 +122,7 @@ export default function Login(props: any): JSX.Element {
         ),
       );
       handleCookie(result.data.userid, result.data.username, result.data.email);
-      router.push("/");
+      router.push('/');
     } else {
       alert('로그인 실패');
     }
@@ -130,7 +130,7 @@ export default function Login(props: any): JSX.Element {
 
   const handleCookie = (userid: string, username: string, email: string) => {
     const expireDate = new Date();
-    expireDate.setMinutes(expireDate.getMinutes() + 5);
+    expireDate.setMinutes(expireDate.getMinutes() + 10);
     setCookie(
       'userInfo',
       {
