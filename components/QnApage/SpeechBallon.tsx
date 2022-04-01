@@ -1,7 +1,7 @@
-import Image from "next/image";
-import styled from "styled-components";
-import { kodealIcon } from "public/images/index";
-import { fadeIn } from "utils/animations/animation";
+import Image from 'next/image';
+import styled from 'styled-components';
+import { kodealIcon } from 'public/images/index';
+import { fadeIn } from 'utils/animations/animation';
 import ReactMarkdown from 'react-markdown';
 
 const UserBallon = styled.div`
@@ -13,6 +13,9 @@ const UserBallon = styled.div`
   margin-right: 10px;
   margin-top: 5px;
   animation: ${fadeIn} linear 0.2s;
+  @media only screen and (max-width: 1200px) {
+    margin-right: 5px;
+  }
 `;
 
 const KodealBallon = styled.div`
@@ -77,18 +80,16 @@ type chattingType = {
 };
 
 export default function SpeechBallon(props: chattingType): any {
-
   const answerCode = `
   \`\`\`python
     ${props.code}
   \`\`\`  
   `;
 
-
-  return props.who === "user" ? (
+  return props.who === 'user' ? (
     <UserBallon>
       <QuestionBallon>
-        <pre style={{ whiteSpace: "pre-wrap" }}>{props.question}</pre>
+        <pre style={{ whiteSpace: 'pre-wrap' }}>{props.question}</pre>
       </QuestionBallon>
     </UserBallon>
   ) : (
@@ -96,7 +97,7 @@ export default function SpeechBallon(props: chattingType): any {
       <KodealProfile>
         <KodealProfileImage src={kodealIcon} width={30} height={30} />
         <div
-          style={{ lineHeight: "1.9", textAlign: "center", fontWeight: "600" }}
+          style={{ lineHeight: '1.9', textAlign: 'center', fontWeight: '600' }}
         >
           Kodeal
         </div>

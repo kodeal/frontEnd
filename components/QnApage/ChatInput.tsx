@@ -8,16 +8,24 @@ import { useCookies } from 'react-cookie';
 import Tag from './Tag';
 
 const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
+  width: 50%;
   border: 3px solid #333;
   background-color: white;
   display: flex;
   margin: 0.6rem;
   border-radius: 8px;
   margin-top: 6vh;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+    height: 45vh;
+    margin: 10px 0 0 0;
+    border-radius: 0px;
+  }
 `;
 
 const InputText: StyledComponent<'textarea', any, {}, never> = styled.textarea`
-  width: 100vh;
+  width: 47vw;
   height: 70vh;
   line-height: 1.6rem;
   font-size: 20px;
@@ -28,6 +36,10 @@ const InputText: StyledComponent<'textarea', any, {}, never> = styled.textarea`
   resize: none;
   padding-top: 8px;
   padding-left: 8px;
+  @media only screen and (max-width: 1200px) {
+    width: 95vw;
+    height: 28vh;
+  }
 `;
 
 const TextDiv: StyledComponent<'div', any, {}, never> = styled.div`
@@ -56,12 +68,6 @@ const SendButton: StyledComponent<'button', any, {}, never> = styled.button`
   &:hover {
     background-color: #644cc8;
   }
-`;
-
-const TagBox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin: 0.6rem;
 `;
 
 export default function ChatInputWindow(props: any): JSX.Element {
