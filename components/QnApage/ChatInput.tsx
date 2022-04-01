@@ -91,17 +91,21 @@ export default function ChatInputWindow(props: any): JSX.Element {
 
     setKey(key + 1);
     const time: string = getTime();
-    sendQuestion(cookies.userInfo.userid, question, code, time, language).then(
-      (result) => {
-        if (result.status === 200) {
-          dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
-          setQuestion('');
-          setCode('');
-          e.target.reset();
-          props.setIsSending(false);
-        }
-      },
-    );
+    sendQuestion(cookies.userInfo.userid, question, code, time, language)
+      .then((result) => {
+        dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
+        setQuestion('');
+        setCode('');
+        e.target.reset();
+        props.setIsSending(false);
+      })
+      .catch((error) => {
+        const errorMsg = `코딜에게 문제가 생겼나봐요 😓\n
+        다시 질문해주세요!`;
+        dispatch(updateQuestion(time, '', errorMsg, 'kodeal'));
+        e.target.reset();
+        props.setIsSending(false);
+      });
     dispatch(updateQuestion(time, question, code, 'user'));
     props.setIsSending(true);
   };
