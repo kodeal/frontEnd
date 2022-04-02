@@ -58,7 +58,7 @@ const MainBox = styled.div`
   z-index: 1;
   position: relative;
 
-  @media only screen and (max-width: 1200px){
+  @media only screen and (max-width: 1200px) {
     margin: 0 auto;
   }
 `;
@@ -86,6 +86,9 @@ const ExplainFlexBox = styled.div`
   margin: auto;
   justify-content: space-around;
   gap: 30px;
+  @media only screen and (max-width: 1200px) {
+    display: block;
+  }
 `;
 
 const Explain1Title = styled.div`
@@ -98,6 +101,10 @@ const Explain1Title = styled.div`
   left: 40%;
   transform: translate(-50%, -50%);
   z-index: 1;
+
+  @media only screen and (max-width: 1200px) {
+    left: 30%;
+  }
 `;
 
 const Explain1Text = styled.div`
@@ -110,6 +117,10 @@ const Explain1Text = styled.div`
   left: 32%;
   transform: translate(-50%, -50%);
   z-index: 1;
+
+  @media only screen and (max-width: 1200px) {
+    left: 10%;
+  }
 `;
 
 const Explain1Image = styled(Image)`
@@ -124,11 +135,18 @@ const Explain2Image = styled(Image)`
   width: 800px !important;
   height: 400px !important;
   border-radius: 10px;
+  @media only screen and (max-width: 1200px) {
+    width: 1000px;
+  }
 `;
 
 const CardBoxLayout = styled.div`
   position: relative;
   height: fit-content;
+  width: fit-content;
+  @media only screen and (max-width: 1200px) {
+    margin: 10px 0px;
+  }
 `;
 
 const CardBox = styled.div`
@@ -140,12 +158,20 @@ const CardBox = styled.div`
   background-color: #222;
   height: 400px;
   width: 800px;
+  @media only screen and (max-width: 1200px) {
+    width: 1000px;
+  }
 `;
 
 const Video = styled.video`
   position: absolute;
   width: 100vw;
   top: 5%;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 export default function MainPage(): JSX.Element {
@@ -161,7 +187,7 @@ export default function MainPage(): JSX.Element {
     if (!cookies.userInfo) {
       alert('로그인 후 이용해주세요.');
     } else {
-      router.push("/qna");
+      router.push('/qna');
     }
   };
 
@@ -278,8 +304,7 @@ export default function MainPage(): JSX.Element {
             </CardBoxLayout>
           )}
         </ExplainFlexBox>
-        <LongExplainCard/>
-        
+        <LongExplainCard />
       </ExplainLayout>
     </div>
   );

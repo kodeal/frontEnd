@@ -8,6 +8,9 @@ const CardBox = styled.div`
   top: 15%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  @media only screen and (max-width: 1200px) {
+    width: 1000px;
+  }
 `;
 
 const CardTitle = styled.div`
