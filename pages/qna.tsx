@@ -40,7 +40,6 @@ export const getTime = (): string => {
 
 export default function QnA(): JSX.Element {
   const [isSending, setIsSending] = useState<boolean>(false);
-  const dispatch = useDispatch();
 
   return (
     <Main>
