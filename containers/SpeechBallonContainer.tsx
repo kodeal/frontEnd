@@ -13,14 +13,14 @@ type QuestionState = {
   who: string;
 };
 
-type userState = {
-  id: string;
-  password: string;
-  name: string;
-  email: string;
-};
+// type userState = {
+//   id: string;
+//   password: string;
+//   name: string;
+//   email: string;
+// };
 
-const SpeechBallonContainer = (props : any) => {
+const SpeechBallonContainer = (props: any) => {
   const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const router = useRouter();
@@ -43,7 +43,7 @@ const SpeechBallonContainer = (props : any) => {
       })();
     } else {
       alert('로그인 후 이용해주세요.');
-      router.push("/");
+      router.push('/');
     }
   }, []);
 

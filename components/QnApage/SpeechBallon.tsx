@@ -2,7 +2,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { kodealIcon } from 'public/images/index';
 import { fadeIn } from 'utils/animations/animation';
-import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { useState } from 'react';
+import DetailModal from './DetailModal';
 
 const UserBallon = styled.div`
   display: flex;
@@ -72,6 +74,19 @@ const AnswerBallon = styled.div`
   word-break: break-all;
 `;
 
+const SeeDetail = styled.div`
+  width: 70px;
+  height: 30px;
+  margin-left: 0;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  border: 2px solid purple;
+  margin-top: 7px;
+  padding: 3px;
+  cursor: pointer;
+`;
+
 type chattingType = {
   time: string;
   question: string;
@@ -80,11 +95,15 @@ type chattingType = {
 };
 
 export default function SpeechBallon(props: chattingType): any {
-  const answerCode = `
-  \`\`\`python
-    ${props.code}
-  \`\`\`  
-  `;
+  const [modal, setModal] = useState(false);
+
+  const openDetailModal = () => {
+    setModal(true);
+  };
+
+  const closeDetailModal = () => {
+    setModal(false);
+  };
 
   return props.who === 'user' ? (
     <UserBallon>
@@ -103,10 +122,21 @@ export default function SpeechBallon(props: chattingType): any {
         </div>
       </KodealProfile>
       {props?.code?.length > 0 ? (
-        <AnswerBallon>
-          {/* <pre style={{ whiteSpace: "pre-wrap" }}>{props.code}</pre> */}
-          <ReactMarkdown children={answerCode}></ReactMarkdown>
-        </AnswerBallon>
+        <>
+          <AnswerBallon>
+            {/* <pre style={{ whiteSpace: "pre-wrap" }}>{props.code}</pre> */}
+            <SyntaxHighlighter language="python">
+              {props.code}
+            </SyntaxHighlighter>
+          </AnswerBallon>
+          <>
+            <SeeDetail onClick={openDetailModal}>전체보기</SeeDetail>
+            <DetailModal
+              code={props.code}
+              close={closeDetailModal}
+            ></DetailModal>
+          </>
+        </>
       ) : null}
     </KodealBallon>
   );
