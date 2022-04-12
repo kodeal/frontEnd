@@ -102,6 +102,7 @@ export default function SpeechBallon(props: chattingType): any {
   };
 
   const closeDetailModal = () => {
+    console.log('close!!!');
     setModal(false);
   };
 
@@ -124,18 +125,18 @@ export default function SpeechBallon(props: chattingType): any {
       {props?.code?.length > 0 ? (
         <>
           <AnswerBallon>
-            {/* <pre style={{ whiteSpace: "pre-wrap" }}>{props.code}</pre> */}
             <SyntaxHighlighter language="python">
               {props.code}
             </SyntaxHighlighter>
           </AnswerBallon>
           <>
             <SeeDetail onClick={openDetailModal}>전체보기</SeeDetail>
-            <DetailModal
-              code={props.code}
-              close={closeDetailModal}
-            ></DetailModal>
           </>
+          <DetailModal
+            code={props.code}
+            close={closeDetailModal}
+            modal={modal}
+          ></DetailModal>
         </>
       ) : null}
     </KodealBallon>
