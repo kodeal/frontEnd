@@ -288,7 +288,12 @@ export default function MainPage(): JSX.Element {
               }}
             >
               <CardBox style={{ filter: 'brightness(40%)' }}>
-                <Explain2Image width={400} height={400} src={kodealIcon} />
+                <Explain2Image
+                  priority
+                  width={400}
+                  height={400}
+                  src={kodealIcon}
+                />
               </CardBox>
               <Card card={2}></Card>
             </CardBoxLayout>
@@ -299,7 +304,12 @@ export default function MainPage(): JSX.Element {
               }}
             >
               <CardBox data-aos="fade-up" data-aos-delay="600">
-                <Explain2Image width={400} height={400} src={kodealIcon} />
+                <Explain2Image
+                  priority
+                  width={400}
+                  height={400}
+                  src={kodealIcon}
+                />
               </CardBox>
             </CardBoxLayout>
           )}

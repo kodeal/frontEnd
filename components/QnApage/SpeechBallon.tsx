@@ -115,7 +115,7 @@ export default function SpeechBallon(props: chattingType): any {
   ) : (
     <KodealBallon>
       <KodealProfile>
-        <KodealProfileImage src={kodealIcon} width={30} height={30} />
+        <KodealProfileImage priority src={kodealIcon} width={30} height={30} />
         <div
           style={{ lineHeight: '1.9', textAlign: 'center', fontWeight: '600' }}
         >
