@@ -1,5 +1,5 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface modalProps {
   code: string;
@@ -7,44 +7,69 @@ interface modalProps {
   modal: boolean;
 }
 
-interface modalCompProps {
-  modal: boolean;
-}
+const modalShow = keyframes`
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+`;
 
-const Modal = styled.div<modalCompProps>`
-  display: ${(props) => (props.modal ? 'none' : 'none')}
+const Modal = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 10;
-  opacity: 0.3;
   background-color: rgba(0, 0, 0, 0.6);
+  animation: ${modalShow} 0.3s linear;
 `;
 
 const CloseButton = styled.div`
-  width: 60px;
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
   margin-left: 0;
+  margin-bottom: 10px;
   color: white;
   cursor: pointer;
   font-size: 40px;
-  padding: 15px;
+  padding: 2px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #e95c63;
+  border-radius: 50%;
 `;
 
 const CodeDetail = styled.div`
-  width: 50vw;
-  height: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 2px solid black;
-  z-index: 11;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 30px rgba(30, 30, 30, 0.185);
+  box-sizing: border-box;
+  background-color: #f5f2f0;
+  z-index: 10000;
+  text-align: left;
 `;
 
 const DetailModal = (props: modalProps) => {
   return (
-    <Modal modal={props.modal}>
-      <CloseButton onClick={props.close}>X</CloseButton>
+    <Modal>
+      <CloseButton onClick={props.close}>x</CloseButton>
       <CodeDetail>
         <SyntaxHighlighter language="python">{props.code}</SyntaxHighlighter>
       </CodeDetail>

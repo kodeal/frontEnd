@@ -132,12 +132,14 @@ export default function SpeechBallon(props: chattingType): any {
           <>
             <SeeDetail onClick={openDetailModal}>전체보기</SeeDetail>
           </>
-          <DetailModal
-            code={props.code}
-            close={closeDetailModal}
-            modal={modal}
-          ></DetailModal>
         </>
+      ) : null}
+      {modal ? (
+        <DetailModal
+          code={props.code}
+          close={closeDetailModal}
+          modal={modal}
+        ></DetailModal>
       ) : null}
     </KodealBallon>
   );
