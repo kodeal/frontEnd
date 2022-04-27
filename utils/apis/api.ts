@@ -75,6 +75,7 @@ export const signup = async (
   password: string,
   email: string,
 ) => {
+  console.log(username);
   const result = await axios.post(urls.signup, {
     username: username,
     userid: id,

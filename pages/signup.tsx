@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'reducer/User';
 import { fadeIn } from 'utils/animations/animation';
+import { useRouter } from 'next/router';
 
 const SignupMain = styled.div`
   width: 100%;
@@ -101,6 +102,7 @@ const Signup = (): JSX.Element => {
   const [emailAuth, setEmailAuth] = useState(false);
   const [userAuthNum, setUserAuthNum] = useState('');
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const checkKor = (str: string) => {
     const korRegExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
@@ -124,22 +126,21 @@ const Signup = (): JSX.Element => {
 
   const onSignup = async (e: any) => {
     e.preventDefault();
-    console.log(e.target);
-    const name: string = e.target.name.vaule;
+    const name: string = e.target.name.value;
     const id: string = e.target.id.value;
     const password: string = e.target.password.value;
     const email: string = e.target.email.value;
+    console.log(name);
     if (auth) {
       const result = await api.signup(name, id, password, email);
 
       if (result.status === 200) {
         alert('회원가입 성공');
         dispatch(updateUserInfo(id, password, name, email));
+        router.push('/');
       } else {
         alert('회원가입 실패');
       }
-    } else {
-      alert('정보를 입력해 주세요.');
     }
   };
 
