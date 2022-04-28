@@ -24,24 +24,9 @@ interface chatBoxProps {
 }
 
 export default function ChatBox(props: chatBoxProps) {
-  const boxRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    console.log('scroll');
-
-    boxRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
-    });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [props.isSending]);
 
   return (
-    <Box ref={boxRef}>
+    <Box>
       <SpeechBallonContainer isSending={props.isSending} />
     </Box>
   );

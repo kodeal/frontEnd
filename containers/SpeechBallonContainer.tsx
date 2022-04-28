@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import SpeechBallon from 'components/QnApage/SpeechBallon';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import * as apis from '../utils/apis/api';
 import { updateQuestion } from '../reducer/Chatting';
 import { useCookies } from 'react-cookie';
@@ -24,8 +24,19 @@ const SpeechBallonContainer = (props: any) => {
   const chatArr: QuestionState[] = useSelector((state: any) => state.Chatting);
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const router = useRouter();
+  const boxRef = useRef<HTMLDivElement>(null);
+
 
   const dispatch = useDispatch();
+
+  const scrollToBottom = () => {
+    console.log('scroll');
+
+    boxRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
+  };
 
   useEffect(() => {
     if (cookies.userInfo) {
@@ -46,6 +57,11 @@ const SpeechBallonContainer = (props: any) => {
       router.push('/');
     }
   }, []);
+
+  useEffect(() => {
+      scrollToBottom();
+
+      }, [props.isSending]);
 
   const setChattingLog = useCallback(
     // 사용자의 채팅 내역 로컬에 저장
@@ -80,7 +96,7 @@ const SpeechBallonContainer = (props: any) => {
     );
   }
 
-  return <div>{speechBallonArr}</div>;
+  return <div ref={boxRef}>{speechBallonArr}</div>;
 };
 
 export default SpeechBallonContainer;
