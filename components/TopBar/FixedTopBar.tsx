@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const TopBar = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: #222;
+  background-color: #eee;
   display: flex;
   justify-content: space-between;
   text-align: center;
   position: fixed;
   top: 0;
   right: 0;
-  border-radius: 5px;
+  z-index: 100;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
 `;
 
 const TopBarTitle = styled.a`
   width: 10%;
-  color: white;
   font-size: 2rem;
   margin-left: 30px;
   font-weight: bold;
@@ -32,7 +33,6 @@ const LoginButton = styled.a`
   background-color: #0064ff;
   border-radius: 10px;
   font-size: 1.55rem;
-  color: white;
   margin: 6px 50px 6px 5px;
   text-decoration: none;
   line-height: 3.7vh;
@@ -51,17 +51,25 @@ const UserName = styled.div`
   line-height: 3vh;
   text-align: center;
   margin: 8px 20px 8px 0px;
-  color: white;
+  cursor: pointer;
+  &:hover {
+    font-weight: 600;
+  }
 `;
 
 const FixedTopBar = (): JSX.Element => {
+  const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+
+  const gotoMypage = () => {
+    router.push(`/profile?userid=${cookies.userInfo.email}`);
+  };
 
   return (
     <TopBar>
       <TopBarTitle href="/">Kodeal</TopBarTitle>
       {cookies.userInfo ? (
-        <UserName>{cookies.userInfo.username} 님</UserName>
+        <UserName onClick={gotoMypage}>{cookies.userInfo.username} 님</UserName>
       ) : (
         <LoginButton href="/signin">Sign in</LoginButton>
       )}
