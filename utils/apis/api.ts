@@ -111,16 +111,8 @@ export const authEmailNum = async (email: string, authNum: string) => {
   return result;
 };
 
-export const sendProfileImage = async (
-  img: FormData,
-  img_name: string,
-  userid: string,
-) => {
-  const result = await axios.post(urls.sendProfileImage, {
-    img: img,
-    img_name: img_name,
-    userid: userid,
-  });
+export const sendProfileImage = async (img: FormData) => {
+  const result = await axios.post(urls.sendProfileImage, img);
 
   console.log(result);
 

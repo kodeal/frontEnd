@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { BsFillPencilFill } from 'react-icons/bs';
-// import Keywords from 'components/profile/keywords';
+import Keywords from 'components/profile/keywords';
 import { sendProfileImage, getProfile } from 'utils/apis/api';
 import { useCookies } from 'react-cookie';
 
@@ -17,7 +17,6 @@ const Layout = styled.div`
 const ProfileLayout = styled.div`
   width: 80vw;
   height: 90vh;
-  border: 1px solid red;
   margin: 5vh auto 0px auto;
   display: flex;
   padding: 20px;
@@ -82,11 +81,11 @@ const QuestionInfoLayout = styled.div`
   flex-direction: column;
   padding: 0px 80px;
   justify-content: space-around;
+  gap: 20px;
 `;
 
 const Keyword = styled.div`
-  width: 100%;
-  height: 30vh;
+  max-width: 50vw;
   border-radius: 10px;
   background-color: white;
 `;
@@ -100,31 +99,54 @@ const AddInfo = styled.div`
 
 const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
-
+  const [info, setInfo] = useState({
+    username: '',
+    email: '',
+    questionCount: 0,
+    keywords: [],
+  });
   const [profileImage, setProfileImage] = useState('');
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
 
   useEffect(() => {
-    console.log(cookies.userInfo);
-    const result = getProfile(cookies.userInfo.userid);
+    setProfile();
   }, []);
+
+  const setProfile = async () => {
+    const result = await (
+      await getProfile(cookies.userInfo.userid)
+    ).data.context;
+    setInfo({
+      ...info,
+      username: result.info.username,
+      email: result.info.email,
+      questionCount: result.info.questionCount,
+      keywords: result.keywords,
+    });
+    const newBlob = new Blob([new Uint8Array(result.info.image)], {
+      type: 'image/png',
+    });
+    const newFile = new File([newBlob], result.info.email);
+    console.log(newBlob);
+    setProfileImage(URL.createObjectURL(newBlob));
+  };
 
   const handleHover = () => {
     hoverProfileImage
       ? setHoverProfileImage(false)
       : setHoverProfileImage(true);
   };
-  const handleFile = (e: any) => {
-    console.log(e.target.files);
+  const handleFile = async (e: any) => {
+    console.log(e.target.files[0]);
     setProfileImage(URL.createObjectURL(e.target.files[0]));
     const formData: FormData = new FormData();
-    formData.append('files', e.target.files[0]);
+    formData.append('img', e.target.files[0]);
+    formData.append('userid', cookies.userInfo.userid);
     console.log(formData.get('files'));
-    const result = sendProfileImage(
-      formData,
-      cookies.userInfo.userid,
-      cookies.userInfo.userid,
-    );
+    const result = await sendProfileImage(formData);
+    if (result.status === 200) {
+      setProfileImage(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
   return (
@@ -154,11 +176,17 @@ const Profile = () => {
             ) : null}
           </ProfileImageLayout>
           <ProfileDetailLayout>
-            <ProfileInfo />
+            <ProfileInfo
+              email={info.email}
+              username={info.username}
+              questionCount={info.questionCount}
+            />
           </ProfileDetailLayout>
         </ProfileInfoLayout>
         <QuestionInfoLayout>
-          <Keyword>{/* <Keywords /> */}</Keyword>
+          <Keyword>
+            <Keywords data={info.keywords} />
+          </Keyword>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <AddInfo />
             <AddInfo />

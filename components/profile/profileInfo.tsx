@@ -27,7 +27,13 @@ const Info = styled.span`
   color: #444;
 `;
 
-const ProfileInfo = () => {
+interface profileInfoProps {
+  username: string;
+  email: string;
+  questionCount: number;
+}
+
+const ProfileInfo = (props: profileInfoProps) => {
   return (
     <Layout>
       <InfoLayout>
@@ -36,11 +42,11 @@ const ProfileInfo = () => {
       </InfoLayout>
       <InfoLayout>
         <Title>이메일</Title>
-        <Info>kymkjh2002@gmail.com</Info>
+        <Info>{props.email}</Info>
       </InfoLayout>
       <InfoLayout>
         <Title>질문 횟수</Title>
-        <Info>12</Info>
+        <Info>{props.questionCount}</Info>
       </InfoLayout>
     </Layout>
   );
