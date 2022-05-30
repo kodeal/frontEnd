@@ -26,12 +26,9 @@ const SpeechBallonContainer = (props: any) => {
   const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
 
-
   const dispatch = useDispatch();
 
   const scrollToBottom = () => {
-    console.log('scroll');
-
     boxRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'end',
@@ -59,9 +56,8 @@ const SpeechBallonContainer = (props: any) => {
   }, []);
 
   useEffect(() => {
-      scrollToBottom();
-
-      }, [props.isSending]);
+    scrollToBottom();
+  }, [props.isSending]);
 
   const setChattingLog = useCallback(
     // 사용자의 채팅 내역 로컬에 저장

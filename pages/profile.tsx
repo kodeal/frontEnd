@@ -1,10 +1,12 @@
 import ProfileInfo from 'components/profile/profileInfo';
 import FixedTopBar from 'components/TopBar/FixedTopBar';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { BsFillPencilFill } from 'react-icons/bs';
 // import Keywords from 'components/profile/keywords';
+import { sendProfileImage, getProfile } from 'utils/apis/api';
+import { useCookies } from 'react-cookie';
 
 const Layout = styled.div`
   width: 100vw;
@@ -97,8 +99,15 @@ const AddInfo = styled.div`
 `;
 
 const Profile = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+
   const [profileImage, setProfileImage] = useState('');
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
+
+  useEffect(() => {
+    console.log(cookies.userInfo);
+    const result = getProfile(cookies.userInfo.userid);
+  }, []);
 
   const handleHover = () => {
     hoverProfileImage
@@ -111,6 +120,11 @@ const Profile = () => {
     const formData: FormData = new FormData();
     formData.append('files', e.target.files[0]);
     console.log(formData.get('files'));
+    const result = sendProfileImage(
+      formData,
+      cookies.userInfo.userid,
+      cookies.userInfo.userid,
+    );
   };
 
   return (

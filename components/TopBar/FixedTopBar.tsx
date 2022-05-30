@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 
 const TopBar = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: #eee;
+  background-color: #555;
   display: flex;
   justify-content: space-between;
   text-align: center;
@@ -26,6 +25,7 @@ const TopBarTitle = styled.a`
   text-decoration: none;
   line-height: 4.7vh;
   cursor: pointer;
+  color: white;
 `;
 
 const LoginButton = styled.a`
@@ -37,7 +37,7 @@ const LoginButton = styled.a`
   text-decoration: none;
   line-height: 3.7vh;
   cursor: pointer;
-
+  color: white;
   &:hover {
     background-color: #0052d1;
   }
@@ -62,7 +62,7 @@ const FixedTopBar = (): JSX.Element => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   const gotoMypage = () => {
-    router.push(`/profile?userid=${cookies.userInfo.email}`);
+    router.push(`/profile?userid=${cookies.userInfo.userid}`);
   };
 
   return (
