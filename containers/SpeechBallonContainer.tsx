@@ -11,6 +11,7 @@ type QuestionState = {
   question: string;
   code: string;
   who: string;
+  language: string;
 };
 
 // type userState = {
@@ -75,6 +76,7 @@ const SpeechBallonContainer = (props: any) => {
       question={chat.question}
       code={chat.code}
       who={chat.who}
+      language={props.language}
     />
   ));
 
@@ -88,6 +90,7 @@ const SpeechBallonContainer = (props: any) => {
         }
         code={''}
         who={'kodeal'}
+        language={props.language}
       />,
     );
   }

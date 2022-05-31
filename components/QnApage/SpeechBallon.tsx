@@ -92,6 +92,7 @@ type chattingType = {
   question: string;
   code: string;
   who: string;
+  language: string;
 };
 
 export default function SpeechBallon(props: chattingType): any {
@@ -125,7 +126,9 @@ export default function SpeechBallon(props: chattingType): any {
       {props?.code?.length > 0 ? (
         <>
           <AnswerBallon>
-            <SyntaxHighlighter language="python">
+            <SyntaxHighlighter
+              language={props.language === 'Python 3' ? 'python' : 'javascipt'}
+            >
               {props.code}
             </SyntaxHighlighter>
           </AnswerBallon>

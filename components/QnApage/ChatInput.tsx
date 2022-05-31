@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import styled, { StyledComponent } from 'styled-components';
 import { updateQuestion } from 'reducer/Chatting';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import { sendQuestion } from 'utils/apis/api';
 import { getTime } from 'pages/qna';
 import { useCookies } from 'react-cookie';
@@ -26,7 +26,7 @@ const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
 
 const InputText: StyledComponent<'textarea', any, {}, never> = styled.textarea`
   width: 47vw;
-  height: 70vh;
+  height: 68vh;
   line-height: 1.6rem;
   font-size: 20px;
   background-color: white;
@@ -70,11 +70,20 @@ const SendButton: StyledComponent<'button', any, {}, never> = styled.button`
   }
 `;
 
+const ErrorMsg = styled.span`
+  font-size: 14px;
+  color: red;
+  text-align: left;
+  margin-left: 0.6rem;
+  display: none;
+`;
+
 export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState('');
   const [code, setCode] = useState('');
   const [key, setKey] = useState(0);
-  const [language, setLanguage] = useState('');
+  const language = useRef('');
+  const errorMsgRef = useRef<HTMLSpanElement>(null);
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
@@ -82,16 +91,37 @@ export default function ChatInputWindow(props: any): JSX.Element {
     setQuestion(e.target.value);
   }, []);
 
-  const handleLanguage = (language: string) => {
-    setLanguage(language);
+  const handleLanguage = (lang: string) => {
+    language.current = lang;
+  };
+
+  const checkLanguageSelected = () => {
+    console.log(language.current);
+
+    if (language.current.length > 0) {
+      errorMsgRef.current.style.display = 'none';
+      return true;
+    } else {
+      errorMsgRef.current.style.display = 'block';
+      return false;
+    }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if (!checkLanguageSelected()) {
+      return;
+    }
     setKey(key + 1);
     const time: string = getTime();
-    sendQuestion(cookies.userInfo.userid, question, code, time, language)
+    sendQuestion(
+      cookies.userInfo.userid,
+      question,
+      code,
+      time,
+      language.current,
+    )
       .then((result) => {
         dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
         setQuestion('');
@@ -100,7 +130,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
         props.setIsSending(false);
       })
       .catch((error) => {
-        const errorMsg = `코딜에게 문제가 생겼나봐요 😓\n
+        const errorMsg = `Kodeal에게 문제가 생겼나봐요 😓\n
         다시 질문해주세요!`;
         dispatch(updateQuestion(time, '', errorMsg, 'kodeal'));
         e.target.reset();
@@ -118,7 +148,7 @@ export default function ChatInputWindow(props: any): JSX.Element {
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
         <Tag handleLanguage={handleLanguage} />
-
+        <ErrorMsg ref={errorMsgRef}>언어를 선택해 주세요!</ErrorMsg>
         <InputText
           placeholder="질문해 주세요!"
           onChange={handleQuestion}
