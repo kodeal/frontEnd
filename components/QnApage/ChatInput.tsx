@@ -82,8 +82,8 @@ export default function ChatInputWindow(props: any): JSX.Element {
     setQuestion(e.target.value);
   }, []);
 
-  const handleLanguage = (e: any) => {
-    setLanguage(e.target.innerText);
+  const handleLanguage = (language: string) => {
+    setLanguage(language);
   };
 
   const handleSubmit = (e: any) => {

@@ -31,6 +31,7 @@ const Tag = (props: tagProps) => {
       tag.style.filter =
         e.target === tag ? 'brightness(70%)' : 'brightness(100%)';
     });
+    props.handleLanguage(e.target.innerHTML);
   };
 
   return (
@@ -43,7 +44,7 @@ const Tag = (props: tagProps) => {
         }}
         color="#3776AB"
       >
-        Python
+        Python 3
       </SubTag>
 
       <SubTag

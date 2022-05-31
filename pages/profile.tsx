@@ -10,7 +10,7 @@ import { useCookies } from 'react-cookie';
 
 const Layout = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   background-color: #333;
 `;
 
@@ -85,13 +85,13 @@ const QuestionInfoLayout = styled.div`
 `;
 
 const Keyword = styled.div`
-  max-width: 50vw;
+  max-width: 920px;
   border-radius: 10px;
   background-color: white;
 `;
 
 const AddInfo = styled.div`
-  width: 350px;
+  width: 450px;
   height: 350px;
   border-radius: 10px;
   background-color: white;
@@ -99,7 +99,7 @@ const AddInfo = styled.div`
 
 const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
-  const [info, setInfo] = useState({
+  const [userInfo, setUserInfo] = useState({
     username: '',
     email: '',
     questionCount: 0,
@@ -113,11 +113,12 @@ const Profile = () => {
   }, []);
 
   const setProfile = async () => {
-    const result = await (
-      await getProfile(cookies.userInfo.userid)
-    ).data.context;
-    setInfo({
-      ...info,
+    let result: any = await getProfile(cookies.userInfo.userid);
+
+    result = result.data.context;
+
+    setUserInfo({
+      ...userInfo,
       username: result.info.username,
       email: result.info.email,
       questionCount: result.info.questionCount,
@@ -126,8 +127,8 @@ const Profile = () => {
     const newBlob = new Blob([new Uint8Array(result.info.image)], {
       type: 'image/png',
     });
-    const newFile = new File([newBlob], result.info.email);
-    console.log(newBlob);
+    // const newFile = new File([newBlob], result.info.email);
+    // console.log(newBlob);
     setProfileImage(URL.createObjectURL(newBlob));
   };
 
@@ -137,8 +138,6 @@ const Profile = () => {
       : setHoverProfileImage(true);
   };
   const handleFile = async (e: any) => {
-    console.log(e.target.files[0]);
-    setProfileImage(URL.createObjectURL(e.target.files[0]));
     const formData: FormData = new FormData();
     formData.append('img', e.target.files[0]);
     formData.append('userid', cookies.userInfo.userid);
@@ -177,17 +176,23 @@ const Profile = () => {
           </ProfileImageLayout>
           <ProfileDetailLayout>
             <ProfileInfo
-              email={info.email}
-              username={info.username}
-              questionCount={info.questionCount}
+              email={userInfo.email}
+              username={userInfo.username}
+              questionCount={userInfo.questionCount}
             />
           </ProfileDetailLayout>
         </ProfileInfoLayout>
         <QuestionInfoLayout>
           <Keyword>
-            <Keywords data={info.keywords} />
+            <Keywords data={userInfo.keywords} />
           </Keyword>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              gap: '20px',
+            }}
+          >
             <AddInfo />
             <AddInfo />
           </div>

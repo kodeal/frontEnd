@@ -48,6 +48,7 @@ const UserName = styled.div`
   font-weight: 500;
   width: 200px;
   font-size: 22px;
+  color: white;
   line-height: 3vh;
   text-align: center;
   margin: 8px 20px 8px 0px;
@@ -62,7 +63,7 @@ const FixedTopBar = (): JSX.Element => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   const gotoMypage = () => {
-    router.push(`/profile?userid=${cookies.userInfo.userid}`);
+    router.push(`/profile`);
   };
 
   return (
