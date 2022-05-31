@@ -23,8 +23,7 @@ const urls = {
   signup: `${baseUrl}/common/signup/`,
   authEmail: `${baseUrl}/common/signup/auth/email/`,
   authEmailNum: `${baseUrl}/common/signup/auth/email/comp/`,
-  sendProfileImage: `${baseUrl}/mypage/profile/`,
-  getProfile: `${baseUrl}/mypage/`,
+  profile: `${baseUrl}/mypage/`,
 };
 
 export const sendQuestion = async (
@@ -111,8 +110,8 @@ export const authEmailNum = async (email: string, authNum: string) => {
   return result;
 };
 
-export const sendProfileImage = async (img: FormData) => {
-  const result = await axios.post(urls.sendProfileImage, img);
+export const sendProfileImage = async (userid: string, img: FormData) => {
+  const result = await axios.post(urls.profile + `${userid}/`, img);
 
   console.log(result);
 
@@ -120,7 +119,7 @@ export const sendProfileImage = async (img: FormData) => {
 };
 
 export const getProfile = async (userid: string) => {
-  const result = await axios.get(urls.getProfile + `${userid}`);
+  const result = await axios.get(urls.profile + `${userid}/`);
   console.log(result);
 
   return result;

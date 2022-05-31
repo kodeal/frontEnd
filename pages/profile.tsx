@@ -141,7 +141,7 @@ const Profile = () => {
     });
     // const newFile = new File([newBlob], result.info.email);
     // console.log(newBlob);
-    setProfileImage(URL.createObjectURL(newBlob));
+    setProfileImage(result.info.image);
   };
 
   const handleHover = () => {
@@ -154,7 +154,7 @@ const Profile = () => {
     formData.append('img', e.target.files[0]);
     formData.append('userid', cookies.userInfo.userid);
     console.log(formData.get('files'));
-    const result = await sendProfileImage(formData);
+    const result = await sendProfileImage(cookies.userInfo.userid, formData);
     if (result.status === 200) {
       setProfileImage(URL.createObjectURL(e.target.files[0]));
     }
