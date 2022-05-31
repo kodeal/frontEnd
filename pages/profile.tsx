@@ -100,6 +100,7 @@ const Title = styled.span`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
+  padding: 7px;
 `;
 
 const AddInfo = styled.div`
@@ -139,8 +140,6 @@ const Profile = () => {
     const newBlob = new Blob([new Uint8Array(result.info.image)], {
       type: 'image/png',
     });
-    // const newFile = new File([newBlob], result.info.email);
-    // console.log(newBlob);
     setProfileImage(result.info.image);
   };
 
@@ -149,6 +148,7 @@ const Profile = () => {
       ? setHoverProfileImage(false)
       : setHoverProfileImage(true);
   };
+
   const handleFile = async (e: any) => {
     const formData: FormData = new FormData();
     formData.append('img', e.target.files[0]);
@@ -199,7 +199,7 @@ const Profile = () => {
             <Title>My Keywords</Title>
             <Keywords data={userInfo.keywords} />
           </Keyword>
-          <div
+          {/* <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -208,7 +208,8 @@ const Profile = () => {
           >
             <AddInfo />
             <AddInfo />
-          </div>
+          </div> */}
+          <Keyword></Keyword>
         </QuestionInfoLayout>
       </ProfileLayout>
     </Layout>
