@@ -130,7 +130,7 @@ export default function Login(props: any): JSX.Element {
 
   const handleCookie = (userid: string, username: string, email: string) => {
     const expireDate = new Date();
-    expireDate.setMinutes(expireDate.getMinutes() + 10);
+    expireDate.setMinutes(expireDate.getMinutes() + 30);
     setCookie(
       'userInfo',
       {

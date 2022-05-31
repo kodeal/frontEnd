@@ -24,7 +24,7 @@ const urls = {
   authEmail: `${baseUrl}/common/signup/auth/email/`,
   authEmailNum: `${baseUrl}/common/signup/auth/email/comp/`,
   sendProfileImage: `${baseUrl}/mypage/profile/`,
-  getProfile: `${baseUrl}/mypage`,
+  getProfile: `${baseUrl}/mypage/`,
 };
 
 export const sendQuestion = async (
@@ -120,12 +120,7 @@ export const sendProfileImage = async (img: FormData) => {
 };
 
 export const getProfile = async (userid: string) => {
-  const result = await axios.get(urls.getProfile, {
-    params: {
-      userid: userid,
-    },
-  });
-  console.log(urls.getProfile + `?userid=${userid}/`);
+  const result = await axios.get(urls.getProfile + `${userid}`);
   console.log(result);
 
   return result;

@@ -36,11 +36,7 @@ const Keywords = (props: keywordProps) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: '키워드',
+        display: false,
       },
     },
   };
@@ -49,7 +45,7 @@ const Keywords = (props: keywordProps) => {
     labels: labels,
     datasets: [
       {
-        label: 'data1',
+        label: '질문 키워드 개수',
         data: counts,
         backgroundColor: 'rgb(54, 162, 235)',
         borderColor: [

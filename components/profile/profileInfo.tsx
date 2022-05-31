@@ -38,7 +38,7 @@ const ProfileInfo = (props: profileInfoProps) => {
     <Layout>
       <InfoLayout>
         <Title>이름</Title>
-        <Info>김정현</Info>
+        <Info>{props.username}</Info>
       </InfoLayout>
       <InfoLayout>
         <Title>이메일</Title>

@@ -85,13 +85,25 @@ const QuestionInfoLayout = styled.div`
 `;
 
 const Keyword = styled.div`
-  max-width: 920px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Title = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
 `;
 
 const AddInfo = styled.div`
-  width: 450px;
+  width: 48%;
   height: 350px;
   border-radius: 10px;
   background-color: white;
@@ -184,6 +196,7 @@ const Profile = () => {
         </ProfileInfoLayout>
         <QuestionInfoLayout>
           <Keyword>
+            <Title>My Keywords</Title>
             <Keywords data={userInfo.keywords} />
           </Keyword>
           <div
