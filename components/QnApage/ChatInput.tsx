@@ -5,7 +5,9 @@ import { useCallback, useState, useRef } from 'react';
 import { sendQuestion } from 'utils/apis/api';
 import { getTime } from 'pages/qna';
 import { useCookies } from 'react-cookie';
+import { BsQuestionCircle } from 'react-icons/bs';
 import Tag from './Tag';
+import QuestionExplain from '@components/explainModal/questionExplain';
 
 const ChatWindow: StyledComponent<'div', any, {}, never> = styled.div`
   width: 50%;
@@ -82,10 +84,19 @@ export default function ChatInputWindow(props: any): JSX.Element {
   const [question, setQuestion] = useState('');
   const [code, setCode] = useState('');
   const [key, setKey] = useState(0);
+  const [questionModal, setQuestionModal] = useState(false);
   const language = useRef('');
   const errorMsgRef = useRef<HTMLSpanElement>(null);
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+
+  const openQuestionModal = () => {
+    setQuestionModal(true);
+  };
+
+  const closeQuestionModal = () => {
+    setQuestionModal(false);
+  };
 
   const handleQuestion = useCallback((e: any): void => {
     setQuestion(e.target.value);
@@ -144,7 +155,20 @@ export default function ChatInputWindow(props: any): JSX.Element {
     <ChatWindow>
       <form onSubmit={handleSubmit}>
         <TextDiv>
-          <div style={{ lineHeight: '3.5vh' }}>Question</div>
+          <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+            <div style={{ lineHeight: '3.5vh' }}>Question</div>
+            <BsQuestionCircle
+              size={18}
+              color="#333"
+              onMouseEnter={openQuestionModal}
+            />
+            {questionModal ? (
+              <div onMouseLeave={closeQuestionModal}>
+                <QuestionExplain />
+              </div>
+            ) : null}
+          </div>
+
           <SendButton disabled={!question}>전송</SendButton>
         </TextDiv>
         <Tag handleLanguage={handleLanguage} />
