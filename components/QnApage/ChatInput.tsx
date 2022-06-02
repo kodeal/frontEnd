@@ -134,7 +134,15 @@ export default function ChatInputWindow(props: any): JSX.Element {
       language.current,
     )
       .then((result) => {
-        dispatch(updateQuestion(time, '', result.data.answer, 'kodeal'));
+        dispatch(
+          updateQuestion(
+            time,
+            '',
+            result.data.answer,
+            'kodeal',
+            language.current,
+          ),
+        );
         setQuestion('');
         setCode('');
         e.target.reset();
@@ -143,11 +151,13 @@ export default function ChatInputWindow(props: any): JSX.Element {
       .catch((error) => {
         const errorMsg = `Kodeal에게 문제가 생겼나봐요 😓\n
         다시 질문해주세요!`;
-        dispatch(updateQuestion(time, '', errorMsg, 'kodeal'));
+        dispatch(
+          updateQuestion(time, '', errorMsg, 'kodeal', language.current),
+        );
         e.target.reset();
         props.setIsSending(false);
       });
-    dispatch(updateQuestion(time, question, code, 'user'));
+    dispatch(updateQuestion(time, question, code, 'user', 'Python 3'));
     props.setIsSending(true);
   };
 

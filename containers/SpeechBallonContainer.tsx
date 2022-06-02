@@ -46,7 +46,8 @@ const SpeechBallonContainer = (props: any) => {
             const time: string = value.fields.time;
             const question: string = value.fields.question;
             const code: string = value.fields.code;
-            setChattingLog(time, question, code);
+            const language: string = value.fields.language;
+            setChattingLog(time, question, code, language);
           });
         }
       })();
@@ -62,9 +63,9 @@ const SpeechBallonContainer = (props: any) => {
 
   const setChattingLog = useCallback(
     // 사용자의 채팅 내역 로컬에 저장
-    (time: string, question: string, code: string) => {
-      dispatch(updateQuestion(time, question, '', 'user'));
-      dispatch(updateQuestion(time, '', code, 'kodeal'));
+    (time: string, question: string, code: string, language: string) => {
+      dispatch(updateQuestion(time, question, '', 'user', language));
+      dispatch(updateQuestion(time, '', code, 'kodeal', language));
     },
     [dispatch],
   );
@@ -76,7 +77,7 @@ const SpeechBallonContainer = (props: any) => {
       question={chat.question}
       code={chat.code}
       who={chat.who}
-      language={props.language}
+      language={chat.language}
     />
   ));
 

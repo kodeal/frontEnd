@@ -103,7 +103,6 @@ export default function SpeechBallon(props: chattingType): any {
   };
 
   const closeDetailModal = () => {
-    console.log('close!!!');
     setModal(false);
   };
 
@@ -127,7 +126,7 @@ export default function SpeechBallon(props: chattingType): any {
         <>
           <AnswerBallon>
             <SyntaxHighlighter
-              language={props.language === 'Python 3' ? 'python' : 'javascipt'}
+              language={props.language === 'Python 3' ? 'python' : 'javascript'}
             >
               {props.code}
             </SyntaxHighlighter>
