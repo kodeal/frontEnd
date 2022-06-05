@@ -124,3 +124,14 @@ export const getProfile = async (userid: string) => {
 
   return result;
 };
+
+export const contributionMonth = async (
+  userid: string,
+  year: number,
+  month: number,
+) => {
+  const result = await axios.get(urls.profile + `${userid}/${year}/${month}/`);
+  console.log(result);
+
+  return result;
+};

@@ -7,6 +7,7 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import Keywords from 'components/profile/keywords';
 import { sendProfileImage, getProfile } from 'utils/apis/api';
 import { useCookies } from 'react-cookie';
+import Contribution from '@components/profile/contribution';
 
 const Layout = styled.div`
   width: 100vw;
@@ -209,7 +210,9 @@ const Profile = () => {
             <AddInfo />
             <AddInfo />
           </div> */}
-          <Keyword></Keyword>
+          <Keyword>
+            <Contribution />
+          </Keyword>
         </QuestionInfoLayout>
       </ProfileLayout>
     </Layout>
