@@ -1,5 +1,6 @@
-import GlobalFontStyle from "styles/font/GlobalStyle";
-import { wrapper } from "reducer/store";
+import GlobalFontStyle from 'styles/font/GlobalStyle';
+import 'styles/Calendar.css';
+import { wrapper } from 'reducer/store';
 const App = ({ Component, pageProps }) => {
   return (
     <>
