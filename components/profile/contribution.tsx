@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import Calendar from 'react-calendar';
 import { useEffect, useState } from 'react';
-import { contributionMonth } from '@utils/apis/api';
+import { contributionDay } from '@utils/apis/api';
 import { useCookies } from 'react-cookie';
 
 const Layout = styled.div`
@@ -23,6 +23,11 @@ const FlexLayout = styled.div`
 
 const DetailLayout = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
 `;
 
 const DateTitle = styled.span`
@@ -30,34 +35,59 @@ const DateTitle = styled.span`
   font-weight: 600;
 `;
 
+const QuestionsLayout = styled.div`
+  width: 100%;
+  overflow: scroll;
+  background-color: rgb(223, 223, 223);
+  padding: 20px;
+`;
+
+const QuestionBallon = styled.div`
+  background-color: #0064ff;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 10px 16px;
+  margin-top: 5px;
+  max-width: 500px;
+  word-break: break-all;
+`;
+
 const Contribution = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const [date, setDate] = useState(null);
+  const [questions, setQuestions] = useState([]);
 
-  //   const [value, onChange] = useState(new Date());
-
-  const getContribution = async () => {
-    const now = new Date(); // 현재 날짜 및 시간
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const result = await contributionMonth(
+  const getContribution = async (date: any) => {
+    const [year, month, day] = moment(date).format('YYYY MM DD').split(' ');
+    console.log(year, month, day);
+    const result = await contributionDay(
       cookies.userInfo.userid,
       year,
       month,
+      day,
     );
+
+    const dayQuestions = [];
+    for (let question in result) {
+      dayQuestions.push([question, result[question]]);
+    }
+    setQuestions([...dayQuestions]);
   };
   useEffect(() => {
-    getContribution();
+    const today = moment();
+    setDate(today.format('YYYY년 MM월 DD일'));
+    getContribution(today);
   }, []);
 
-  const handleDate = (e: any) => {
-    console.log(typeof e);
-    setDate(e.toString());
-  };
-
-  const formatTest = (e: any): string => {
-    console.log(e);
-    return '';
+  const handleDate = (day: any) => {
+    console.log(typeof day);
+    setDate(moment(day).format('YYYY년 MM월 DD일'));
+    getContribution(day);
   };
 
   return (
@@ -65,7 +95,61 @@ const Contribution = () => {
       <FlexLayout>
         <Calendar onChange={handleDate} calendarType="US" />
         <DetailLayout>
-          <DateTitle>{moment(date).format('YYYY년 MM월 DD일')}</DateTitle>
+          <DateTitle>{date}</DateTitle>
+          <QuestionsLayout>
+            {questions.map((question) => {
+              return (
+                <QuestionBallon>
+                  <pre style={{ whiteSpace: 'pre-wrap' }}>
+                    {question[1]}
+                    {question[0]}
+                  </pre>
+                </QuestionBallon>
+              );
+            })}
+            {/* <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon>
+            <QuestionBallon>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>hihihihihihihi</pre>
+            </QuestionBallon> */}
+          </QuestionsLayout>
         </DetailLayout>
       </FlexLayout>
     </Layout>
