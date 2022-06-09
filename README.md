@@ -58,7 +58,7 @@
 사라지는 현상이 발생하여 대신 **쿠키**를 브라우저에 저장해 QnA 서비스 이용시에 쿠키 정보를 활용할 수 있도록 했습니다.
 
 ### 💡  QnA 화면
-![QnA](https://user-images.githubusercontent.com/76273383/160061611-96f45de2-0816-443e-a52e-8eee79bbe840.JPG)
+![image](https://user-images.githubusercontent.com/76273383/172795909-33e8ecc7-3c97-46ff-8905-9c91e899cb57.png)
 
 사용자는 kodeal에게 코딩에 관련한 질문을 전송하게 됩니다. 이 과정에서 async/await를 사용하여 동기 프로그래밍으로 구현 시 API 호출이 
 
