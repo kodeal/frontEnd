@@ -23,7 +23,6 @@ interface keywordProps {
 }
 
 const Keywords = (props: keywordProps) => {
-  console.log(props.data);
   const labels = props.data.map((keyword) => {
     return keyword[0];
   });

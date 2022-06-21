@@ -154,7 +154,6 @@ const Profile = () => {
     const formData: FormData = new FormData();
     formData.append('img', e.target.files[0]);
     formData.append('userid', cookies.userInfo.userid);
-    console.log(formData.get('files'));
     const result = await sendProfileImage(cookies.userInfo.userid, formData);
     if (result.status === 200) {
       setProfileImage(URL.createObjectURL(e.target.files[0]));

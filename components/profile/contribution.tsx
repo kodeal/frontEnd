@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import moment from 'moment';
 
-import Calendar from 'react-calendar';
 import { useEffect, useState } from 'react';
-import { contributionDay } from '@utils/apis/api';
+import { contributionDay, contributionMonth } from '@utils/apis/api';
 import { useCookies } from 'react-cookie';
+import ContributionCalendar from '@components/util/ContributionCalendar';
+import dynamic from 'next/dynamic';
 
 const Layout = styled.div`
   width: 100%;
@@ -12,6 +13,7 @@ const Layout = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  height: 410px;
 `;
 
 const FlexLayout = styled.div`
@@ -85,14 +87,21 @@ const NoLog = styled.span`
   color: rgb(120, 120, 120);
 `;
 
+interface contributedListType {
+  day: string;
+  value: number;
+}
+
 const Contribution = () => {
+  const [contributedList, setContributedList] = useState<
+    Array<contributedListType>
+  >([]);
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const [date, setDate] = useState(null);
   const [questions, setQuestions] = useState([]);
 
   const getContribution = async (date: any) => {
     const [year, month, day] = moment(date).format('YYYY MM DD').split(' ');
-    console.log(year, month, day);
     const result = await contributionDay(
       cookies.userInfo.userid,
       year,
@@ -106,22 +115,60 @@ const Contribution = () => {
     }
     setQuestions([...dayQuestions]);
   };
+
+  const getContributionMonth = async (date: any) => {
+    const [year, month, day] = moment(date).format('YYYY MM DD').split(' ');
+    const result = await contributionMonth(
+      cookies.userInfo.userid,
+      year,
+      month,
+    );
+    console.log(result);
+    const contributedArr = [];
+    for (let i in result[Number(month)]) {
+      if (Number(i) < 10) {
+        contributedArr.push({
+          day: `${year}-${month}-0${i}`,
+          value: result[Number(month)][i],
+        });
+      } else {
+        contributedArr.push({
+          day: `${year}-${month}-${i}`,
+          value: result[Number(month)][Number(i)],
+        });
+      }
+    }
+    console.log(contributedArr);
+    setContributedList([...contributedArr]);
+  };
+
   useEffect(() => {
     const today = moment();
     setDate(today.format('YYYY년 MM월 DD일'));
+    getContributionMonth(today);
     getContribution(today);
   }, []);
 
-  const handleDate = (day: any) => {
-    console.log(typeof day);
-    setDate(moment(day).format('YYYY년 MM월 DD일'));
-    getContribution(day);
+  const handleDate = (day: any, event: any) => {
+    console.log(day, event);
+    setDate(moment(day.day).format('YYYY년 MM월 DD일'));
+    getContribution(day.day);
   };
+
+  const UserContributionCalendar = dynamic(
+    () => import('../util/ContributionCalendar'),
+    {
+      ssr: false,
+    },
+  );
 
   return (
     <Layout>
       <FlexLayout>
-        <Calendar onChange={handleDate} calendarType="US" />
+        <UserContributionCalendar
+          data={contributedList}
+          contribution={handleDate}
+        />
         <DetailLayout>
           <DateTitle>{date}</DateTitle>
           <QuestionsLayout>

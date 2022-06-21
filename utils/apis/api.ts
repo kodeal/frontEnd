@@ -120,9 +120,17 @@ export const sendProfileImage = async (userid: string, img: FormData) => {
 
 export const getProfile = async (userid: string) => {
   const result = await axios.get(urls.profile + `${userid}/`);
-  console.log(result);
-
   return result;
+};
+
+export const contributionMonth = async (
+  userid: string,
+  year: string,
+  month: string,
+) => {
+  const result = await axios.get(urls.profile + `${userid}/${year}/${month}/`);
+
+  return result.data.result;
 };
 
 export const contributionDay = async (
@@ -134,7 +142,5 @@ export const contributionDay = async (
   const result = await axios.get(
     urls.profile + `${userid}/${year}/${month}/${day}/`,
   );
-  console.log(result);
-
   return result.data.result;
 };
