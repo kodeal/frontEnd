@@ -31,7 +31,6 @@ const DetailLayout = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px;
   gap: 15px;
 `;
 
@@ -41,7 +40,7 @@ const DateTitle = styled.span`
 `;
 
 const QuestionsLayout = styled.div`
-  width: 100%;
+  width: 90%;
   max-height: 100%;
   overflow: scroll;
   border-radius: 10px;
@@ -79,6 +78,7 @@ const QuestionTime = styled.span`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.25px;
+  min-width: 60px;
 `;
 
 const NoLog = styled.span`
