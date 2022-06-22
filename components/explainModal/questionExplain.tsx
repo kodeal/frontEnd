@@ -76,6 +76,18 @@ const QuestionExplain = () => {
       language: 'python',
     },
     {
+      question: `질문은 핵심만 작성해 주세요. 
+너무 길어지면 정확도가 떨어질 수 있어요`,
+      who: 'kodeal',
+      language: 'python',
+    },
+    {
+      question:
+        '네이버 홈페이지에서 뉴스 탭으로 들어간 다음 모든 기사들을 크롤링해서....',
+      who: 'user',
+      language: 'python',
+    },
+    {
       question: '비트코인의 시세도 알아볼까요?',
       who: 'kodeal',
       language: 'python',
