@@ -113,7 +113,7 @@ const Profile = () => {
     questionCount: 0,
     keywords: [],
   });
-  const [profileImage, setProfileImage] = useState(profile);
+  const [profileImage, setProfileImage] = useState(null);
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
 
   useEffect(() => {
@@ -149,9 +149,9 @@ const Profile = () => {
     formData.append('img', e.target.files[0]);
     formData.append('userid', cookies.userInfo.userid);
     const result = await sendProfileImage(cookies.userInfo.userid, formData);
-    // if (result.status === 200) {
-    //   setProfileImage(URL.createObjectURL(e.target.files[0]));
-    // }
+    if (result.status === 200) {
+      setProfileImage(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
   return (
@@ -163,11 +163,11 @@ const Profile = () => {
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
           >
-            {/* {profileImage > 0 ? (
+            {profileImage > 0 ? (
               <UserProfileImage src={profileImage} width={300} height={300} />
-            ) : null} */}
+            ) : null}
 
-            <UserProfileImage src={profile} width={300} height={300} />
+            {/* <UserProfileImage src={profile} width={300} height={300} /> */}
 
             {hoverProfileImage ? (
               <HoverInput>
