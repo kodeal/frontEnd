@@ -24,10 +24,10 @@ interface chatBoxProps {
 }
 
 export default function ChatBox(props: chatBoxProps) {
-
   return (
     <Box>
       <SpeechBallonContainer isSending={props.isSending} />
+      {props.isSending ? <Loading /> : null}
     </Box>
   );
 }
