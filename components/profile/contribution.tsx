@@ -117,6 +117,8 @@ const Contribution = () => {
   };
 
   const getContributionMonth = async (date: any) => {
+    console.log(date);
+
     const [year, month, day] = moment(date).format('YYYY MM DD').split(' ');
     const result = await contributionMonth(
       cookies.userInfo.userid,

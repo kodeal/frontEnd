@@ -8,6 +8,7 @@ import Keywords from 'components/profile/keywords';
 import { sendProfileImage, getProfile } from 'utils/apis/api';
 import { useCookies } from 'react-cookie';
 import Contribution from '@components/profile/contribution';
+import { profile } from '@public/images';
 
 const Layout = styled.div`
   width: 100vw;
@@ -104,13 +105,6 @@ const Title = styled.span`
   padding: 7px;
 `;
 
-const AddInfo = styled.div`
-  width: 48%;
-  height: 350px;
-  border-radius: 10px;
-  background-color: white;
-`;
-
 const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
   const [userInfo, setUserInfo] = useState({
@@ -119,11 +113,11 @@ const Profile = () => {
     questionCount: 0,
     keywords: [],
   });
-  const [profileImage, setProfileImage] = useState('');
+  const [profileImage, setProfileImage] = useState(profile);
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
 
   useEffect(() => {
-    setProfile();
+    // setProfile();
   }, []);
 
   const setProfile = async () => {
@@ -155,9 +149,9 @@ const Profile = () => {
     formData.append('img', e.target.files[0]);
     formData.append('userid', cookies.userInfo.userid);
     const result = await sendProfileImage(cookies.userInfo.userid, formData);
-    if (result.status === 200) {
-      setProfileImage(URL.createObjectURL(e.target.files[0]));
-    }
+    // if (result.status === 200) {
+    //   setProfileImage(URL.createObjectURL(e.target.files[0]));
+    // }
   };
 
   return (
@@ -169,9 +163,12 @@ const Profile = () => {
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
           >
-            {profileImage.length > 0 ? (
+            {/* {profileImage > 0 ? (
               <UserProfileImage src={profileImage} width={300} height={300} />
-            ) : null}
+            ) : null} */}
+
+            <UserProfileImage src={profile} width={300} height={300} />
+
             {hoverProfileImage ? (
               <HoverInput>
                 <ProfileImageInput
