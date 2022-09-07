@@ -117,7 +117,7 @@ const Profile = () => {
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
 
   useEffect(() => {
-    // setProfile();
+    setProfile();
   }, []);
 
   const setProfile = async () => {
