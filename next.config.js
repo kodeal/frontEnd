@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['kodeal-bucket.s3.ap-northeast-2.amazonaws.com'],
+    domains: ['aws-kodeal-bucket.s3.ap-northeast-2.amazonaws.com'],
   },
 };
 
