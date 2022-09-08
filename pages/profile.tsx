@@ -113,7 +113,7 @@ const Profile = () => {
     questionCount: 0,
     keywords: [],
   });
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
   const [hoverProfileImage, setHoverProfileImage] = useState(false);
 
   useEffect(() => {
@@ -122,6 +122,8 @@ const Profile = () => {
 
   const setProfile = async () => {
     let result: any = await getProfile(cookies.userInfo.userid);
+    console.log(result);
+    
 
     result = result.data.context;
 
@@ -163,7 +165,7 @@ const Profile = () => {
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
           >
-            {profileImage > 0 ? (
+            {profileImage.length > 0 ? (
               <UserProfileImage src={profileImage} width={300} height={300} />
             ) : null}
 
